@@ -1,0 +1,1391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>vxlapi_NET20</name>
+    </assembly>
+    <members>
+        <member name="T:vxlapi_NET20.XLDriver">
+            <summary>
+            Vector XL Driver Library Wrapper for C#
+            Have a closer look to XL Driver API Decription for detailed information.
+            </summary>
+        </member>
+        <member name="F:vxlapi_NET20.XLDriver.xlAPILoader">
+            *******************************************************************************************************************************
+            <summary>
+            XL DRIVER LIBRARY C# USER ADAPTER  (Overall Main Adapter)
+            
+            Description: 
+            Adaption to XL Driver Library, object based!
+            </summary>
+            *******************************************************************************************************************************
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_OpenDriver">
+            <summary>
+            Opens the XL Driver. See XL API Description for further details.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CloseDriver">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Closes the XL Driver. See XL API Description for
+            further details.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetApplConfig(System.String,System.UInt32,System.UInt32@,System.UInt32@,System.UInt32@,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Reads application configuration. See XL API Description for
+            further details.
+            </summary>
+            <param name="appName">Application name in Vector Hardware Config.</param>
+            <param name="appChannel">Channel of application.</param>
+            <param name="hwType">Reference where to store.</param>
+            <param name="hwIndex">Reference where to store.</param>
+            <param name="hwChannel">Reference where to store.</param>
+            <param name="busType">Reference where to store.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetApplConfig(System.String,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets application configuration. See XL API Description for
+            further details.
+            </summary>
+            <param name="appName">Application name in Vector Hardware Config.</param>
+            <param name="appChannel">Channel of application.</param>
+            <param name="hwType">The hardware type to store.</param>
+            <param name="hwIndex">The hardware index of same hw types.</param>
+            <param name="hwChannel">The channel index of the selected hardware.</param>
+            <param name="busType">Bus type which should be set.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetDriverConfig(vxlapi_NET20.XLClass.xl_driver_config@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Retrieves driver configuration. See XL API Description for
+            further details.
+            </summary>
+            <param name="driverConfig">Reference where to store configuration.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetRemoteDriverConfig(vxlapi_NET20.XLClass.xl_driver_config@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Retrieves driver configuration for VN8900. See XL API Description for
+            further details.
+            </summary>
+            <param name="driverConfig">Reference where to store configuration.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetChannelIndex(System.Int32,System.Int32,System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the channel mask. See XL API Description for
+            further details.
+            </summary>
+            <param name="hwType">The hardware type.</param>
+            <param name="hwIndex">The hardware index of same hw types.</param>
+            <param name="hwChannel">The channel index of the selected hardware.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetChannelMask(System.Int32,System.Int32,System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the channel mask. See XL API Description for
+            further details.
+            </summary>
+            <param name="hwType">The hardware type.</param>
+            <param name="hwIndex">The hardware index of same hw types.</param>
+            <param name="hwChannel">The channel index of the selected hardware.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_OpenPort(System.Int32@,System.String,System.UInt64,System.UInt64@,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Opens the port. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="userName">Name which is displayed in Vector Hardware Config for a given hardware.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="permissionMask">Reference to a variable where the mask is returned for the channel for which init access is granted. As the input there must be the chan-nel mask where is the init access requested. A LIN channel needs init access.</param>
+            <param name="rxQueueSize">Size of the port receive queue allocated by the driver. Specifies how many events can be stored in the queue. The value should be a power of 2 and within a range of 16…32786. The actual queue size is rxQueueSize-1.</param>
+            <param name="busType">Bus type that should be activated.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_OpenPort(System.Int32@,System.String,System.UInt64,System.UInt64@,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Opens the port. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="userName">Name which is displayed in Vector Hardware Config for a given hardware.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="permissionMask">Reference to a variable where the mask is returned for the channel for which init access is granted. As the input there must be the chan-nel mask where is the init access requested. A LIN channel needs init access.</param>
+            <param name="rxQueueSize">Size of the port receive queue allocated by the driver. Specifies how many events can be stored in the queue. The value should be a power of 2 and within a range of 16…32786. The actual queue size is rxQueueSize-1.</param>
+            <param name="xlInterfaceVersion">Current API version, e.g. XL_INTERFACE_VERSION (see XLCLass.XLmessageFlags).</param>
+            <param name="busType">Bus type that should be activated.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetTimerRate(System.Int32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            XL_SetTimerRate. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="timerRate">Value specifying the interval for cyclic timer events generated by a port. If 0 is passed, no cyclic timer events will be generated.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetTimerRateAndChannel(System.Int32,System.UInt64@,System.UInt32@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            XL_SetTimerRate. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="timerChannelMask">A mask specifying the channels, at which the timer events may be generated. Please note that the driver selects the best suitable (accurate) channel of the entire channel mask for timer event generation. This selected channel is returned in timerChannelMask.</param>
+            <param name="timerRate">Value specifying the interval for cyclic timer events generated by a port. If 0 is passed, no cyclic timer events will be generated.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_ResetClock(System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Resets Clock (time stamps). See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetNotification(System.Int32,System.Int32@,System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Creates event WIN32 handle for Rx events. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="handle">Buffer for WIN32 event handle.</param>  
+            <param name="queueLevel">Queue level that triggers this event. For LIN it is fixed to 1.</param>  
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FlushReceiveQueue(System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Flushesreceive queue. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetReceiveQueueLevel(System.Int32,System.Int32@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the number of events in the receive queue.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="level">Buffer where the actual count of events in the receive queue is returned.</param>    
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_ActivateChannel(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Activates the channel. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="busType">Bus type that should be activated, e.g. XL_BUS_TYPE_CAN (see XLClass.XLbusTypes).</param>
+            <param name="flags">Additional flags for activating the channels.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_Receive(System.Int32,vxlapi_NET20.XLClass.xl_event@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Reads events from hardware queue if available. See XL API 
+            Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="xlEvent">Empty XL event buffer. The received XL event will be available in the buffer.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_Receive(System.Int32,System.Int32,System.Collections.Generic.List{vxlapi_NET20.XLClass.xl_event}@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Reads events from hardware queue if available. See XL API 
+            Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="eventCount">Number of events to be read at once from the queue.</param>
+            <param name="xlEvents">Empty list which will be loaded at once with the number of requestet events (if available).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetErrorString(vxlapi_NET20.XLClass.XLstatus)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns a textual description of the given status code.
+            See XL API Description for further details.
+            </summary>
+            <param name="status">An error code.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetEventString(vxlapi_NET20.XLClass.xl_event)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns a textual description of the given event.
+            See XL API Description for further details.
+            </summary>
+            <param name="xlEvent">Buffer to a XL event with content.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetSyncTime(System.Int32,System.UInt64@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the sync time. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="time">Points to variable, where the sync time is received.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GenerateSynPulse(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Generates sync pulse.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_PopupHwConfig">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Opens Vector Hardware Config. See XL API Description for
+            further details.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DeactivateChannel(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Dectivates the channel. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_ClosePort(System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Closes the port of prepared port. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetLicenseInfo(System.UInt64,vxlapi_NET20.XLClass.xl_license_info[]@,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            This function returns an array (type of XLClass.xl_license_info) with all available licenses from the selected Vector device. See XL API Description for
+            further details.
+            </summary>
+            <param name="channelMask">The channel mask of the Vector device containing the licenses.</param>
+            <param name="pLicInfoArray">Array of XLClass.xl_license_info which receives the license info.</param>
+            <param name="licInfoArraySize">Size of the array.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelOutput(System.Int32,System.UInt64,System.Byte)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets channel to silent (no ack) or normal. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="mode">Specifies the output mode of the CAN chip, e.g. XL_OUTPUT_MODE_NORMAL or XL_OUTPUT_MODE_SILENT (see XLClass.XLoutputModes).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelMode(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Turns on/ off XL_CAN_MSG_FLAG_TX_COMPLETED and
+            XL_CAN_MSG_FLAG_TX_REQUEST flags. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="tx">A flag specifying whether the channel should generate receipts when a message is transmitted by the CAN chip.</param>
+            <param name="txRq">A flag specifying whether the channel should generate receipts when a message is ready for transmission by the CAN chip.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetReceiveMode(System.Int32,System.Byte,System.Byte)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Suppresses error frames and chipstate events with 1 and allows them with 0.
+            Default is to allow error frames and chipstate events.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="errorFrame">Suppress error frames if set to 1.</param>
+            <param name="chipState">Suppress chipstate events if set to 1.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelTransceiver(System.Int32,System.UInt64,System.Int32,System.Int32,System.Int32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets transceiver modes. See XL API Description for
+            further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="type">E.g. XL_TRANSCEIVER_TYPE_CAN_1041_opto (see XLClass.XLtransceiverTypes).</param>
+            <param name="lineMod">E.g. XL_TRANSCEIVER_LINEMODE_SWC_WAKEUP (see XLClass.XLtransceiverModes).</param>
+            <param name="resNet">E.g. XL_TRANSCEIVER_RESNET_NA (see XLClass.XLtransceiverModes).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelParams(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_chip_params)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Inits channel params with a set of prepared chip params. See XL API 
+            Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="chipParams">Chip parameters to be set.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelParamsC200(System.Int32,System.UInt64,System.Byte,System.Byte)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            /// <summary>
+            Offers C200 Basic-CAN controller settings.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="btr0">BTRO value for a C200 or 527 compatible controllers.</param>
+            <param name="btr1">BTR1 value for a C200 or 527 compatible controllers.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelBitrate(System.Int32,System.UInt64,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets the bitrate of current port.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="bitrate">Bit rate in BPS. May be in the range 15000-1000000.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelAcceptance(System.Int32,System.UInt64,System.UInt32,System.UInt32,vxlapi_NET20.XLClass.XLacceptanceFilter)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets acceptance filter.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="code">The acceptance code for id filtering.</param>
+            <param name="mask">The acceptance mask for id filtering, bit = 1 means relevant.</param>
+            <param name="idRange">To distinguish whether the filter is for standard or extended identifiers XL_CAN_STD or XL_CAN_EXT (see XLCLass.XLacceptanceFilter).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanSetChannelAcceptance(System.Int32,System.UInt64,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets acceptance filter.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="code">The acceptance code for id filtering.</param>
+            <param name="mask">The acceptance mask for id filtering, bit = 1 means relevant.</param>
+            <param name="idRange">To distinguish whether the filter is for standard or extended identifiers XL_CAN_STD or XL_CAN_EXT (see XLCLass.XLacceptanceFilter).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanAddAcceptanceRange(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Adds acceptance region for standard IDs.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="first_id">First ID to pass acceptance filter.</param>
+            <param name="last_id">Last ID to pass acceptance filter.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanRemoveAcceptanceRange(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Remove acceptance region for standard IDs.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="first_id">First ID to remove.</param>
+            <param name="last_id">Last ID to remove.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanResetAcceptance(System.Int32,System.UInt64,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Resets acceptance region.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="idRange">In order to distinguish whether the filter is reset for standard or extended identifiers XL_CAN_STD or XL_CAN_EXT (see XLClass.XLacceptanceFilter).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanRequestChipState(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Requests a CAN controller chip state for all selected channels.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanTransmit(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_event_collection)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Transmits a complete collection of xl CAN events.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="xlEventCollection">A collection of one ore more XL events to be transmitted.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanTransmit(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_event)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Transmits a single CAN event.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="xlEvent">A single XL event to be transmitted.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_CanFlushTransmitQueue(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Flushes CAN transmit queue.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetGlobalTimeSync(System.UInt32,System.UInt32@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Reads/sets the software synchronization setting in the Vector Hardware Config tool. 
+            This setting is written to the registry and read every time when the driver is loaded. 
+            To reload the driver of a connected interface, unconnected and reconnected it.
+            </summary>
+            <param name="newValue">(uint)XLClass.XLgloblalSync.XL_SET_TIMESYNC_NO_CHANGE or 
+            (uint)XLClass.XLgloblalSync.XL_SET_TIMESYNC_ON or 
+            (uint)XLClass.XLgloblalSync.XL_SET_TIMESYNC_OFF</param>
+            <param name="previousValue">Buffer which stores the previous value.</param>
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSetChannelParams(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_linStatPar)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Defines the mode of the LIN channel and the baudrate.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="linStatPar">Parameter settings like baudrate and LIN version.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSetDLC(System.Int32,System.UInt64,System.Byte[])">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Defines the DLC length for all requested LIN messages.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="DLC">Specifies the length of all LIN messages (0…63). The value can be 0…8 for a valid DLC.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSetChecksum(System.Int32,System.UInt64,System.Byte[])">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            This function is only for a LIN 2.0 node and must be called 
+            before activating a channel.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="checksum">XL_LIN_CHECKSUM_CLASSIC, XL_LIN_CHECKSUM_ENHANCED or XL_LIN_CHECKSUM_UNDEFINED (see XLClass.XLlinParams).</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSetSlave(System.Int32,System.UInt64,System.Byte,System.Byte[],System.Byte,System.UInt16)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets up a LIN slave.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="linId">LIN ID on which the slave transmits a response.</param>
+            <param name="data">Contains the data bytes.</param>
+            <param name="dlc">Defines the dlc for the LIN message.</param>
+            <param name="checksum">Defines the checksum (it is also possible to set a faulty checksum). If the API should calculate the checksum use the following defines: XL_LIN_CALC_CHECKSUM or XL_LIN_CALC_CHECKSUM_ENHANCED.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSendRequest(System.Int32,System.UInt64,System.Byte,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sends a master LIN request to the slave(s).
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="linId">Contains the master request LIN ID.</param>
+            <param name="flags">For future use. At the moment set to 0.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinWakeUp(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sends a wake-up.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSetSleepMode(System.Int32,System.UInt64,System.UInt32,System.Byte)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Activate the sleep mode.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="flags">XL_LIN_SET_SILENT or XL_LIN_SET_WAKEUPID (see XLClass.XLlinParams).</param>
+            <param name="linId">Defines the linID that is transmited at wake-up.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_LinSwitchSlave(System.Int32,System.UInt64,System.Byte,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            The function can switch on/off a LIN slave during measurement.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="linId">Contains the master request LIN ID.</param>
+            <param name="mode">XL_LIN_SLAVE_ON or XL_LIN_SLAVE_OFF (see XLClass.XLlinParams).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetAnalogParameters(System.Int32,System.UInt64,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Configures the analog lines.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="inputMask">Mask for lines to be configured as input. Generally the inverted value of the output mask can be used.</param>
+            <param name="outputMask">Mask for lines to be configured as output. Generally the inverted value of the input mask can be used.</param>
+            <param name="highRangeMask">Mask for lines that should use high range mask for input resolution.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetAnalogOutput(System.Int32,System.UInt64,System.UInt32,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets analog output line to wished voltage level.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="analogLine1">Voltage level for AIO0.</param>
+            <param name="analogLine2">Voltage level for AIO1.</param>
+            <param name="analogLine3">Voltage level for AIO2.</param>
+            <param name="analogLine4">Voltage level for AIO3.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetAnalogTrigger(System.Int32,System.UInt64,System.UInt32,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets the analog trigger functionality up.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="triggerMask">Line to be used as trigger input. Currently the analog trigger is only supported by line AIO3 of the IOcab 8444opto (mask = 0b1000).</param>
+            <param name="triggerLevel">Voltage level (in millivolts) for the trigger.</param>
+            <param name="triggerEventMode">XL_DAIO_TRIGGER_MODE_ANALOG_ASCENDING, XL_DAIO_TRIGGER_MODE_ANALOG_DESCENDING or XL_DAIO_TRIGGER_MODE_ANALOG (see XLClass.XLdaioTriggerModes).</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetDigitalParameters(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Configures the digital lines. Per default all lines are set to input.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="inputMask">Mask for lines to be configured as input. Generally the inverted value of the output mask will be used.</param>
+            <param name="outputMask">Mask for lines to be configured as output. A set output line affects always a defined second digital line.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetDigitalOutput(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets digital output line to desired logical level.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="outputMask">Switches to be changed (see XL API Description for further details).</param>
+            <param name="valuePattern">Mask specifying the switch state for digital output (see XL API Description for further details).</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetPWMOutput(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Changes parameters of PWM output to defined frequency and value.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="frequency">Set PWM frequency to specified value in Hertz.Allowed values: 40…500 Hertz and 2.4kHz…100kHz.</param>
+            <param name="val">Ratio for pulse high pulse low times with resolution of 0.01 percent. Allowed values: 0 (100% pulse low)…10000 (100% pulse high).</param> 
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIOSetMeasurementFrequency(System.Int32,System.UInt64,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets the measurement frequency.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="measurementInterval">Measurement frequency in ms.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_DAIORequestMeasurement(System.Int32,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Forces manual measurement of DAIO values.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrSetConfiguration(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_fr_cluster_configuration@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets up (configure) the FlexRay CC. The function must be called before 
+            xlActivate-Channel. It is not possible to change the FlexRay parameters 
+            during runtime.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="clusterConfig">Cluster Configuration to be set.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrGetChannelConfiguration(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_fr_channel_config@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the actual cluster configuration depending on the channel.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">The port handle retrieved by xlOpenPort (see XL API Description).</param>
+            <param name="accessMask">The access mask specifies the channels for which the function should be execut-ed (see XL API Description: xlOpenPort, xlGetChannelMask).</param>
+            <param name="pxlFrChannelConfig">Pointer the XLfrChannelConfig structure. Contains the cluster configuration parameters.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrSetMode(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_fr_set_modes)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Setup the operational mode for both VN3x00 CCs E-Ray (normal CC) and 
+            coldstart (Fujitsu CC). The function must be called before xlActivateChannel 
+            and requires init access.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="frMode">Structure of different operational modes.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrInitStartupAndSync(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_fr_event)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Initializes the coldstart and defines the sync frame. The function must 
+            be called before xlActivateChannel and requires “init access”. To select 
+            the channel and CC use the flagsChip parameter within the basic event structure. 
+            To setup different data for FlexRay channels A and B call it twice. Be sure 
+            that the FlexRay config parameters pKeySlotUsedForSync and pKeySlotUsedForSync are set!.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="eventBuffer">FlexRay event buffer with the Sync Frame content to be transmitted.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrReceive(System.Int32,vxlapi_NET20.XLClass.xl_fr_event@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Reads one event from the FlexRay receive queue.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="eventBuffer">Empty FlexRay event buffer. The received FlexRay event will be available in the buffer.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrTransmit(System.Int32,System.UInt64,vxlapi_NET20.XLClass.xl_fr_event@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            The function sends static and dynamic frames with the event tag TX 
+            or can be used for updates in case of cyclic frames. Additionally frame 
+            payload increment can be configured. To configure different payload increment 
+            modes for different frChannels, the function has to be called twice 
+            (one time for every channel).
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="eventBuffer">FlexRay event buffer with the content to be transmitted.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrSetupSymbolWindow(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Setup the symbol window. The function must be called before xlActivateChannel and requires “init access”. 
+            Defines on which channel the symbol(s) can be sent. At the moment only a MTS (Media Access Test Symbol) 
+            symbol is possible. If the function is called the config parameter pChannelMTS value will be overwritten.
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="frChannel">XL_FR_CHANNEL_A, XL_FR_CHANNEL_B or XL_FR_CHANNEL_AB (see XLClass.XLfrFlagsChipParameters).</param>
+            <param name="symbolWindowMask">Mask for the symbol windows which can be sent with xlFrSendSymbolWindow. At the moment only the MTS is supported (Media Access Symbol): XL_FR_SYMBOL_MTS</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrSetTransceiverMode(System.Int32,System.UInt64,System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            The function setup the transceiver modies. 
+            E.g. to set a FlexRay transceiver into sleep, wakeup mode…
+            See XL API Description for further details.
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="frChannel">XL_FR_CHANNEL_A, XL_FR_CHANNEL_B or XL_FR_CHANNEL_AB (see XLClass.XLfrFlagsChipParameters).</param>
+            <param name="mode">Specifies the transceiver mode. e.g. XL_TRANSCEIVER_MODE_SLEEP, XL_TRANSCEIVER_MODE_NORMAL (see XLClass.XLfrTransceiverModes).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrSendSymbolWindow(System.Int32,System.UInt64,System.UInt32)">
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="symbolWindow">XL_FR_SYMBOL_MTS, defines the Media Access Symbol (see XLClass.XLfrSymbolWindows).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_FrActivateSpy(System.Int32,System.UInt64,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>  
+            In Asynchronous Mode, all FlexRay frames and symbols are received by the Spy, 
+            but no frame transmission is possible at all. If this mode is selected, only 
+            the baudrate has to be passed in the pxlClusterConfig parameter of xlFrSetConfiguration, 
+            no further FlexRay configuration data is required. 
+            The function call is optional. If this function is not called, the FlexRay frame 
+            reception is done by E-Ray after the VN3x00 node is integrated in the cluster and 
+            the cluster is synchronized.The function may be called after xlSetConfiguration and requires init access. 
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This handle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="accessMask">Mask specifying which channels shall be used with this port.</param>
+            <param name="mode">XL_FR_SYMBOL_MTS, defines the Media Access Symbol (see XLClass.XLfrSpyModes).</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_SetTimerBaseNotify(System.Int32,System.Int32@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Sets up an event to notify the application based on the timerrate which can be set by xlSetTimerRate and xlSetTimerRateAndChannel. 
+            </summary>
+            <param name="portHandle">Reference to a variable where the porthandle is returned. This han-dle must be used for any further calls to the port. If -1 is returned, the port was neither created nor opened.</param>
+            <param name="pHandle">Buffer for WIN32 event handle.</param>  
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.XL_GetFREventString(vxlapi_NET20.XLClass.xl_fr_event)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns a textual description of the given event.
+            See XL API Description for further details.
+            </summary>
+            <param name="xlEvent">Returns a textual description of the given FlexRay event.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.XLDriver.VersionToString(System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Converts version number defined in few classes in XLClass to string.
+            </summary>
+            <param name="versionNumber">The version number which is stored in DriverConfig.driverVersion.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.I_XLapiFunctions.Extract_DriverConfig(vxlapi_NET20.XLClass.xl_driver_config@,System.Boolean)">
+            ******************************************************************
+        </member>
+        <member name="M:vxlapi_NET20.C_XLapiFunctions32.Extract_DriverConfig(vxlapi_NET20.XLClass.xl_driver_config@,System.Boolean)">
+            ******************************************************************
+        </member>
+        <member name="M:vxlapi_NET20.C_XLapiFunctions64.Extract_DriverConfig(vxlapi_NET20.XLClass.xl_driver_config@,System.Boolean)">
+            ******************************************************************
+        </member>
+        <member name="T:vxlapi_NET20.XLClass">
+            <summary>
+            Rebuilt C structures in class form (not used for direct data exchange!)
+            Note: Data exchange is done with byte arrays instead of structs or
+            classes. Therefor custom marshalling routines are used.
+            </summary>
+        </member>
+        <member name="F:vxlapi_NET20.XLClass.MAX_MSG_LEN">
+            *******************************************************************************************************************************       
+        </member>
+        <member name="M:vxlapi_NET20.XLClass.FindDefine(System.String)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Returns the Enum class of the specified definition.
+            This function can be used to look up any define.
+            </summary>
+            <param name="searchKey">The XL API definition to be found, e.g. XL_SUCCESS</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_channel_config">
+            ------------------------------------------------------------------------------------------------------------------------------- 
+            <summary>
+            Data set of a single channel configuration. This sub structure is used in by class xl_driver_config.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_driver_config">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Data set of driver configuration, with an array of channel configs. Used by XL_GetDriverConfig().
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_event">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Single CAN event with one message. Use class xl_event_collection for a set of CAN events.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_tag_data">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Overall tag data for each event for a set of CAN events.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_can_message">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            A single CAN message with a length of 8 (data bytes).
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_lin_msg">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Single LIN message
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_lin_msg_api">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            LIN tags
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_chip_state">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Chip state.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_sync_pulse">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Syn pulse.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_daio_data">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            DAIO.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_transceiver">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Transceiver.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_event_collection">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            A set ofo single CAN events (used for XL_Transmit). 
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_bus_params">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Data set for bus parameters.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_license_info">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Data set for licenses
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_linStatPar">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Data set for LIN status parameters.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.linStatParStruct">
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_chip_params">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Data set for chip parameters.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_cluster_configuration">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            FlexRay structure which is used in xlFrSetConfiguration.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_channel_config">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            FlexRay structure which is used in xlFrSetMode(
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_set_modes">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            FlexRay structure which is used in xlFrSetMode(
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_event">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Global FlexRay event for Tx and Rx. The event type and its data is specified by "tag".
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_tag_data">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            The global FlexRay event "xl_fr_event" can contain several tag data
+            depening on its type, which is specified by "tag" in the event structure. 
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_start_cycle">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_START_CYCLE
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_rx_frame">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_RX_FRAME
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_tx_frame">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_TX_FRAME
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_wakeup">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_WAKEUP
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_symbol_window">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_SYMBOL_WINDOW
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR 
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_poc_mode">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR_POC_MODE
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_sync_frames">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR_SYNC_FRAMES
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_clock_corr_failure">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR_CLOCK_CORR_FAILURE 
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_nit_failure">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR_NIT_FAILURE
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_cc_error">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_ERROR_CC_ERROR 
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_status">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_STATUS
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_nm_vector">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Event type XL_FR_STATUS
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_error_info">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Structure containing several error information depening on the tag
+            in "xl_fr_error"
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_spy_frame">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Structure containing several spy frame information
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.xl_fr_spy_symbol">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Structure containing several spy symbol information
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.OFFSET">
+            ******************************************************************
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLstatus">
+            ******************************************************************
+            <summary>
+            ENUMERATIONS (for User)
+            
+            Description: 
+            A set of defines
+            </summary>
+            ****************************************************************** 
+            ------------------------------------------------------------------
+            <summary>
+            Various status codes of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLgeneral">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLeventType">
+            <summary>
+            Various event types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLbusTypes">
+            <summary>
+            Various bus types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLoutputModes">
+            <summary>
+            Various output modes
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLchipStates">
+            <summary>
+            Various output modes
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLmessageFlags">
+            <summary>
+            Various transceiver types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLChannelFlags">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLtransceiverTypes">
+            ------------------------------------------------------------------
+            <summary>
+            Various transceiver types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLtransceiverEvents">
+            ------------------------------------------------------------------
+            <summary>
+            Various transceiver types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLhwTypes">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLacceptanceFilter">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLlinParams">
+            <summary>
+            Various LIN params
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLdaioTriggerModes">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLdaioCaptureModes">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLdaioFlagsMasks">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLdaioPortConfig">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLdaioOptionalFlags">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLsyncPulse">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLgloblalSync">
+            <summary>
+            Various hardware types of XL driver.
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLtransceiverModes">
+            <summary>
+            Various LIN params
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrEventTags">
+            <summary>
+            Various FlexRay params
+            </summary>
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrEventFlags">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrSyncFlags">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrFlagsChipParameters">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrFrameFlags">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrSetMode">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrTransceiverModes">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrSymbolWindows">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrSpyModes">
+            ------------------------------------------------------------------
+        </member>
+        <member name="T:vxlapi_NET20.XLClass.XLfrChannelConfig">
+            ------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.C_XLapiFunctions_DLL_NOT_FOUND.Extract_DriverConfig(vxlapi_NET20.XLClass.xl_driver_config@,System.Boolean)">
+            ******************************************************************
+        </member>
+        <member name="T:vxlapi_NET20.xlSingleChannelCAN_Port">
+            -----------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Comfort Layer class. Contains "easy-to-use" methods to get quick access to any XL hardware. 
+            </summary>
+            -----------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.#ctor(System.String,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Creates and opens a CAN port of the named application/channel number. 
+            If the application name is unkown in the Vector Hardware Config, it will
+            be created automatically with two CAN channels.
+            </summary>
+            <param name="appName">Name of application in Vector Hardware Config.</param>
+            <param name="appChannel">Channel number of the application to be used (Vector Hardware Config).</param>
+            -------------------------------------------------------------------------------------------------------------------------------          
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlActivate">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Activates the opened port (after xlSingleChannelCAN_Port()).
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------  
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlCheckPort">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Checks, if port is available.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlTransmit(System.UInt32,System.UInt16,System.UInt64)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Transmits a single CAN message.
+            </summary>
+            <param name="id">ID of the CAN message.</param>
+            <param name="dlc">Data length of the message.</param>
+            <param name="data">8 byte value containing the data.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlClosePort">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Closes the created and opened port.
+            </summary>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlCanAddAcceptanceRange(System.UInt32,System.UInt32)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Adds an acceptance filter range for standard CAN IDs.
+            </summary>
+            <param name="first_id">First ID of range.</param>
+            <param name="last_id">Last ID of range.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlResetAcceptanceFilter">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Resets acceptance filter (all messages with standard IDs blocked).
+            </summary>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlPrintRx(vxlapi_NET20.XLClass.xl_event)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Prints an event to console.
+            </summary>
+            <param name="receivedEvent">Received event to be print.</param>
+            ------------------------------------------------------------------------------------------------------------------------------- 
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlReceive(vxlapi_NET20.XLClass.xl_event@)">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Receives one message of the hardware queue.
+            </summary>
+            <param name="rxEvent">Reference to a xlEvent which is filled with the received event.</param>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+        <member name="M:vxlapi_NET20.xlSingleChannelCAN_Port.xlPrintConfig">
+            -------------------------------------------------------------------------------------------------------------------------------
+            <summary>
+            Prints retrieved configuration to console.
+            </summary>
+            -------------------------------------------------------------------------------------------------------------------------------
+        </member>
+    </members>
+</doc>
