@@ -36,17 +36,8 @@ namespace IsSoft.Sec.LedChecker
             {
                 recipeSet.Fetch(i);
 
-                RecipeItem item = new RecipeItem(recipeSet.RecNo);
-                item.RecNo = recipeSet.RecNo;
-                item.Code = recipeSet.Name;
-                item.Memo = recipeSet.Memo;
-                item.ST1_X = recipeSet.ST1_X;
-                item.ST1_Y = recipeSet.ST1_Y;
-                item.ST1_QR = recipeSet.ST1_QR;
-                item.ST2_X = recipeSet.ST2_X;
-                item.ST2_Y = recipeSet.ST2_Y;
-                item.ST2_QR = recipeSet.ST2_QR;
-
+                RecipeItem item = new RecipeItem();
+                item.Load(recipeSet.Name);
                 keys.Add(item.RecNo, item);
                 names.Add(item.Code, item);
             }
@@ -81,37 +72,110 @@ namespace IsSoft.Sec.LedChecker
 
         public BinList Bin { get; private set; }
 
-        public RecipeItem(Int64 recNo)
+        private RecipeDataSet recipeSet;
+
+        public RecipeItem()
         {
-            Work = new Dictionary<EWorkType, WorkItem>();
-            Load(recNo);
+            RecNo = 0;
+            Code = "";
+            Memo = "";
+
+            Pattern = null;
+            Rank = null;
+            Work = null;
+            Bin = null;
+
+            recipeSet = new RecipeDataSet(AppRes.DB.Connect, null, null);
         }
 
-        public RecipeItem(string name)
+        public void Load(Int64 recipeNo)
         {
-            Work = new Dictionary<EWorkType, WorkItem>();
-            RecipeDataSet Set = new RecipeDataSet(AppRes.DB.Connect, null, null);
+            if ((RecNo == recipeNo)) return;
 
-            Set.SelectName(name);
-            if (Set.RowCount == 0)
+            recipeSet.Select(recipeNo);
+            if (recipeSet.Empty == true)
             {
-                Load(0);
+                RecNo = 0;
+                Code = "None";
+                Memo = "";
+                ST1_X = 0;
+                ST1_Y = 0;
+                ST1_QR = "";
+                ST2_X = 0;
+                ST2_Y = 0;
+                ST2_QR = "";
+
+                Work = null;
+                Pattern = null;
+                Rank = null;
+                Bin = null;
             }
             else
             {
-                Set.Fetch(0);
-                Load(Set.RecNo);
+                recipeSet.Fetch();
+                RecNo = recipeSet.RecNo;
+                Code = recipeSet.Name;
+                Memo = recipeSet.Memo;
+                ST1_X = recipeSet.ST1_X;
+                ST1_Y = recipeSet.ST1_Y;
+                ST1_QR = recipeSet.ST1_QR;
+                ST2_X = recipeSet.ST2_X;
+                ST2_Y = recipeSet.ST2_Y;
+                ST2_QR = recipeSet.ST2_QR;
+
+                Work = new Dictionary<EWorkType, WorkItem>();
+                Pattern = new PatternList(RecNo);
+                Rank = new RankList(RecNo);
+                Bin = new BinList(RecNo);
+
+                Work.Add(EWorkType.Full, new WorkItem(RecNo, EWorkType.Full));
+                Work.Add(EWorkType.Sampling, new WorkItem(RecNo, EWorkType.Sampling));
             }
         }
 
-        private void Load(Int64 recNo)
+        public void Load(string code)
         {
-            Pattern = new PatternList(recNo);
-            Rank = new RankList(recNo);
-            Bin = new BinList(recNo);
+            if ((RecNo > 0) && (code == Code)) return;
 
-            Work.Add(EWorkType.Full, new WorkItem(recNo, EWorkType.Full));
-            Work.Add(EWorkType.Sampling, new WorkItem(recNo, EWorkType.Sampling));
+            recipeSet.SelectName(code);
+            if (recipeSet.Empty == true)
+            {
+                RecNo = 0;
+                Code = "None";
+                Memo = "";
+                ST1_X = 0;
+                ST1_Y = 0;
+                ST1_QR = "";
+                ST2_X = 0;
+                ST2_Y = 0;
+                ST2_QR = "";
+
+                Work = null;
+                Pattern = null;
+                Rank = null;
+                Bin = null;
+            }
+            else
+            {
+                recipeSet.Fetch();
+                RecNo = recipeSet.RecNo;
+                Code = recipeSet.Name;
+                Memo = recipeSet.Memo;
+                ST1_X = recipeSet.ST1_X;
+                ST1_Y = recipeSet.ST1_Y;
+                ST1_QR = recipeSet.ST1_QR;
+                ST2_X = recipeSet.ST2_X;
+                ST2_Y = recipeSet.ST2_Y;
+                ST2_QR = recipeSet.ST2_QR;
+
+                Work = new Dictionary<EWorkType, WorkItem>();
+                Pattern = new PatternList(RecNo);
+                Rank = new RankList(RecNo);
+                Bin = new BinList(RecNo);
+
+                Work.Add(EWorkType.Full, new WorkItem(RecNo, EWorkType.Full));
+                Work.Add(EWorkType.Sampling, new WorkItem(RecNo, EWorkType.Sampling));
+            }
         }
     }
 

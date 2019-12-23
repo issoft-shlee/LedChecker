@@ -320,6 +320,7 @@
             this.Name = "CtrlAutoMain";
             this.Size = new System.Drawing.Size(1728, 946);
             this.Load += new System.EventHandler(this.CtrlAutoMain_Load);
+            this.Enter += new System.EventHandler(this.CtrlAutoMain_Enter);
             this.bgPanel.ResumeLayout(false);
             this.reportTab.ResumeLayout(false);
             this.ResumeLayout(false);

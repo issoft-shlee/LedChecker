@@ -851,49 +851,4 @@ namespace IsSoft.Sec.LedChecker
             Formula = "";
         }
     }
-
-    public class TestContext
-    {
-        public Int64 RecipeNo { get; private set; }
-
-        public string TestDate { get; private set; }
-
-        private TestCounterDataSet testCounterSet;
-
-        public TestContext(Int64 recipeNo, DateTime date)
-        {
-            RecipeNo = recipeNo;
-            TestDate = date.ToString("yyyy-MM-dd");
-        }
-    }
-
-    public class TestCounter
-    {
-        public Int64 RecNo { get; set; }
-
-        public int TotalCount { get; set; }
-
-        public int OkCount { get; set; }
-
-        public int NgCount { get; set; }
-
-        public double Ratio
-        {
-            get
-            {
-                double ret = 0;
-
-                if (TotalCount > 0)
-                {
-                    ret = ((double)OkCount / (double)TotalCount) * 100.0;
-                }
-
-                return ret;
-            }
-        }
-
-        public TestCounter()
-        {
-        }
-    }
 }

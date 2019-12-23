@@ -74,6 +74,11 @@ namespace IsSoft.Sec.LedChecker
             DecisionMeter = ETestDecision.Nt;
         }
 
+        private void CtrlAutoMain_Enter(object sender, EventArgs e)
+        {
+            if (recipe == null) recipePanel_DoubleClick(null, null);
+        }
+
         private void recipePanel_DoubleClick(object sender, EventArgs e)
         {
             DialogRecipeList dialog = new DialogRecipeList();
@@ -86,7 +91,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 if (dialog.DialogResult == DialogResult.OK)
                 {
-                    LoadRecipe(dialog.Result.Name);
+                    LoadRecipe(dialog.Result.RecNo);
                 }
             }
         }
@@ -105,13 +110,14 @@ namespace IsSoft.Sec.LedChecker
             samplingPage.Controls.Add(samplingReportPage);
         }
 
-        private void LoadRecipe(string name)
+        private void LoadRecipe(Int64 recipeNo)
         {
-            if ((recipe != null) && (recipe.Code == name)) return;
+            if ((recipe != null) && (recipe.RecNo == recipeNo)) return;
 
-            recipe = new RecipeItem(name);
+            recipe = new RecipeItem();
+            recipe.Load(recipeNo);
 
-            recipePanel.Text = name;
+            recipePanel.Text = recipe.Code;
             SetBinItems(recipe.Bin);
             fullReportPage.SetWorkItems(recipe.Work[EWorkType.Full]);
             samplingReportPage.SetWorkItems(recipe.Work[EWorkType.Sampling]);

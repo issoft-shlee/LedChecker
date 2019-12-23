@@ -33,6 +33,13 @@ namespace IsSoft.Sec.LedChecker
             recipeGridView.OptionsView.EnableAppearanceEvenRow = true;
         }
 
+        private void recipeGrid_DoubleClick(object sender, EventArgs e)
+        {
+            if (recipeGridView.FocusedRowHandle < 0) return;
+
+            okButton.PerformClick();
+        }
+
         private void okButton_Click(object sender, EventArgs e)
         {
             if (recipeGridView.FocusedRowHandle < 0) return;

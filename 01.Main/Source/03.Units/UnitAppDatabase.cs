@@ -1756,7 +1756,6 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" update TB_TESTCOUNTER set " +
-                $" fk_recipeno={RecipeNo}, testdate={TestDate} " +
                 $" totalcnt={TotalCount}, okcnt={OkCount}, ngcnt={NgCount} " +
                 $" where pk_recno={RecNo} ";
 
@@ -1963,6 +1962,12 @@ namespace IsSoft.Sec.LedChecker
 
         public Int64 TestHeadNo { get; set; }
 
+        public Int64 TestWorkNo { get; set; }
+
+        public Int64 RankRowNo { get; set; }
+
+        public string RankName { get; set; }
+
         public EReportItemCode ItemCode { get; set; }
 
         public string ItemName { get; set; }
@@ -1982,8 +1987,10 @@ namespace IsSoft.Sec.LedChecker
         {
             SetTrans(trans);
             command.CommandText =
-                $" select * from TB_TESTDATA " +
-                $" order by pk_recno asc ";
+                $" select ta.*, tb.itemcode, tb.itemname, tc.rowname from TB_TESTDATA ta " +
+                $" join TB_TESTWORK tb on tb.pk_recno=ta.fk_testworkno " +
+                $" join TB_RANKROW tc on tc.pk_recno=ta.fk_rankrowno " +
+                $" order by ta.pk_recno asc ";
 
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -1993,8 +2000,10 @@ namespace IsSoft.Sec.LedChecker
         {
             SetTrans(trans);
             command.CommandText =
-                $" select * from TB_TESTDATA " +
-                $" where fk_testheadno={headNo} " +
+                $" select ta.*, tb.itemcode, tb.itemname, tc.rowname from TB_TESTDATA ta " +
+                $" join TB_TESTWORK tb on tb.pk_recno=ta.fk_testworkno " +
+                $" join TB_RANKROW tc on tc.pk_recno=ta.fk_rankrowno " +
+                $" where ta.fk_testheadno={headNo} " +
                 $" order by pk_recno asc ";
 
             dataSet.Clear();
@@ -2005,7 +2014,7 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" insert into TB_TESTDATA values " +
-                $" ({RecNo}, {TestHeadNo}, {ItemCode}, '{ItemName}', {(int)Decision}, {X_Value}, {Y_Value}) ";
+                $" ({RecNo}, {TestHeadNo}, {TestWorkNo}, {RankRowNo}, {(int)Decision}, {X_Value}, {Y_Value}) ";
 
             SetTrans(trans);
 
@@ -2024,26 +2033,6 @@ namespace IsSoft.Sec.LedChecker
 
         public void Update(FbTransaction trans = null)
         {
-            string sql =
-                $" update TB_TESTDATA set " +
-                $" fk_testheadno={TestHeadNo}, itemcode={ItemCode}, " +
-                $" itemname='{ItemName}', decision={(int)Decision} " +
-                $" x_val={X_Value}, y_val={Y_Value} " +
-                $" where pk_recno={RecNo} ";
-
-            SetTrans(trans);
-
-            try
-            {
-                BeginTrans(trans);
-                command.CommandText = sql;
-                command.ExecuteNonQuery();
-                CommitTrans(trans);
-            }
-            catch (Exception e)
-            {
-                RollbackTrans(trans, e);
-            }
         }
 
         public void Delete(FbTransaction trans = null)
@@ -2076,8 +2065,8 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 TestHeadNo = 0;
-                ItemCode = EReportItemCode.VF;
-                ItemName = "";
+                TestWorkNo = 0;
+                RankRowNo = 0;
                 Decision = ETestDecision.Nt;
                 X_Value = 0;
                 Y_Value = 0;
@@ -2088,6 +2077,9 @@ namespace IsSoft.Sec.LedChecker
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             TestHeadNo = Convert.ToInt64(row["fk_testheadno"]);
+            TestWorkNo = Convert.ToInt64(row["fk_testworkno"]);
+            RankRowNo = Convert.ToInt64(row["fk_rankrowno"]);
+            RankName = Convert.ToString(row["rowname"]);
             ItemCode = (EReportItemCode)Convert.ToInt32(row["itemcode"]);
             ItemName = Convert.ToString(row["itemname"]);
             Decision = (ETestDecision)Convert.ToInt32(row["decision"]);
@@ -2220,6 +2212,121 @@ namespace IsSoft.Sec.LedChecker
             TestDataNo = Convert.ToInt64(row["fk_testdatano"]);
             RawType = Convert.ToInt32(row["rawtype"]);
             RawData = (byte[])row["rawdata"];
+        }
+    }
+
+    public class BinCounterDataSet : UlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 TestCounterNo { get; set; }
+
+        public Int64 BinNo { get; set; }
+
+        public int Count { get; set; }
+
+        public BinCounterDataSet(FbConnection connect, FbCommand command, FbDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(Int64 testCounterNo, FbTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_BINCOUNTER " +
+                $" where fk_testcounterno={testCounterNo} " +
+                $" order by fk_binno asc ";
+
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(FbTransaction trans = null)
+        { 
+            string sql =
+                $" insert into TB_BINCOUNTER values " +
+                $" ({RecNo}, {TestCounterNo}, {BinNo}, {Count}) ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.Parameters.Clear();
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(FbTransaction trans = null)
+        {
+            string sql =
+                $" update TB_BINCOUNTER set bincnt={Count} " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.Parameters.Clear();
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(FbTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_BINCOUNTER where fk_testcounterno={TestCounterNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                TestCounterNo = 0;
+                BinNo = 0;
+                Count = 0;
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            TestCounterNo = Convert.ToInt64(row["fk_testcounterno"]);
+            BinNo = Convert.ToInt64(row["fk_binno"]);
+            Count = Convert.ToInt32(row["bincnt"]);
         }
     }
 }

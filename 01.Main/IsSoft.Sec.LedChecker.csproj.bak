@@ -50,18 +50,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v18.1.UI, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraCharts.v18.1.Wizard, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Spreadsheet.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.12.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\03.Pakages\FirebirdSql.Data.FirebirdClient.5.12.1\lib\net452\FirebirdSql.Data.FirebirdClient.dll</HintPath>
@@ -82,9 +93,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\03.Pakages\TwinCat.Ads.4.0.30319\lib\TwinCAT.Ads.dll</HintPath>
     </Reference>
-    <Reference Include="Ulee.Framework, Version=1.1.0.26610, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="Ulee.Framework, Version=1.1.1.18811, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\02.Ulee\Framework\Ver 1.1.0.x\Bin\Debug\Ulee.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\Ulee\Framework\Ver 1.1.1.x\Bin\Debug\Ulee.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,11 +106,23 @@
     <Compile Include="Source\01.Forms\01.Main\FormLedCheckerMain.Designer.cs">
       <DependentUpon>FormLedCheckerMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogBinFormulaEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogBinFormulaEdit.Designer.cs">
+      <DependentUpon>DialogBinFormulaEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogInputNoEdit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogInputNoEdit.Designer.cs">
       <DependentUpon>DialogInputNoEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogItemListBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogItemListBox.Designer.cs">
+      <DependentUpon>DialogItemListBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogLedProperty.cs">
       <SubType>Form</SubType>
@@ -112,6 +135,18 @@
     </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogPatternList.Designer.cs">
       <DependentUpon>DialogPatternList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogRankList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogRankList.Designer.cs">
+      <DependentUpon>DialogRankList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogRecipeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\01.Forms\02.Dialog\DialogRecipeList.Designer.cs">
+      <DependentUpon>DialogRecipeList.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogSmuSelector.cs">
       <SubType>Form</SubType>
@@ -137,6 +172,18 @@
     <Compile Include="Source\02.Controls\01.Auto\CtrlAutoState.Designer.cs">
       <DependentUpon>CtrlAutoState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.Designer.cs">
+      <DependentUpon>CtrlBinCounterPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlReportPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlReportPage.Designer.cs">
+      <DependentUpon>CtrlReportPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\02.Controls\02.View\CtrlViewRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,11 +196,29 @@
     <Compile Include="Source\02.Controls\03.Manual\CtrlManualRight.Designer.cs">
       <DependentUpon>CtrlManualRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlBinGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlBinGrid.Designer.cs">
+      <DependentUpon>CtrlBinGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlConfigBin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlConfigBin.Designer.cs">
+      <DependentUpon>CtrlConfigBin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\02.Controls\04.Config\CtrlConfigPattern.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\02.Controls\04.Config\CtrlConfigPattern.Designer.cs">
       <DependentUpon>CtrlConfigPattern.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlConfigRank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlConfigRank.Designer.cs">
+      <DependentUpon>CtrlConfigRank.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\02.Controls\04.Config\CtrlConfigRecipe.cs">
       <SubType>UserControl</SubType>
@@ -179,16 +244,24 @@
     <Compile Include="Source\02.Controls\04.Config\CtrlPatternGrid.Designer.cs">
       <DependentUpon>CtrlPatternGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\02.Controls\04.Config\CtrlWorkGrid.cs">
+    <Compile Include="Source\02.Controls\04.Config\CtrlReportWorkGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\02.Controls\04.Config\CtrlWorkGrid.Designer.cs">
-      <DependentUpon>CtrlWorkGrid.cs</DependentUpon>
+    <Compile Include="Source\02.Controls\04.Config\CtrlReportWorkGrid.Designer.cs">
+      <DependentUpon>CtrlReportWorkGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlTestWorkGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\04.Config\CtrlTestWorkGrid.Designer.cs">
+      <DependentUpon>CtrlTestWorkGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\03.Units\UnitAppHelper.cs" />
     <Compile Include="Source\03.Units\UnitGridBookmark.cs" />
     <Compile Include="Source\03.Units\UnitAppDatabase.cs" />
     <Compile Include="Source\03.Units\UnitAppResource.cs" />
     <Compile Include="Source\03.Units\UnitAppType.cs" />
+    <Compile Include="Source\03.Units\UnitRecipeList.cs" />
     <Compile Include="Source\03.Units\UnitScreenInvalidThread.cs" />
     <Compile Include="Source\LedCheckerProgram.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -205,14 +278,26 @@
     <EmbeddedResource Include="Source\01.Forms\01.Main\FormLedCheckerMain.resx">
       <DependentUpon>FormLedCheckerMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogBinFormulaEdit.resx">
+      <DependentUpon>DialogBinFormulaEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogInputNoEdit.resx">
       <DependentUpon>DialogInputNoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogItemListBox.resx">
+      <DependentUpon>DialogItemListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogLedProperty.resx">
       <DependentUpon>DialogLedProperty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogPatternList.resx">
       <DependentUpon>DialogPatternList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogRankList.resx">
+      <DependentUpon>DialogRankList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogRecipeList.resx">
+      <DependentUpon>DialogRecipeList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogSmuSelector.resx">
       <DependentUpon>DialogSmuSelector.cs</DependentUpon>
@@ -226,14 +311,29 @@
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoState.resx">
       <DependentUpon>CtrlAutoState.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.resx">
+      <DependentUpon>CtrlBinCounterPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlReportPage.resx">
+      <DependentUpon>CtrlReportPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\02.View\CtrlViewRight.resx">
       <DependentUpon>CtrlViewRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\03.Manual\CtrlManualRight.resx">
       <DependentUpon>CtrlManualRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlBinGrid.resx">
+      <DependentUpon>CtrlBinGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlConfigBin.resx">
+      <DependentUpon>CtrlConfigBin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlConfigPattern.resx">
       <DependentUpon>CtrlConfigPattern.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlconfigRank.resx">
+      <DependentUpon>CtrlConfigRank.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlConfigRecipe.resx">
       <DependentUpon>CtrlConfigRecipe.cs</DependentUpon>
@@ -247,8 +347,11 @@
     <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlPatternGrid.resx">
       <DependentUpon>CtrlPatternGrid.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlWorkGrid.resx">
-      <DependentUpon>CtrlWorkGrid.cs</DependentUpon>
+    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlReportWorkGrid.resx">
+      <DependentUpon>CtrlReportWorkGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlTestWorkGrid.resx">
+      <DependentUpon>CtrlTestWorkGrid.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\IsSoft.Sec.LedChecker.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\IsSoft.Sec.LedChecker.Properties.Settings.datasource" />

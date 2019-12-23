@@ -15,8 +15,6 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlReportPage : UlUserControlEng
     {
-        private int workCount;
-
         public CtrlReportPage()
         {
             InitializeComponent();
@@ -27,7 +25,6 @@ namespace IsSoft.Sec.LedChecker
         {
             Dock = DockStyle.Fill;
 
-            workCount = 0;
             workBook.Document.LoadDocument(AppRes.Properties.FormWork);
             resultBook.Document.LoadDocument(AppRes.Properties.FormResult);
         }
@@ -37,11 +34,6 @@ namespace IsSoft.Sec.LedChecker
             workBook.Width = Width;
             resultBook.Width = Width;
             resultBook.Height = Height - (resultPanel.Top + resultPanel.Height);
-        }
-
-        public void Clear()
-        {
-
         }
 
         public void SetWorkItems(WorkItem work)

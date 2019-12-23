@@ -59,6 +59,7 @@
             this.recipeGrid.TabStop = false;
             this.recipeGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.recipeGridView});
+            this.recipeGrid.DoubleClick += new System.EventHandler(this.recipeGrid_DoubleClick);
             // 
             // recipeGridView
             // 
