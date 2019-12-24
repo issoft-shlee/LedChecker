@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace IsSoft.Sec.LedChecker
 {
     public class RecipeList
     {
-        private Dictionary<Int64, RecipeItem> keys;
+        private Dictionary<Int64, RecipeObject> keys;
 
-        private Dictionary<string, RecipeItem> names;
+        private Dictionary<string, RecipeObject> names;
 
         private RecipeDataSet recipeSet;
 
-        public RecipeItem this[int index]
+        public RecipeObject this[int index]
         { get { return keys[index]; } }
 
-        public RecipeItem this[string name]
+        public RecipeObject this[string name]
         { get { return names[name]; } }
 
         public RecipeList()
         {
-            keys = new Dictionary<Int64, RecipeItem>();
-            names = new Dictionary<string, RecipeItem>();
+            keys = new Dictionary<Int64, RecipeObject>();
+            names = new Dictionary<string, RecipeObject>();
             recipeSet = new RecipeDataSet(AppRes.DB.Connect, null, null);
             Load();
         }
@@ -36,7 +35,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 recipeSet.Fetch(i);
 
-                RecipeItem item = new RecipeItem();
+                RecipeObject item = new RecipeObject();
                 item.Load(recipeSet.Name);
                 keys.Add(item.RecNo, item);
                 names.Add(item.Code, item);
@@ -44,7 +43,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class RecipeItem
+    public class RecipeObject
     {
         public Int64 RecNo { get; set; }
 
@@ -68,13 +67,13 @@ namespace IsSoft.Sec.LedChecker
 
         public RankList Rank { get; private set; }
 
-        public Dictionary<EWorkType, WorkItem> Work { get; private set; }
+        public Dictionary<EWorkType, WorkObject> Work { get; private set; }
 
         public BinList Bin { get; private set; }
 
         private RecipeDataSet recipeSet;
 
-        public RecipeItem()
+        public RecipeObject()
         {
             RecNo = 0;
             Code = "";
@@ -123,13 +122,13 @@ namespace IsSoft.Sec.LedChecker
                 ST2_Y = recipeSet.ST2_Y;
                 ST2_QR = recipeSet.ST2_QR;
 
-                Work = new Dictionary<EWorkType, WorkItem>();
+                Work = new Dictionary<EWorkType, WorkObject>();
                 Pattern = new PatternList(RecNo);
                 Rank = new RankList(RecNo);
                 Bin = new BinList(RecNo);
 
-                Work.Add(EWorkType.Full, new WorkItem(RecNo, EWorkType.Full));
-                Work.Add(EWorkType.Sampling, new WorkItem(RecNo, EWorkType.Sampling));
+                Work.Add(EWorkType.Full, new WorkObject(RecNo, EWorkType.Full));
+                Work.Add(EWorkType.Sampling, new WorkObject(RecNo, EWorkType.Sampling));
             }
         }
 
@@ -168,13 +167,13 @@ namespace IsSoft.Sec.LedChecker
                 ST2_Y = recipeSet.ST2_Y;
                 ST2_QR = recipeSet.ST2_QR;
 
-                Work = new Dictionary<EWorkType, WorkItem>();
+                Work = new Dictionary<EWorkType, WorkObject>();
                 Pattern = new PatternList(RecNo);
                 Rank = new RankList(RecNo);
                 Bin = new BinList(RecNo);
 
-                Work.Add(EWorkType.Full, new WorkItem(RecNo, EWorkType.Full));
-                Work.Add(EWorkType.Sampling, new WorkItem(RecNo, EWorkType.Sampling));
+                Work.Add(EWorkType.Full, new WorkObject(RecNo, EWorkType.Full));
+                Work.Add(EWorkType.Sampling, new WorkObject(RecNo, EWorkType.Sampling));
             }
         }
     }
@@ -183,18 +182,18 @@ namespace IsSoft.Sec.LedChecker
     {
         public Int64 MasterNo { get; private set; }
 
-        private Dictionary<Int64, PatternItem> keys;
+        private Dictionary<Int64, PatternObject> keys;
 
-        private Dictionary<string, PatternItem> names;
+        private Dictionary<string, PatternObject> names;
 
         private MasterPatternDataSet masterSet;
 
         private SlavePatternDataSet slaveSet;
 
-        public PatternItem this[Int64 recNo]
+        public PatternObject this[Int64 recNo]
         { get { return keys[recNo]; } }
 
-        public PatternItem this[string name]
+        public PatternObject this[string name]
         { get { return names[name]; } }
 
         public PatternList(Int64 recipeNo)
@@ -212,15 +211,15 @@ namespace IsSoft.Sec.LedChecker
 
             MasterNo = masterSet.RecipeNo;
 
-            keys = new Dictionary<Int64, PatternItem>();
-            names = new Dictionary<string, PatternItem>();
+            keys = new Dictionary<Int64, PatternObject>();
+            names = new Dictionary<string, PatternObject>();
 
             slaveSet.Select(MasterNo);
             for (int i = 0; i < slaveSet.RowCount; i++)
             {
                 slaveSet.Fetch(i);
 
-                PatternItem item = new PatternItem(slaveSet.RecNo);
+                PatternObject item = new PatternObject(slaveSet.RecNo);
                 item.RecNo = slaveSet.RecNo;
                 item.Name = slaveSet.Name;
                 item.Memo = slaveSet.Memo;
@@ -231,7 +230,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class PatternItem
+    public class PatternObject
     {
         public Int64 RecNo { get; set; }
 
@@ -241,21 +240,21 @@ namespace IsSoft.Sec.LedChecker
 
         private SlavePatternLedDataSet slaveLedSet;
 
-        private Dictionary<string, PatternLedItem> xyLeds;
+        private Dictionary<string, PatternLedObject> xyLeds;
 
-        private Dictionary<string, PatternLedItem> strLeds;
+        private Dictionary<string, PatternLedObject> strLeds;
 
-        private PatternLedItem GetXY(int x, int y) { return xyLeds[$"{x}-{y}"]; }
+        private PatternLedObject GetXY(int x, int y) { return xyLeds[$"{x}-{y}"]; }
 
-        private PatternLedItem GetStr(int strNo, int ledNo) { return strLeds[$"{strNo}-{ledNo}"]; }
+        private PatternLedObject GetStr(int strNo, int ledNo) { return strLeds[$"{strNo}-{ledNo}"]; }
 
-        public PatternLedItem this[int x, int y, ELedCoordinateType type=ELedCoordinateType.XY]
+        public PatternLedObject this[int x, int y, ELedCoordinateType type=ELedCoordinateType.XY]
         { get { return (type == ELedCoordinateType.XY) ? GetXY(x, y) : GetStr(x, y); } }
 
-        public PatternItem(Int64 slaveNo)
+        public PatternObject(Int64 slaveNo)
         {
-            xyLeds = new Dictionary<string, PatternLedItem>();
-            strLeds = new Dictionary<string, PatternLedItem>();
+            xyLeds = new Dictionary<string, PatternLedObject>();
+            strLeds = new Dictionary<string, PatternLedObject>();
             slaveLedSet = new SlavePatternLedDataSet(AppRes.DB.Connect, null, null);
 
             Load(slaveNo);
@@ -269,7 +268,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 slaveLedSet.Fetch(i);
 
-                PatternLedItem item = new PatternLedItem();
+                PatternLedObject item = new PatternLedObject();
                 item.RecNo = slaveLedSet.RecNo;
                 item.PatternNo = slaveLedSet.SlavePatternNo;
                 item.X = slaveLedSet.X;
@@ -286,7 +285,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class PatternLedItem
+    public class PatternLedObject
     {
         public Int64 RecNo { get; set; }
 
@@ -323,7 +322,7 @@ namespace IsSoft.Sec.LedChecker
 
         public ELedType Type { get; set; }
 
-        public PatternLedItem()
+        public PatternLedObject()
         {
         }
     }
@@ -332,20 +331,20 @@ namespace IsSoft.Sec.LedChecker
     {
         private RankDataSet rankSet;
 
-        private Dictionary<Int64, RankItem> keys;
+        private Dictionary<Int64, RankObject> keys;
 
-        private Dictionary<string, RankItem> names;
+        private Dictionary<string, RankObject> names;
 
-        public RankItem this[Int64 recNo]
+        public RankObject this[Int64 recNo]
         { get { return keys[recNo]; } }
 
-        public RankItem this[string name]
+        public RankObject this[string name]
         { get { return names[name]; } }
 
         public RankList(Int64 recipeNo)
         {
-            keys = new Dictionary<Int64, RankItem>();
-            names = new Dictionary<string, RankItem>();
+            keys = new Dictionary<Int64, RankObject>();
+            names = new Dictionary<string, RankObject>();
             rankSet = new RankDataSet(AppRes.DB.Connect, null, null);
 
             Load(recipeNo);
@@ -358,7 +357,7 @@ namespace IsSoft.Sec.LedChecker
             for (int i=0; i<rankSet.RowCount; i++)
             {
                 rankSet.Fetch(i);
-                RankItem item = new RankItem(rankSet);
+                RankObject item = new RankObject(rankSet);
 
                 keys.Add(item.RecNo, item);
                 names.Add(item.Name, item);
@@ -366,7 +365,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class RankItem
+    public class RankObject
     {
         public Int64 RecNo { get; set; }
 
@@ -380,13 +379,13 @@ namespace IsSoft.Sec.LedChecker
 
         private RankRowList rows;
 
-        public RankRowItem this[int index]
+        public RankRowObject this[int index]
         { get { return rows[index]; } }
 
-        public RankRowItem this[string name]
+        public RankRowObject this[string name]
         { get { return rows[name]; } }
 
-        public RankItem(RankDataSet set)
+        public RankObject(RankDataSet set)
         {
             RecNo = set.RecNo;
             RecipeNo = set.RecipeNo;
@@ -401,20 +400,20 @@ namespace IsSoft.Sec.LedChecker
     {
         private RankRowDataSet rankRowSet;
 
-        private Dictionary<int, RankRowItem> indexes;
+        private Dictionary<int, RankRowObject> indexes;
 
-        private Dictionary<string, RankRowItem> names;
+        private Dictionary<string, RankRowObject> names;
 
-        public RankRowItem this[int index]
+        public RankRowObject this[int index]
         { get { return indexes[index]; } }
 
-        public RankRowItem this[string name]
+        public RankRowObject this[string name]
         { get { return names[name]; } }
 
         public RankRowList(Int64 rankNo)
         {
-            indexes = new Dictionary<int, RankRowItem>();
-            names = new Dictionary<string, RankRowItem>();
+            indexes = new Dictionary<int, RankRowObject>();
+            names = new Dictionary<string, RankRowObject>();
             rankRowSet = new RankRowDataSet(AppRes.DB.Connect, null, null);
 
             Load(rankNo);
@@ -428,7 +427,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 rankRowSet.Fetch(i);
 
-                RankRowItem item = new RankRowItem();
+                RankRowObject item = new RankRowObject();
                 item.RecNo = rankRowSet.RecNo;
                 item.RankNo = rankRowSet.RankNo;
                 item.Index = rankRowSet.Index;
@@ -444,7 +443,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class RankRowItem
+    public class RankRowObject
     {
         public Int64 RecNo { get; set; }
 
@@ -462,18 +461,18 @@ namespace IsSoft.Sec.LedChecker
 
         public double Upper2 { get; set; }
 
-        public RankRowItem()
+        public RankRowObject()
         {
         }
     }
 
-    public class WorkItem
+    public class WorkObject
     {
         public TestWorkList Tests { get; set; }
 
         public ReportWorkList Reports { get; set; }
 
-        public WorkItem(Int64 recipeNo, EWorkType type)
+        public WorkObject(Int64 recipeNo, EWorkType type)
         {
             Tests = new TestWorkList(recipeNo, type);
             Reports = new ReportWorkList(recipeNo, type);
@@ -484,23 +483,23 @@ namespace IsSoft.Sec.LedChecker
     {
         private TestWorkDataSet testSet;
 
-        private Dictionary<int, TestWorkItem> indexes;
+        private Dictionary<int, TestWorkObject> indexes;
 
-        private Dictionary<string, TestWorkItem> names;
+        private Dictionary<string, TestWorkObject> names;
 
         public int Count { get; private set; }
 
-        public TestWorkItem this[int index]
+        public TestWorkObject this[int index]
         { get { return indexes[index]; } }
 
-        public TestWorkItem this[string name]
+        public TestWorkObject this[string name]
         { get { return names[name]; } }
-
+        
         public TestWorkList(Int64 recipeNo, EWorkType type)
         {
             testSet = new TestWorkDataSet(AppRes.DB.Connect, null, null);
-            indexes = new Dictionary<int, TestWorkItem>();
-            names = new Dictionary<string, TestWorkItem>();
+            indexes = new Dictionary<int, TestWorkObject>();
+            names = new Dictionary<string, TestWorkObject>();
 
             Load(recipeNo, type);
         }
@@ -514,7 +513,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 testSet.Fetch(i);
 
-                TestWorkItem item = new TestWorkItem();
+                TestWorkObject item = new TestWorkObject();
                 item.RecNo = testSet.RecNo;
                 item.RecipeNo = testSet.RecipeNo;
                 item.SlavePatternNo = testSet.SlavePatternNo;
@@ -544,7 +543,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class TestWorkItem
+    public class TestWorkObject
     {
         public Int64 RecNo { get; set; }
 
@@ -590,7 +589,7 @@ namespace IsSoft.Sec.LedChecker
 
         public double Offset { get; set; }
 
-        public TestWorkItem()
+        public TestWorkObject()
         {
         }
     }
@@ -600,14 +599,14 @@ namespace IsSoft.Sec.LedChecker
     {
         private ReportWorkDataSet reportSet;
 
-        private Dictionary<int, ReportWorkItem> indexes;
+        private Dictionary<int, ReportWorkObject> indexes;
 
-        private Dictionary<string, ReportWorkItem> names;
+        private Dictionary<string, ReportWorkObject> names;
 
-        public ReportWorkItem this[int index]
+        public ReportWorkObject this[int index]
         { get { return indexes[index]; } }
 
-        public ReportWorkItem this[string name]
+        public ReportWorkObject this[string name]
         { get { return names[name]; } }
 
         public int Count { get; set; }
@@ -615,8 +614,8 @@ namespace IsSoft.Sec.LedChecker
         public ReportWorkList(Int64 recipeNo, EWorkType type)
         {
             reportSet = new ReportWorkDataSet(AppRes.DB.Connect, null, null);
-            indexes = new Dictionary<int, ReportWorkItem>();
-            names = new Dictionary<string, ReportWorkItem>();
+            indexes = new Dictionary<int, ReportWorkObject>();
+            names = new Dictionary<string, ReportWorkObject>();
 
             Load(recipeNo, type);
         }
@@ -630,7 +629,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 reportSet.Fetch(i);
 
-                ReportWorkItem item = new ReportWorkItem();
+                ReportWorkObject item = new ReportWorkObject();
                 item.RecNo = reportSet.RecNo;
                 item.RecipeNo = reportSet.RecipeNo;
                 item.Type = reportSet.Type;
@@ -649,7 +648,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class ReportWorkItem
+    public class ReportWorkObject
     {
         public Int64 RecNo { get; set; }
 
@@ -673,7 +672,7 @@ namespace IsSoft.Sec.LedChecker
 
         public double Upper { get; set; }
 
-        public ReportWorkItem()
+        public ReportWorkObject()
         {
         }
     }
@@ -682,23 +681,23 @@ namespace IsSoft.Sec.LedChecker
     {
         private BinDataSet binSet;
 
-        private Dictionary<int, BinItem> indexes;
+        private Dictionary<int, BinObject> indexes;
 
-        private Dictionary<string, BinItem> names;
+        private Dictionary<string, BinObject> names;
 
         public int Count { get; private set; }
 
-        public BinItem this[int index]
+        public BinObject this[int index]
         { get { return indexes[index]; } }
 
-        public BinItem this[string name]
+        public BinObject this[string name]
         { get { return names[name]; } }
 
         public BinList(Int64 recipeNo)
         {
             binSet = new BinDataSet(AppRes.DB.Connect, null, null);
-            indexes = new Dictionary<int, BinItem>();
-            names = new Dictionary<string, BinItem>();
+            indexes = new Dictionary<int, BinObject>();
+            names = new Dictionary<string, BinObject>();
 
             Load(recipeNo);
         }
@@ -712,7 +711,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 binSet.Fetch(i);
 
-                BinItem item = new BinItem(binSet);
+                BinObject item = new BinObject(binSet);
                 indexes.Add(item.Index, item);
 
                 if (string.IsNullOrWhiteSpace(item.Name) == true)
@@ -723,7 +722,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class BinItem
+    public class BinObject
     {
         public Int64 RecNo { get; set; }
 
@@ -737,11 +736,11 @@ namespace IsSoft.Sec.LedChecker
 
         public Color Mark { get; set; }
 
-        public Dictionary<EWorkType, List<BinFormulaItem>> Formulas { get; set; }
+        public Dictionary<EWorkType, List<BinFormulaObject>> Formulas { get; set; }
 
         private BinFormulaDataSet formulaSet;
 
-        public BinItem(BinDataSet set)
+        public BinObject(BinDataSet set)
         {
             RecNo = set.RecNo;
             RecipeNo = set.RecipeNo;
@@ -749,7 +748,7 @@ namespace IsSoft.Sec.LedChecker
             Index = set.Index;
             Name = set.Name;
             Mark = set.Mark;
-            Formulas = new Dictionary<EWorkType, List<BinFormulaItem>>();
+            Formulas = new Dictionary<EWorkType, List<BinFormulaObject>>();
 
             formulaSet = new BinFormulaDataSet(AppRes.DB.Connect, null, null);
             Load(RecNo);
@@ -757,14 +756,14 @@ namespace IsSoft.Sec.LedChecker
 
         private void Load(Int64 recNo)
         {
-            List<BinFormulaItem> formulaList = new List<BinFormulaItem>();
+            List<BinFormulaObject> formulaList = new List<BinFormulaObject>();
 
             formulaSet.Select(recNo, EWorkType.Full);
             for (int i = 0; i < formulaSet.RowCount; i++)
             {
                 formulaSet.Fetch(i);
 
-                BinFormulaItem item = new BinFormulaItem(formulaSet.Formula);
+                BinFormulaObject item = new BinFormulaObject(formulaSet.Formula);
                 item.RecNo = formulaSet.RecNo;
                 item.BinNo = formulaSet.BinNo;
                 item.Logic = formulaSet.Logic;
@@ -777,7 +776,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 formulaSet.Fetch(i);
 
-                BinFormulaItem item = new BinFormulaItem(formulaSet.Formula);
+                BinFormulaObject item = new BinFormulaObject(formulaSet.Formula);
                 item.RecNo = formulaSet.RecNo;
                 item.BinNo = formulaSet.BinNo;
                 item.Logic = formulaSet.Logic;
@@ -787,7 +786,7 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
-    public class BinFormulaItem
+    public class BinFormulaObject
     {
         public Int64 RecNo { get; set; }
 
@@ -795,15 +794,15 @@ namespace IsSoft.Sec.LedChecker
 
         public EBinLogic Logic { get; set; }
 
-        public BinTokenItem Token { get; set; }
+        public BinTokenObject Token { get; set; }
 
-        public BinFormulaItem(string formula)
+        public BinFormulaObject(string formula)
         {
-            Token = new BinTokenItem(formula);
+            Token = new BinTokenObject(formula);
         }
     }
 
-    public class BinTokenItem
+    public class BinTokenObject
     {
         public string ItemName { get; set; }
 
@@ -811,7 +810,7 @@ namespace IsSoft.Sec.LedChecker
 
         public List<string> Ranks { get; set; }
 
-        public BinTokenItem(string formula)
+        public BinTokenObject(string formula)
         {
             Ranks = new List<string>();
 

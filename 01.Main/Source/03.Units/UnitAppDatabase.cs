@@ -2094,7 +2094,7 @@ namespace IsSoft.Sec.LedChecker
 
         public Int64 TestDataNo { get; set; }
 
-        public int RawType { get; set; }
+        public int RawIndex { get; set; }
 
         public byte[] RawData { get; set; }
 
@@ -2122,7 +2122,7 @@ namespace IsSoft.Sec.LedChecker
 
             string sql =
                 $" insert into TB_TESTRAWDATA values " +
-                $" ({RecNo}, {TestDataNo}, {RawType}, @rawdata) ";
+                $" ({RecNo}, {TestDataNo}, {RawIndex}, @rawdata) ";
 
             SetTrans(trans);
 
@@ -2148,7 +2148,7 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" update TB_TESTRAWDATA set " +
-                $" fk_testdatano={TestDataNo}, rawtype={RawType}, @rawdata " +
+                $" fk_testdatano={TestDataNo}, rawindex={RawIndex}, @rawdata " +
                 $" where pk_recno={RecNo} ";
 
             SetTrans(trans);
@@ -2201,7 +2201,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 TestDataNo = 0;
-                RawType = 0;
+                RawIndex = 0;
                 RawData = null;
             }
         }
@@ -2210,7 +2210,7 @@ namespace IsSoft.Sec.LedChecker
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             TestDataNo = Convert.ToInt64(row["fk_testdatano"]);
-            RawType = Convert.ToInt32(row["rawtype"]);
+            RawIndex = Convert.ToInt32(row["rawindex"]);
             RawData = (byte[])row["rawdata"];
         }
     }

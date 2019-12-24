@@ -15,8 +15,48 @@ namespace IsSoft.Sec.LedChecker
         }
     }
 
+    public class MeasuredValue
+    {
+        public int Index { get; set; }
+
+        public double Maximum { get; set; }
+
+        public double Minimum { get; set; }
+
+        public double Average { get; set; }
+
+        public double[] Raw { get; set; }
+
+        public MeasuredValue()
+        {
+        }
+
+        public void Calcurate(int start, int length)
+        {
+            if ((length < 1) || ((start+length) > Raw.Length))
+            {
+                throw new Exception("Arguments range over in MeasuredValue.Calcurate");
+            }
+
+            double total = 0;
+            Maximum = double.MinValue;
+            Minimum = double.MaxValue;
+
+            for (int i=start; i<length; i++)
+            {
+                if (Raw[i] > Maximum) Maximum = Raw[i];
+                if (Raw[i] < Minimum) Minimum = Raw[i];
+                total += Raw[i];
+            }
+
+            Average = total / Raw.Length;
+        }
+    }
+
     public class TestHead
     {
+        public Int64 RecNo { get; set; }
+
         public Int64 RecipeNo { get; set; }
 
         public Int64 BinNo { get; set; }
@@ -37,6 +77,8 @@ namespace IsSoft.Sec.LedChecker
 
     public class TestData
     {
+        public Int64 RecNo { get; set; }
+
         public Int64 TestHeadNo { get; set; }
 
         public Int64 TestWorkNo { get; set; }
@@ -49,26 +91,37 @@ namespace IsSoft.Sec.LedChecker
 
         public double YValue { get; set; }
 
+        public List<TestRawData> Raws { get; set; }
+
         public TestData()
         {
+            RecNo = 0;
             TestHeadNo = 0;
             TestWorkNo = 0;
             RankRowNo = 0;
             Decision = ETestDecision.Nt;
             XValue = double.NaN;
             YValue = double.NaN;
+            Raws = new List<TestRawData>();
         }
     }
 
     public class TestRawData
     {
+        public Int64 RecNo { get; set; }
+
         public Int64 TestDataNo { get; set; }
 
+        public int Index { get; set; }
 
+        public double[] Raw { get; set; }
 
         public TestRawData()
         {
-
+            RecNo = 0;
+            TestDataNo = 0;
+            Index = 0;
+            Raw = null;
         }
     }
 
@@ -76,21 +129,21 @@ namespace IsSoft.Sec.LedChecker
     {
         public Int64 RecNo { get; set; }
 
-        public int TotalCount { get; set; }
+        public int Total { get; set; }
 
-        public int OkCount { get; set; }
+        public int Ok { get; set; }
 
-        public int NgCount { get; set; }
+        public int Ng { get; set; }
 
-        public double Ratio
+        public double OkRate
         {
             get
             {
                 double ret = 0;
 
-                if (TotalCount > 0)
+                if (Total > 0)
                 {
-                    ret = ((double)OkCount / (double)TotalCount) * 100.0;
+                    ret = ((double)Ok / (double)Total) * 100.0;
                 }
 
                 return ret;
