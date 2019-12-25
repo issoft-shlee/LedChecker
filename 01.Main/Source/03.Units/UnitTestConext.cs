@@ -19,16 +19,21 @@ namespace IsSoft.Sec.LedChecker
     {
         public int Index { get; set; }
 
-        public double Maximum { get; set; }
-
-        public double Minimum { get; set; }
-
-        public double Average { get; set; }
-
         public double[] Raw { get; set; }
+
+        public double Maximum { get; private set; }
+
+        public double Minimum { get; private set; }
+
+        public double Average { get; private set; }
 
         public MeasuredValue()
         {
+            Index = 0;
+            Raw = null;
+            Maximum = double.MinValue;
+            Minimum = double.MaxValue;
+            Average = double.NaN;
         }
 
         public void Calcurate(int start, int length)

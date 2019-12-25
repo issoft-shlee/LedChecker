@@ -15,7 +15,7 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlAutoMain : UlUserControlEng
     {
-        private RecipeItem recipe;
+        private RecipeObject recipe;
 
         private CtrlReportPage fullReportPage;
 
@@ -114,13 +114,13 @@ namespace IsSoft.Sec.LedChecker
         {
             if ((recipe != null) && (recipe.RecNo == recipeNo)) return;
 
-            recipe = new RecipeItem();
+            recipe = new RecipeObject();
             recipe.Load(recipeNo);
 
             recipePanel.Text = recipe.Code;
             SetBinItems(recipe.Bin);
-            fullReportPage.SetWorkItems(recipe.Work[EWorkType.Full]);
-            samplingReportPage.SetWorkItems(recipe.Work[EWorkType.Sampling]);
+            fullReportPage.SetWorkObjects(recipe.Work[EWorkType.Full]);
+            samplingReportPage.SetWorkObjects(recipe.Work[EWorkType.Sampling]);
         }
 
         private void SetBinItems(BinList bins)

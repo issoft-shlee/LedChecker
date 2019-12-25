@@ -36,7 +36,7 @@ namespace IsSoft.Sec.LedChecker
             resultBook.Height = Height - (resultPanel.Top + resultPanel.Height);
         }
 
-        public void SetWorkItems(WorkItem work)
+        public void SetWorkObjects(WorkObject work)
         {
             TestWorkList tests = work.Tests;
             ReportWorkList reports = work.Reports;
