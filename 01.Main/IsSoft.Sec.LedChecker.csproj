@@ -167,12 +167,6 @@
     <Compile Include="Source\02.Controls\01.Auto\CtrlAutoState.Designer.cs">
       <DependentUpon>CtrlAutoState.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.Designer.cs">
-      <DependentUpon>CtrlBinCounterPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Source\02.Controls\01.Auto\CtrlReportPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -306,9 +300,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoState.resx">
       <DependentUpon>CtrlAutoState.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlBinCounterPanel.resx">
-      <DependentUpon>CtrlBinCounterPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlReportPage.resx">
       <DependentUpon>CtrlReportPage.cs</DependentUpon>

@@ -114,13 +114,13 @@ namespace IsSoft.Sec.LedChecker
         {
             if ((recipe != null) && (recipe.RecNo == recipeNo)) return;
 
-            recipe = new RecipeItem();
+            recipe = new RecipeObject();
             recipe.Load(recipeNo);
 
             recipePanel.Text = recipe.Code;
             SetBinItems(recipe.Bin);
-            fullReportPage.SetWorkItems(recipe.Work[EWorkType.Full]);
-            samplingReportPage.SetWorkItems(recipe.Work[EWorkType.Sampling]);
+            fullReportPage.SetWorkObjects(recipe.Work[EWorkType.Full]);
+            samplingReportPage.SetWorkObjects(recipe.Work[EWorkType.Sampling]);
         }
 
         private void SetBinItems(BinList bins)
