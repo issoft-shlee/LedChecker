@@ -1724,7 +1724,7 @@ namespace IsSoft.Sec.LedChecker
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_TESTCOUNTER " +
-                $" where fk_recipeno={recipeNo} and testdate={testDate.Trim()} " +
+                $" where fk_recipeno={recipeNo} and testdate={testDate} " +
                 $" order by pk_recno asc ";
 
             dataSet.Clear();
@@ -1978,6 +1978,8 @@ namespace IsSoft.Sec.LedChecker
 
         public double Y_Value { get; set; }
 
+        public double[] Raw { get; set; }
+
         public TestDataDataSet(FbConnection connect, FbCommand command, FbDataAdapter adapter)
             : base(connect, command, adapter)
         {
@@ -2012,9 +2014,16 @@ namespace IsSoft.Sec.LedChecker
 
         public void Insert(FbTransaction trans = null)
         {
+            byte[] raw = null;
             string sql =
                 $" insert into TB_TESTDATA values " +
-                $" ({RecNo}, {TestHeadNo}, {TestWorkNo}, {RankRowNo}, {(int)Decision}, {X_Value}, {Y_Value}) ";
+                $" ({RecNo}, {TestHeadNo}, {TestWorkNo}, {RankRowNo}, {(int)Decision}, {X_Value}, {Y_Value}, @raw) ";
+
+            if (Raw != null)
+            {
+                raw = new byte[Raw.Length * sizeof(double)];
+                Buffer.BlockCopy(Raw, 0, raw, 0, raw.Length);
+            }
 
             SetTrans(trans);
 
@@ -2022,6 +2031,11 @@ namespace IsSoft.Sec.LedChecker
             {
                 BeginTrans(trans);
                 command.CommandText = sql;
+
+                command.Parameters.Clear();
+                command.Parameters.Add("@raw", FbDbType.Binary);
+                command.Parameters["@raw"].Value = raw;
+
                 command.ExecuteNonQuery();
                 CommitTrans(trans);
             }
@@ -2067,9 +2081,13 @@ namespace IsSoft.Sec.LedChecker
                 TestHeadNo = 0;
                 TestWorkNo = 0;
                 RankRowNo = 0;
+                RankName = "";
+                ItemCode = EReportItemCode.VF;
+                ItemName = "";
                 Decision = ETestDecision.Nt;
                 X_Value = 0;
                 Y_Value = 0;
+                Raw = null;
             }
         }
 
@@ -2085,133 +2103,14 @@ namespace IsSoft.Sec.LedChecker
             Decision = (ETestDecision)Convert.ToInt32(row["decision"]);
             X_Value = Convert.ToDouble(row["x_val"]);
             Y_Value = Convert.ToDouble(row["y_val"]);
-        }
-    }
+            Raw = null;
 
-    public class TestRawDataDataSet : UlDataSet
-    {
-        public Int64 RecNo { get; set; }
-
-        public Int64 TestDataNo { get; set; }
-
-        public int RawIndex { get; set; }
-
-        public byte[] RawData { get; set; }
-
-        public TestRawDataDataSet(FbConnection connect, FbCommand command, FbDataAdapter adapter)
-            : base(connect, command, adapter)
-        {
-        }
-
-        public void Select(Int64 testDataNo, FbTransaction trans = null)
-        {
-            SetTrans(trans);
-            command.CommandText =
-                $" select * from TB_TESTRAWDATA " +
-                $" where fk_testdatano={testDataNo} " +
-                $" order by pk_recno asc ";
-
-            dataSet.Clear();
-            dataAdapter.Fill(dataSet);
-        }
-
-        public void Insert(FbTransaction trans = null)
-        {
-            if (RawData == null) return;
-            if (RawData.Length == 0) return;
-
-            string sql =
-                $" insert into TB_TESTRAWDATA values " +
-                $" ({RecNo}, {TestDataNo}, {RawIndex}, @rawdata) ";
-
-            SetTrans(trans);
-
-            try
+            byte[] raw = (byte[])row["raw"];
+            if (raw != null)
             {
-                BeginTrans(trans);
-                command.CommandText = sql;
-
-                command.Parameters.Clear();
-                command.Parameters.Add("@rawdata", FbDbType.Binary);
-                command.Parameters["@rawdata"].Value = RawData;
-
-                command.ExecuteNonQuery();
-                CommitTrans(trans);
+                Raw = new double[raw.Length / sizeof(double)];
+                Buffer.BlockCopy(raw, 0, Raw, 0, raw.Length);
             }
-            catch (Exception e)
-            {
-                RollbackTrans(trans, e);
-            }
-        }
-
-        public void Update(FbTransaction trans = null)
-        {
-            string sql =
-                $" update TB_TESTRAWDATA set " +
-                $" fk_testdatano={TestDataNo}, rawindex={RawIndex}, @rawdata " +
-                $" where pk_recno={RecNo} ";
-
-            SetTrans(trans);
-
-            try
-            {
-                BeginTrans(trans);
-                command.CommandText = sql;
-
-                command.Parameters.Clear();
-                command.Parameters.Add("@rawdata", FbDbType.Binary);
-                command.Parameters["@rawdata"].Value = RawData;
-
-                command.ExecuteNonQuery();
-                CommitTrans(trans);
-            }
-            catch (Exception e)
-            {
-                RollbackTrans(trans, e);
-            }
-        }
-
-        public void Delete(FbTransaction trans = null)
-        {
-            string sql =
-                $" delete from TB_TESTRAWDATA where fk_testdatano={TestDataNo} ";
-
-            SetTrans(trans);
-
-            try
-            {
-                BeginTrans(trans);
-                command.CommandText = sql;
-                command.ExecuteNonQuery();
-                CommitTrans(trans);
-            }
-            catch (Exception e)
-            {
-                RollbackTrans(trans, e);
-            }
-        }
-
-        public void Fetch(int index = 0, int tableNo = 0)
-        {
-            if (index < GetRowCount(tableNo))
-            {
-                Fetch(dataSet.Tables[tableNo].Rows[index]);
-            }
-            else
-            {
-                RecNo = 0;
-                TestDataNo = 0;
-                RawIndex = 0;
-                RawData = null;
-            }
-        }
-
-        public void Fetch(DataRow row)
-        {
-            RecNo = Convert.ToInt64(row["pk_recno"]);
-            TestDataNo = Convert.ToInt64(row["fk_testdatano"]);
-            RawIndex = Convert.ToInt32(row["rawindex"]);
-            RawData = (byte[])row["rawdata"];
         }
     }
 

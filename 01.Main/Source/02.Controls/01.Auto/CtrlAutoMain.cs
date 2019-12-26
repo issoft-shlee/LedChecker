@@ -15,7 +15,7 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlAutoMain : UlUserControlEng
     {
-        private RecipeItem recipe;
+        private RecipeObject recipe;
 
         private CtrlReportPage fullReportPage;
 
