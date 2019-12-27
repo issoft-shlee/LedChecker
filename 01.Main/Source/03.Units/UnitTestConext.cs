@@ -4,129 +4,263 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using FirebirdSql.Data.FirebirdClient;
+
 namespace IsSoft.Sec.LedChecker
 {
+    public class CounterArgs : EventArgs
+    {
+        public CounterArgs(TestCounter counter)
+        {
+            Counter = counter;
+        }
+
+        public TestCounter Counter { get; set; }
+    }
+
     public class TestContext
     {
-        public Int64 RecipeNo { get; set; }
+        public RecipeObject Recipe { get; private set; }
+
+        public TestValue Value { get; private set; }
+
+        public TestCounter Counter { get; private set; }
+
+        private TestHeadDataSet testHeadSet;
+
+        private TestDataDataSet testDataSet;
+
+        private TestCounterDataSet testCounterSet;
+
+        private BinCounterDataSet binCounterSet;
 
         public TestContext()
         {
+            Recipe = new RecipeObject();
+            Value = new TestValue();
+            Counter = new TestCounter();
+
+            testHeadSet = new TestHeadDataSet(AppRes.DB.Connect, null, null);
+            testDataSet = new TestDataDataSet(AppRes.DB.Connect, null, null);
+            testCounterSet = new TestCounterDataSet(AppRes.DB.Connect, null, null);
+            binCounterSet = new BinCounterDataSet(AppRes.DB.Connect, null, null);
+        }
+
+        public void Load(Int64 recipeNo)
+        {
+            Value.Clear();
+
+            // Is recipe changed?
+            if (Recipe.Load(recipeNo) == true)
+            {
+                Counter.Clear();
+                testCounterSet.Select(recipeNo, Value.StartTime.ToString("yyyy-MM-dd"));
+
+                if (testCounterSet.Empty == true)
+                {
+                    for (int i=0; i<Recipe.Bin.Count; i++)
+                    {
+                        BinCounter binCounter = new BinCounter();
+                        binCounter.RecNo = 0;
+                        binCounter.BinNo = Recipe.Bin[i + 1].RecNo;
+                        binCounter.Count = 0;
+
+                        Counter.Bins.Add(Recipe.Bin[i + 1].Name, binCounter);
+                    }
+                }
+                else
+                {
+                    testCounterSet.Fetch();
+                    Counter.RecNo = testCounterSet.RecNo;
+                    Counter.Total = testCounterSet.TotalCount;
+                    Counter.Ok = testCounterSet.OkCount;
+                    Counter.Ng = testCounterSet.NgCount;
+
+                    binCounterSet.Select(Counter.RecNo);
+
+                    for (int i = 0; i < binCounterSet.RowCount; i++)
+                    {
+                        binCounterSet.Fetch(i);
+                        BinCounter binCounter = new BinCounter();
+                        binCounter.RecNo = binCounterSet.RecNo;
+                        binCounter.BinNo = binCounterSet.BinNo;
+                        binCounter.Count = binCounterSet.Count;
+
+                        Counter.Bins.Add(Recipe.Bin[i + 1].Name, binCounter);
+                    }
+                }
+            }
+        }
+
+        public void Save()
+        {
+            FbTransaction trans = AppRes.DB.BeginTrans();
+
+            try
+            {
+                InsertCounter(trans);
+                InsertTestData(trans);
+                AppRes.DB.CommitTrans();
+            }
+            catch
+            {
+                AppRes.DB.RollbackTrans();
+            }
+        }
+
+        private void InsertCounter(FbTransaction trans)
+        {
+            testCounterSet.RecipeNo = Recipe.RecNo;
+            testCounterSet.TestDate = Value.StartTime.ToString("yyyy-MM-dd");
+            testCounterSet.TotalCount = Counter.Total;
+            testCounterSet.OkCount = Counter.Ok;
+            testCounterSet.NgCount = Counter.Ng;
+
+            if (Counter.RecNo == 0)
+            {
+                Counter.RecNo = AppRes.DB.GetGenNo("GN_TESTCOUNTER");
+                testCounterSet.RecNo = Counter.RecNo;
+                testCounterSet.Insert(trans);
+
+                foreach (var bin in Counter.Bins)
+                {
+                    bin.Value.RecNo = AppRes.DB.GetGenNo("GN_BINCOUNTER");
+                    binCounterSet.RecNo = bin.Value.RecNo;
+                    binCounterSet.TestCounterNo = Counter.RecNo;
+                    binCounterSet.BinNo = bin.Value.BinNo;
+                    binCounterSet.Count = bin.Value.Count;
+                    binCounterSet.Insert(trans);
+                }
+            }
+            else
+            {
+                testCounterSet.RecNo = Counter.RecNo;
+                testCounterSet.Update(trans);
+
+                foreach (var bin in Counter.Bins)
+                {
+                    binCounterSet.RecNo = bin.Value.RecNo;
+                    binCounterSet.TestCounterNo = Counter.RecNo;
+                    binCounterSet.BinNo = bin.Value.BinNo;
+                    binCounterSet.Count = bin.Value.Count;
+                    binCounterSet.Update(trans);
+                }
+            }
+        }
+
+        private void InsertTestData(FbTransaction trans)
+        {
+            testHeadSet.RecNo = AppRes.DB.GetGenNo("GN_TESTHEAD");
+            testHeadSet.RecipeNo = Recipe.RecNo;
+            testHeadSet.BinNo = Value.BinNo;
+            testHeadSet.Type = Value.Type;
+            testHeadSet.StartTime = Value.StartTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            testHeadSet.ElapsedTime = Value.ElapsedTime.ToString("HH:mm:ss.fff");
+            testHeadSet.Insert(trans);
+
+            foreach (ReportProcedureValue reportValue in Value.ReportProcedures)
+            {
+                testDataSet.RecNo = AppRes.DB.GetGenNo("GN_TESTDATA");
+                testDataSet.TestHeadNo = testHeadSet.RecNo;
+                testDataSet.TestWorkNo = reportValue.WorkNo;
+                testDataSet.RankRowNo = reportValue.RankRowNo;
+                testDataSet.Decision = reportValue.Decision;
+                testDataSet.X_Value = reportValue.X;
+                testDataSet.Y_Value = reportValue.Y;
+                testDataSet.Raw = reportValue.Raw;
+                testDataSet.Insert(trans);
+            }
         }
     }
 
-    public class MeasuredValue
+    public class TestValue
     {
-        public int Index { get; set; }
-
-        public double[] Raw { get; set; }
-
-        public double Maximum { get; private set; }
-
-        public double Minimum { get; private set; }
-
-        public double Average { get; private set; }
-
-        public MeasuredValue()
-        {
-            Index = 0;
-            Raw = null;
-            Maximum = double.MinValue;
-            Minimum = double.MaxValue;
-            Average = double.NaN;
-        }
-
-        public void Calcurate(int start, int length)
-        {
-            if ((length < 1) || ((start+length) > Raw.Length))
-            {
-                throw new Exception("Arguments range over in MeasuredValue.Calcurate");
-            }
-
-            double total = 0;
-            Maximum = double.MinValue;
-            Minimum = double.MaxValue;
-
-            for (int i=start; i<length; i++)
-            {
-                if (Raw[i] > Maximum) Maximum = Raw[i];
-                if (Raw[i] < Minimum) Minimum = Raw[i];
-                total += Raw[i];
-            }
-
-            Average = total / Raw.Length;
-        }
-    }
-
-    public class TestHead
-    {
-        public Int64 RecNo { get; set; }
-
-        public Int64 RecipeNo { get; set; }
-
         public Int64 BinNo { get; set; }
 
         public EWorkType Type { get; set; }
 
         public DateTime StartTime { get; set; }
 
-        public DateTime ElpasedTime { get; set; }
+        public TimeSpan ElapsedTime { get; set; }
 
-        public List<TestData> Datas { get; set; }
+        public List<TestProcedureValue> TestProcedures { get; set; }
 
-        public TestHead()
+        public List<ReportProcedureValue> ReportProcedures { get; set; }
+
+        public TestValue()
         {
-            Datas = new List<TestData>();
+            TestProcedures = new List<TestProcedureValue>();
+            ReportProcedures = new List<ReportProcedureValue>();
+            Clear();
+        }
+
+        public void Clear()
+        {
+            BinNo = 0;
+            Type = EWorkType.Full;
+            StartTime = DateTime.Now;
+            ElapsedTime = TimeSpan.Zero;
+            TestProcedures.Clear();
+            ReportProcedures.Clear();
         }
     }
 
-    public class TestData
+    public class TestProcedureValue : MeasuredValueObject
     {
-        public Int64 RecNo { get; set; }
+        public Dictionary<string, double[]> Raws { get; set; }
 
-        public Int64 TestHeadNo { get; set; }
+        public TestProcedureValue() : base()
+        {
+            Raws = new Dictionary<string, double[]>();
+        }
 
-        public Int64 TestWorkNo { get; set; }
+        public override void Clear()
+        {
+            base.Clear();
+            Raws.Clear();
+        }
+    }
 
+    public class ReportProcedureValue : MeasuredValueObject
+    {
         public Int64 RankRowNo { get; set; }
 
-        public ETestDecision Decision { get; set; }
+        public double X { get; set; }
 
-        public double XValue { get; set; }
-
-        public double YValue { get; set; }
-
-        public List<TestRawData> Raws { get; set; }
-
-        public TestData()
-        {
-            RecNo = 0;
-            TestHeadNo = 0;
-            TestWorkNo = 0;
-            RankRowNo = 0;
-            Decision = ETestDecision.Nt;
-            XValue = double.NaN;
-            YValue = double.NaN;
-            Raws = new List<TestRawData>();
-        }
-    }
-
-    public class TestRawData
-    {
-        public Int64 RecNo { get; set; }
-
-        public Int64 TestDataNo { get; set; }
-
-        public int Index { get; set; }
+        public double Y { get; set; }
 
         public double[] Raw { get; set; }
 
-        public TestRawData()
+        public ReportProcedureValue() : base()
         {
-            RecNo = 0;
-            TestDataNo = 0;
-            Index = 0;
             Raw = null;
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            RankRowNo = 0;
+            X = double.NaN;
+            Y = double.NaN;
+            Raw = null;
+        }
+    }
+
+    public class MeasuredValueObject
+    {
+        public Int64 WorkNo { get; set; }
+
+        public ETestDecision Decision { get; set; }
+
+        public MeasuredValueObject()
+        {
+            Clear();
+        }
+
+        public virtual void Clear()
+        {
+            WorkNo = 0;
+            Decision = ETestDecision.Nt;
         }
     }
 
@@ -155,11 +289,37 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        private TestCounterDataSet testCounterSet;
+        public Dictionary<string, BinCounter> Bins { get; set; }
 
         public TestCounter()
         {
-            testCounterSet = new TestCounterDataSet(AppRes.DB.Connect, null, null);
+            Bins = new Dictionary<string, BinCounter>();
+            Clear();
+        }
+
+        public void Clear()
+        {
+            RecNo = 0;
+            Total = 0;
+            Ok = 0;
+            Ng = 0;
+            Bins.Clear();
+        }
+    }
+
+    public class BinCounter
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 BinNo { get; set; }
+
+        public int Count { get; set; }
+
+        public BinCounter()
+        {
+            RecNo = 0;
+            BinNo = 0;
+            Count = 0;
         }
     }
 }

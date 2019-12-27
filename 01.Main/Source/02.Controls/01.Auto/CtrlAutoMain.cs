@@ -149,5 +149,31 @@ namespace IsSoft.Sec.LedChecker
                 binBook.EndUpdate();
             }
         }
+
+        public void DoInvalidCounter(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidCounter);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+
+            }
+        }
+
+        public void DoInvalidCounterCaption(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidCounterCaption);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+
+            }
+        }
     }
 }
