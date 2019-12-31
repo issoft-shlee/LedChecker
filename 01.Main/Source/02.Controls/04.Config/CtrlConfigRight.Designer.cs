@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlConfigRight));
             this.viewPanel = new Ulee.Controls.UlPanel();
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.binButton = new DevExpress.XtraEditors.SimpleButton();
+            this.rankButton = new DevExpress.XtraEditors.SimpleButton();
             this.workButton = new DevExpress.XtraEditors.SimpleButton();
             this.saveButton = new DevExpress.XtraEditors.SimpleButton();
             this.cancelButton = new DevExpress.XtraEditors.SimpleButton();
             this.patternButton = new DevExpress.XtraEditors.SimpleButton();
             this.recipeButton = new DevExpress.XtraEditors.SimpleButton();
-            this.rankButton = new DevExpress.XtraEditors.SimpleButton();
-            this.binButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
@@ -89,6 +89,42 @@
             this.menuPanel.TabIndex = 11;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // binButton
+            // 
+            this.binButton.AllowFocus = false;
+            this.binButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.binButton.Appearance.Options.UseFont = true;
+            this.binButton.Appearance.Options.UseTextOptions = true;
+            this.binButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.binButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("binButton.ImageOptions.Image")));
+            this.binButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.binButton.Location = new System.Drawing.Point(2, 242);
+            this.binButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.binButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.binButton.Name = "binButton";
+            this.binButton.Size = new System.Drawing.Size(80, 58);
+            this.binButton.TabIndex = 26;
+            this.binButton.TabStop = false;
+            this.binButton.Text = "BIN";
+            // 
+            // rankButton
+            // 
+            this.rankButton.AllowFocus = false;
+            this.rankButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rankButton.Appearance.Options.UseFont = true;
+            this.rankButton.Appearance.Options.UseTextOptions = true;
+            this.rankButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.rankButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("rankButton.ImageOptions.Image")));
+            this.rankButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.rankButton.Location = new System.Drawing.Point(2, 122);
+            this.rankButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.rankButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.rankButton.Name = "rankButton";
+            this.rankButton.Size = new System.Drawing.Size(80, 58);
+            this.rankButton.TabIndex = 25;
+            this.rankButton.TabStop = false;
+            this.rankButton.Text = "RANK";
             // 
             // workButton
             // 
@@ -183,42 +219,6 @@
             this.recipeButton.TabIndex = 3;
             this.recipeButton.TabStop = false;
             this.recipeButton.Text = "RECIPE";
-            // 
-            // rankButton
-            // 
-            this.rankButton.AllowFocus = false;
-            this.rankButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rankButton.Appearance.Options.UseFont = true;
-            this.rankButton.Appearance.Options.UseTextOptions = true;
-            this.rankButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.rankButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
-            this.rankButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.rankButton.Location = new System.Drawing.Point(2, 122);
-            this.rankButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.rankButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.rankButton.Name = "rankButton";
-            this.rankButton.Size = new System.Drawing.Size(80, 58);
-            this.rankButton.TabIndex = 25;
-            this.rankButton.TabStop = false;
-            this.rankButton.Text = "RANK";
-            // 
-            // binButton
-            // 
-            this.binButton.AllowFocus = false;
-            this.binButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.binButton.Appearance.Options.UseFont = true;
-            this.binButton.Appearance.Options.UseTextOptions = true;
-            this.binButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.binButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.binButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.binButton.Location = new System.Drawing.Point(2, 242);
-            this.binButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.binButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.binButton.Name = "binButton";
-            this.binButton.Size = new System.Drawing.Size(80, 58);
-            this.binButton.TabIndex = 26;
-            this.binButton.TabStop = false;
-            this.binButton.Text = "BIN";
             // 
             // CtrlConfigRight
             // 

@@ -71,6 +71,7 @@
             // 
             this.startButton.AllowFocus = false;
             this.startButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Appearance.Options.UseFont = true;
             this.startButton.Appearance.Options.UseTextOptions = true;
             this.startButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.startButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("startButton.ImageOptions.Image")));
@@ -90,6 +91,7 @@
             // 
             this.stopButton.AllowFocus = false;
             this.stopButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Appearance.Options.UseFont = true;
             this.stopButton.Appearance.Options.UseTextOptions = true;
             this.stopButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.stopButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("stopButton.ImageOptions.Image")));
@@ -109,6 +111,7 @@
             // 
             this.stateButton.AllowFocus = false;
             this.stateButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stateButton.Appearance.Options.UseFont = true;
             this.stateButton.Appearance.Options.UseTextOptions = true;
             this.stateButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.stateButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
@@ -127,6 +130,7 @@
             // 
             this.mainButton.AllowFocus = false;
             this.mainButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainButton.Appearance.Options.UseFont = true;
             this.mainButton.Appearance.Options.UseTextOptions = true;
             this.mainButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.mainButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;

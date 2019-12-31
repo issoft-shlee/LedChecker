@@ -15,7 +15,7 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlAutoMain : UlUserControlEng
     {
-        private RecipeObject recipe;
+        private TestContext testContext;
 
         private CtrlReportPage fullReportPage;
 
@@ -76,7 +76,7 @@ namespace IsSoft.Sec.LedChecker
 
         private void CtrlAutoMain_Enter(object sender, EventArgs e)
         {
-            if (recipe == null) recipePanel_DoubleClick(null, null);
+            if (testContext.Recipe.RecNo == 0) recipePanel_DoubleClick(null, null);
         }
 
         private void recipePanel_DoubleClick(object sender, EventArgs e)
@@ -98,7 +98,9 @@ namespace IsSoft.Sec.LedChecker
 
         private void Initialize()
         {
-            recipe = null;
+            testContext = new TestContext();
+            testContext.InvalidCounter += DoInvalidCounter;
+            testContext.InvalidRecipe += DoInvalidRecipe;
 
             binBook.Document.LoadDocument(AppRes.Properties.FormBin);
             binBook.WorksheetDisplayArea.SetSize(0, 40, 2);
@@ -112,15 +114,8 @@ namespace IsSoft.Sec.LedChecker
 
         private void LoadRecipe(Int64 recipeNo)
         {
-            if ((recipe != null) && (recipe.RecNo == recipeNo)) return;
-
-            recipe = new RecipeObject();
-            recipe.Load(recipeNo);
-
-            recipePanel.Text = recipe.Code;
-            SetBinItems(recipe.Bin);
-            fullReportPage.SetWorkObjects(recipe.Work[EWorkType.Full]);
-            samplingReportPage.SetWorkObjects(recipe.Work[EWorkType.Sampling]);
+            testContext.Load(recipeNo);
+            recipePanel.Text = testContext.Recipe.Code;
         }
 
         private void SetBinItems(BinList bins)
@@ -135,13 +130,13 @@ namespace IsSoft.Sec.LedChecker
                 for (int i=0; i<40; i++)
                 {
                     sheet.Cells[0, i].FillColor = Color.FromKnownColor(KnownColor.Transparent);
+                    sheet.Cells[1, i].Value = "";
                 }
 
                 for (int i = 0; i < bins.Count; i++)
                 {
                     sheet.Cells[0, i].Value = bins[i + 1].Name;
                     sheet.Cells[0, i].FillColor = bins[i + 1].Mark;
-                    sheet.Cells[1, i].Value = (bins[i + 1].Name == "") ? "" : "0";
                 }
             }
             finally
@@ -159,20 +154,53 @@ namespace IsSoft.Sec.LedChecker
             }
             else
             {
-
+                CounterArgs args = e as CounterArgs;
+                DispTestCounter(args.Counter);
+                DispBinCounter(args.Counter.Bins);
             }
         }
 
-        public void DoInvalidCounterCaption(object sender, EventArgs e)
+        private void DispTestCounter(TestCounter counter)
+        {
+            TotalMeter = counter.Total;
+            OkMeter = counter.Ok;
+            NgMeter = counter.Ng;
+            RatioMeter = counter.OkRate;
+        }
+
+        private void DispBinCounter(List<BinCounter> bins)
+        {
+            Worksheet sheet = binBook.Document.Worksheets[0];
+
+            binBook.BeginUpdate();
+            try
+            {
+                for (int i=0; i<bins.Count; i++)
+                {
+                    sheet.Cells[1, i].Value = bins[i].Count;
+                }
+            }
+            finally
+            {
+                binBook.EndUpdate();
+            }
+        }
+
+        public void DoInvalidRecipe(object sender, EventArgs e)
         {
             if (this.InvokeRequired == true)
             {
-                EventHandler func = new EventHandler(DoInvalidCounterCaption);
+                EventHandler func = new EventHandler(DoInvalidRecipe);
                 this.BeginInvoke(func, new object[] { sender, e });
             }
             else
             {
+                RecipeArgs args = e as RecipeArgs;
 
+                recipePanel.Text = args.Recipe.Code;
+                SetBinItems(args.Recipe.Bin);
+                fullReportPage.SetWorkObjects(args.Recipe.Work[EWorkType.Full]);
+                samplingReportPage.SetWorkObjects(args.Recipe.Work[EWorkType.Sampling]);
             }
         }
     }
