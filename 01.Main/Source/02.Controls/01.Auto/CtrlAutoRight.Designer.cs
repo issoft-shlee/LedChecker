@@ -35,6 +35,7 @@
             this.stateButton = new DevExpress.XtraEditors.SimpleButton();
             this.mainButton = new DevExpress.XtraEditors.SimpleButton();
             this.viewPanel = new Ulee.Controls.UlPanel();
+            this.pauseButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.menuPanel.Controls.Add(this.pauseButton);
             this.menuPanel.Controls.Add(this.startButton);
             this.menuPanel.Controls.Add(this.stopButton);
             this.menuPanel.Controls.Add(this.stateButton);
@@ -77,7 +79,7 @@
             this.startButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("startButton.ImageOptions.Image")));
             this.startButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
             this.startButton.ImageOptions.ImageToTextIndent = 10;
-            this.startButton.Location = new System.Drawing.Point(2, 826);
+            this.startButton.Location = new System.Drawing.Point(2, 766);
             this.startButton.LookAndFeel.SkinName = "DevExpress Style";
             this.startButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.startButton.Name = "startButton";
@@ -159,6 +161,27 @@
             this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // pauseButton
+            // 
+            this.pauseButton.AllowFocus = false;
+            this.pauseButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseButton.Appearance.Options.UseBorderColor = true;
+            this.pauseButton.Appearance.Options.UseFont = true;
+            this.pauseButton.Appearance.Options.UseTextOptions = true;
+            this.pauseButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.pauseButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("pauseButton.ImageOptions.Image")));
+            this.pauseButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
+            this.pauseButton.ImageOptions.ImageToTextIndent = 10;
+            this.pauseButton.Location = new System.Drawing.Point(2, 826);
+            this.pauseButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.pauseButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.pauseButton.Name = "pauseButton";
+            this.pauseButton.Size = new System.Drawing.Size(80, 58);
+            this.pauseButton.TabIndex = 30;
+            this.pauseButton.TabStop = false;
+            this.pauseButton.Text = "Pause";
+            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
+            // 
             // CtrlAutoRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -179,5 +202,6 @@
         private Ulee.Controls.UlPanel viewPanel;
         private DevExpress.XtraEditors.SimpleButton startButton;
         private DevExpress.XtraEditors.SimpleButton stopButton;
+        private DevExpress.XtraEditors.SimpleButton pauseButton;
     }
 }

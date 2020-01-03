@@ -1962,7 +1962,7 @@ namespace IsSoft.Sec.LedChecker
 
         public Int64 TestHeadNo { get; set; }
 
-        public Int64 TestWorkNo { get; set; }
+        public Int64 ReportWorkNo { get; set; }
 
         public Int64 RankRowNo { get; set; }
 
@@ -1990,7 +1990,7 @@ namespace IsSoft.Sec.LedChecker
             SetTrans(trans);
             command.CommandText =
                 $" select ta.*, tb.itemcode, tb.itemname, tc.rowname from TB_TESTDATA ta " +
-                $" join TB_TESTWORK tb on tb.pk_recno=ta.fk_testworkno " +
+                $" join TB_REPORTWORK tb on tb.pk_recno=ta.fk_reportworkno " +
                 $" join TB_RANKROW tc on tc.pk_recno=ta.fk_rankrowno " +
                 $" order by ta.pk_recno asc ";
 
@@ -2003,7 +2003,7 @@ namespace IsSoft.Sec.LedChecker
             SetTrans(trans);
             command.CommandText =
                 $" select ta.*, tb.itemcode, tb.itemname, tc.rowname from TB_TESTDATA ta " +
-                $" join TB_TESTWORK tb on tb.pk_recno=ta.fk_testworkno " +
+                $" join TB_REPORTWORK tb on tb.pk_recno=ta.fk_reportworkno " +
                 $" join TB_RANKROW tc on tc.pk_recno=ta.fk_rankrowno " +
                 $" where ta.fk_testheadno={headNo} " +
                 $" order by pk_recno asc ";
@@ -2017,7 +2017,7 @@ namespace IsSoft.Sec.LedChecker
             byte[] raw = null;
             string sql =
                 $" insert into TB_TESTDATA values " +
-                $" ({RecNo}, {TestHeadNo}, {TestWorkNo}, {RankRowNo}, {(int)Decision}, {X_Value}, {Y_Value}, @raw) ";
+                $" ({RecNo}, {TestHeadNo}, {ReportWorkNo}, {RankRowNo}, {(int)Decision}, {X_Value}, {Y_Value}, @raw) ";
 
             if (Raw != null)
             {
@@ -2079,7 +2079,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 TestHeadNo = 0;
-                TestWorkNo = 0;
+                ReportWorkNo = 0;
                 RankRowNo = 0;
                 RankName = "";
                 ItemCode = EReportItemCode.VF;
@@ -2095,7 +2095,7 @@ namespace IsSoft.Sec.LedChecker
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             TestHeadNo = Convert.ToInt64(row["fk_testheadno"]);
-            TestWorkNo = Convert.ToInt64(row["fk_testworkno"]);
+            ReportWorkNo = Convert.ToInt64(row["fk_reportworkno"]);
             RankRowNo = Convert.ToInt64(row["fk_rankrowno"]);
             RankName = Convert.ToString(row["rowname"]);
             ItemCode = (EReportItemCode)Convert.ToInt32(row["itemcode"]);

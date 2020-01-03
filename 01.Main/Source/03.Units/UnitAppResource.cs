@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Ulee.Utils;
+using Ulee.DllImport.Win32;
 
 namespace IsSoft.Sec.LedChecker
 {
@@ -13,7 +14,15 @@ namespace IsSoft.Sec.LedChecker
     {
         private const string csIniFName = @"..\..\Config\IsSoft.Sec.LedChecker.ini";
 
+        public const string csDateFormat = "yyyy-MM-dd";
+
+        public const string csDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+
         public const string Caption = "LED Checker";
+
+        public const int WM_TEST_NORMAL_TERMINATED = (Win32.WM_USER + 0);
+
+        public const int WM_TEST_ABNORMAL_TERMINATED = (Win32.WM_USER + 1);
 
         public static bool Busy { get; set; }
 

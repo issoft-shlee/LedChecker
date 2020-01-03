@@ -28,6 +28,16 @@ namespace IsSoft.Sec.LedChecker
         public RecipeObject Recipe { get; set; }
     }
 
+    public class ValueArgs : EventArgs
+    {
+        public ValueArgs(TestValue value)
+        {
+            Value = value;
+        }
+
+        public TestValue Value { get; set; }
+    }
+
     public class TestValue
     {
         public Int64 BinNo { get; set; }
@@ -180,6 +190,10 @@ namespace IsSoft.Sec.LedChecker
 
     public class TestContext
     {
+        public IntPtr WndHandle { get; private set; }
+
+        public TestThread Thread { get; private set; }
+
         public RecipeObject Recipe { get; private set; }
 
         public TestValue Value { get; private set; }
@@ -206,8 +220,16 @@ namespace IsSoft.Sec.LedChecker
             InvalidRecipe?.Invoke(null, new RecipeArgs(Recipe));
         }
 
-        public TestContext()
+        public event EventHandler InvalidValue = null;
+        protected void OnInvalidValue()
         {
+            InvalidValue?.Invoke(null, new ValueArgs(Value));
+        }
+
+        public TestContext(IntPtr wndHandle)
+        {
+            WndHandle = wndHandle;
+            Thread = null;
             Recipe = new RecipeObject();
             Value = new TestValue();
             Counter = new TestCounter();
@@ -216,6 +238,46 @@ namespace IsSoft.Sec.LedChecker
             testDataSet = new TestDataDataSet(AppRes.DB.Connect, null, null);
             testCounterSet = new TestCounterDataSet(AppRes.DB.Connect, null, null);
             binCounterSet = new BinCounterDataSet(AppRes.DB.Connect, null, null);
+        }
+
+        public void InitializeThread()
+        {
+            AppRes.Busy = true;
+            Thread = new TestThread(this);
+        }
+
+        public void FinalizeThread()
+        {
+            Thread = null;
+            AppRes.Busy = false;
+        }
+
+        public void StartThread()
+        {
+            if (Thread == null)
+            {
+                InitializeThread();
+                Thread.Start();
+            }
+            else
+            {
+                ResumeThread();
+            }
+        }
+
+        public void TerminateThread(int code = 0, bool waitTermination = true)
+        {
+            Thread?.Terminate(code, waitTermination);
+        }
+
+        public void SuspendThread()
+        {
+            Thread?.Suspend();
+        }
+
+        public void ResumeThread()
+        {
+            Thread?.Resume();
         }
 
         public void Load(Int64 recipeNo)
@@ -269,17 +331,27 @@ namespace IsSoft.Sec.LedChecker
 
         public void Save()
         {
-            FbTransaction trans = AppRes.DB.BeginTrans();
+
+            AppRes.DB.Lock();
 
             try
             {
-                InsertCounter(trans);
-                InsertTestData(trans);
-                AppRes.DB.CommitTrans();
+                FbTransaction trans = AppRes.DB.BeginTrans();
+
+                try
+                {
+                    InsertCounter(trans);
+                    InsertTestData(trans);
+                    AppRes.DB.CommitTrans();
+                }
+                catch
+                {
+                    AppRes.DB.RollbackTrans();
+                }
             }
-            catch
+            finally
             {
-                AppRes.DB.RollbackTrans();
+                AppRes.DB.Unlock();
             }
         }
 
@@ -337,7 +409,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 testDataSet.RecNo = AppRes.DB.GetGenNo("GN_TESTDATA");
                 testDataSet.TestHeadNo = testHeadSet.RecNo;
-                testDataSet.TestWorkNo = reportValue.WorkNo;
+                testDataSet.ReportWorkNo = reportValue.WorkNo;
                 testDataSet.RankRowNo = reportValue.RankRowNo;
                 testDataSet.Decision = reportValue.Decision;
                 testDataSet.X_Value = reportValue.X;

@@ -15,7 +15,9 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlAutoMain : UlUserControlEng
     {
-        private TestContext testContext;
+        private CtrlAutoRight ctrlParent;
+
+        private TestContext context;
 
         private CtrlReportPage fullReportPage;
 
@@ -59,8 +61,10 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        public CtrlAutoMain()
+        public CtrlAutoMain(CtrlAutoRight parent)
         {
+            ctrlParent = parent;
+
             InitializeComponent();
             Initialize();
         }
@@ -76,7 +80,7 @@ namespace IsSoft.Sec.LedChecker
 
         private void CtrlAutoMain_Enter(object sender, EventArgs e)
         {
-            if (testContext.Recipe.RecNo == 0) recipePanel_DoubleClick(null, null);
+            if (context.Recipe.RecNo == 0) recipePanel_DoubleClick(null, null);
         }
 
         private void recipePanel_DoubleClick(object sender, EventArgs e)
@@ -98,9 +102,10 @@ namespace IsSoft.Sec.LedChecker
 
         private void Initialize()
         {
-            testContext = new TestContext();
-            testContext.InvalidCounter += DoInvalidCounter;
-            testContext.InvalidRecipe += DoInvalidRecipe;
+            context = new TestContext(ctrlParent.Handle);
+            context.InvalidCounter += DoInvalidCounter;
+            context.InvalidRecipe += DoInvalidRecipe;
+            context.InvalidValue += DoInvalidValue;
 
             binBook.Document.LoadDocument(AppRes.Properties.FormBin);
             binBook.WorksheetDisplayArea.SetSize(0, 40, 2);
@@ -114,8 +119,8 @@ namespace IsSoft.Sec.LedChecker
 
         private void LoadRecipe(Int64 recipeNo)
         {
-            testContext.Load(recipeNo);
-            recipePanel.Text = testContext.Recipe.Code;
+            context.Load(recipeNo);
+            recipePanel.Text = context.Recipe.Code;
         }
 
         private void SetBinItems(BinList bins)
@@ -145,21 +150,6 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        public void DoInvalidCounter(object sender, EventArgs e)
-        {
-            if (this.InvokeRequired == true)
-            {
-                EventHandler func = new EventHandler(DoInvalidCounter);
-                this.BeginInvoke(func, new object[] { sender, e });
-            }
-            else
-            {
-                CounterArgs args = e as CounterArgs;
-                DispTestCounter(args.Counter);
-                DispBinCounter(args.Counter.Bins);
-            }
-        }
-
         private void DispTestCounter(TestCounter counter)
         {
             TotalMeter = counter.Total;
@@ -186,6 +176,21 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
+        public void DoInvalidCounter(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidCounter);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+                CounterArgs args = e as CounterArgs;
+                DispTestCounter(args.Counter);
+                DispBinCounter(args.Counter.Bins);
+            }
+        }
+
         public void DoInvalidRecipe(object sender, EventArgs e)
         {
             if (this.InvokeRequired == true)
@@ -202,6 +207,43 @@ namespace IsSoft.Sec.LedChecker
                 fullReportPage.SetWorkObjects(args.Recipe.Work[EWorkType.Full]);
                 samplingReportPage.SetWorkObjects(args.Recipe.Work[EWorkType.Sampling]);
             }
+        }
+
+        public void DoInvalidValue(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidValue);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+            }
+        }
+
+        public void InitializeTest()
+        {
+            context.InitializeThread();
+        }
+
+        public void FinalizeTest()
+        {
+            context.FinalizeThread();
+        }
+
+        public void StartTest()
+        {
+            context.StartThread();
+        }
+
+        public void PauseTest()
+        {
+            context.SuspendThread();
+        }
+
+        public void StopTest()
+        {
+            context.TerminateThread(0, false);
         }
     }
 }

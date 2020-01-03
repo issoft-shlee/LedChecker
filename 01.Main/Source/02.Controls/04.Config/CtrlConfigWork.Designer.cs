@@ -127,7 +127,7 @@
             // fullReportPluseButton
             // 
             this.fullReportPluseButton.Image = ((System.Drawing.Image)(resources.GetObject("fullReportPluseButton.Image")));
-            this.fullReportPluseButton.Location = new System.Drawing.Point(1248, 445);
+            this.fullReportPluseButton.Location = new System.Drawing.Point(1248, 443);
             this.fullReportPluseButton.Name = "fullReportPluseButton";
             this.fullReportPluseButton.Size = new System.Drawing.Size(24, 24);
             this.fullReportPluseButton.TabIndex = 153;
@@ -137,7 +137,7 @@
             // fullReportMinusButton
             // 
             this.fullReportMinusButton.Image = ((System.Drawing.Image)(resources.GetObject("fullReportMinusButton.Image")));
-            this.fullReportMinusButton.Location = new System.Drawing.Point(1274, 445);
+            this.fullReportMinusButton.Location = new System.Drawing.Point(1274, 443);
             this.fullReportMinusButton.Name = "fullReportMinusButton";
             this.fullReportMinusButton.Size = new System.Drawing.Size(24, 24);
             this.fullReportMinusButton.TabIndex = 152;
@@ -235,7 +235,7 @@
             // samplingReportPluseButton
             // 
             this.samplingReportPluseButton.Image = ((System.Drawing.Image)(resources.GetObject("samplingReportPluseButton.Image")));
-            this.samplingReportPluseButton.Location = new System.Drawing.Point(1248, 445);
+            this.samplingReportPluseButton.Location = new System.Drawing.Point(1248, 443);
             this.samplingReportPluseButton.Name = "samplingReportPluseButton";
             this.samplingReportPluseButton.Size = new System.Drawing.Size(24, 24);
             this.samplingReportPluseButton.TabIndex = 157;
@@ -245,7 +245,7 @@
             // samplingReportMinusButton
             // 
             this.samplingReportMinusButton.Image = ((System.Drawing.Image)(resources.GetObject("samplingReportMinusButton.Image")));
-            this.samplingReportMinusButton.Location = new System.Drawing.Point(1274, 445);
+            this.samplingReportMinusButton.Location = new System.Drawing.Point(1274, 443);
             this.samplingReportMinusButton.Name = "samplingReportMinusButton";
             this.samplingReportMinusButton.Size = new System.Drawing.Size(24, 24);
             this.samplingReportMinusButton.TabIndex = 156;

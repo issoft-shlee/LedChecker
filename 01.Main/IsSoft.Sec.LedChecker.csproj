@@ -253,6 +253,7 @@
     <Compile Include="Source\03.Units\UnitRecipeList.cs" />
     <Compile Include="Source\03.Units\UnitScreenInvalidThread.cs" />
     <Compile Include="Source\03.Units\UnitTestConext.cs" />
+    <Compile Include="Source\03.Units\UnitTestThread.cs" />
     <Compile Include="Source\LedCheckerProgram.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
