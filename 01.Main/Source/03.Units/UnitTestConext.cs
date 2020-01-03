@@ -38,6 +38,16 @@ namespace IsSoft.Sec.LedChecker
         public TestValue Value { get; set; }
     }
 
+    public class TestIndexArgs : EventArgs
+    {
+        public TestIndexArgs(int index)
+        {
+            Index = index;
+        }
+
+        public int Index { get; set; }
+    }
+
     public class TestValue
     {
         public Int64 BinNo { get; set; }
@@ -209,21 +219,27 @@ namespace IsSoft.Sec.LedChecker
         private BinCounterDataSet binCounterSet;
 
         public event EventHandler InvalidCounter = null;
-        protected void OnInvalidCounter()
+        public void OnInvalidCounter()
         {
             InvalidCounter?.Invoke(null, new CounterArgs(Counter));
         }
 
         public event EventHandler InvalidRecipe = null;
-        protected void OnInvalidRecipe()
+        public void OnInvalidRecipe()
         {
             InvalidRecipe?.Invoke(null, new RecipeArgs(Recipe));
         }
 
         public event EventHandler InvalidValue = null;
-        protected void OnInvalidValue()
+        public void OnInvalidValue()
         {
             InvalidValue?.Invoke(null, new ValueArgs(Value));
+        }
+
+        public event EventHandler InvalidTestIndex = null;
+        public void OnInvalidTestIndex(int index=-1)
+        {
+            InvalidTestIndex?.Invoke(null, new TestIndexArgs(index));
         }
 
         public TestContext(IntPtr wndHandle)

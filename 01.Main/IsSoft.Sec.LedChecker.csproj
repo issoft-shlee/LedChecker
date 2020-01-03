@@ -161,11 +161,11 @@
     <Compile Include="Source\02.Controls\01.Auto\CtrlAutoRight.Designer.cs">
       <DependentUpon>CtrlAutoRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoState.cs">
+    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoBin.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoState.Designer.cs">
-      <DependentUpon>CtrlAutoState.cs</DependentUpon>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoBin.Designer.cs">
+      <DependentUpon>CtrlAutoBin.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\02.Controls\01.Auto\CtrlReportPage.cs">
       <SubType>UserControl</SubType>
@@ -299,8 +299,8 @@
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoRight.resx">
       <DependentUpon>CtrlAutoRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoState.resx">
-      <DependentUpon>CtrlAutoState.cs</DependentUpon>
+    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoBin.resx">
+      <DependentUpon>CtrlAutoBin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlReportPage.resx">
       <DependentUpon>CtrlReportPage.cs</DependentUpon>

@@ -42,6 +42,10 @@
             this.ratioMeter = new Ulee.Controls.UlPanel();
             this.ratioPanel = new Ulee.Controls.UlPanel();
             this.decisionMeter = new Ulee.Controls.UlPanel();
+            this.ulPanel3 = new Ulee.Controls.UlPanel();
+            this.lotPanel = new Ulee.Controls.UlPanel();
+            this.ulPanel2 = new Ulee.Controls.UlPanel();
+            this.ulPanel5 = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             this.reportTab.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +53,10 @@
             // bgPanel
             // 
             this.bgPanel.BevelInner = Ulee.Controls.EUlBevelStyle.Raised;
+            this.bgPanel.Controls.Add(this.ulPanel2);
+            this.bgPanel.Controls.Add(this.ulPanel5);
+            this.bgPanel.Controls.Add(this.lotPanel);
+            this.bgPanel.Controls.Add(this.ulPanel3);
             this.bgPanel.Controls.Add(this.decisionMeter);
             this.bgPanel.Controls.Add(this.ratioMeter);
             this.bgPanel.Controls.Add(this.ngMeter);
@@ -85,7 +93,7 @@
             // 
             // binBook
             // 
-            this.binBook.Location = new System.Drawing.Point(290, 6);
+            this.binBook.Location = new System.Drawing.Point(692, 6);
             this.binBook.LookAndFeel.SkinName = "DevExpress Style";
             this.binBook.LookAndFeel.UseDefaultLookAndFeel = false;
             this.binBook.Name = "binBook";
@@ -95,7 +103,7 @@
             this.binBook.Options.View.ShowColumnHeaders = false;
             this.binBook.Options.View.ShowRowHeaders = false;
             this.binBook.ReadOnly = true;
-            this.binBook.Size = new System.Drawing.Size(1113, 50);
+            this.binBook.Size = new System.Drawing.Size(710, 50);
             this.binBook.TabIndex = 0;
             this.binBook.TabStop = false;
             this.binBook.Text = "binSheet";
@@ -143,7 +151,7 @@
             this.ulPanel1.ForeColor = System.Drawing.Color.White;
             this.ulPanel1.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel1.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel1.Location = new System.Drawing.Point(1407, 6);
+            this.ulPanel1.Location = new System.Drawing.Point(1406, 6);
             this.ulPanel1.Name = "ulPanel1";
             this.ulPanel1.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel1.OuterColor2 = System.Drawing.Color.White;
@@ -163,7 +171,7 @@
             this.totalMeter.ForeColor = System.Drawing.Color.Lime;
             this.totalMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.totalMeter.InnerColor2 = System.Drawing.Color.White;
-            this.totalMeter.Location = new System.Drawing.Point(1407, 31);
+            this.totalMeter.Location = new System.Drawing.Point(1406, 31);
             this.totalMeter.Name = "totalMeter";
             this.totalMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.totalMeter.OuterColor2 = System.Drawing.Color.White;
@@ -183,7 +191,7 @@
             this.okMeter.ForeColor = System.Drawing.Color.Lime;
             this.okMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.okMeter.InnerColor2 = System.Drawing.Color.White;
-            this.okMeter.Location = new System.Drawing.Point(1469, 31);
+            this.okMeter.Location = new System.Drawing.Point(1468, 31);
             this.okMeter.Name = "okMeter";
             this.okMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.okMeter.OuterColor2 = System.Drawing.Color.White;
@@ -203,7 +211,7 @@
             this.ulPanel4.ForeColor = System.Drawing.Color.White;
             this.ulPanel4.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel4.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel4.Location = new System.Drawing.Point(1469, 6);
+            this.ulPanel4.Location = new System.Drawing.Point(1468, 6);
             this.ulPanel4.Name = "ulPanel4";
             this.ulPanel4.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel4.OuterColor2 = System.Drawing.Color.White;
@@ -223,7 +231,7 @@
             this.ngMeter.ForeColor = System.Drawing.Color.Lime;
             this.ngMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ngMeter.InnerColor2 = System.Drawing.Color.White;
-            this.ngMeter.Location = new System.Drawing.Point(1531, 31);
+            this.ngMeter.Location = new System.Drawing.Point(1530, 31);
             this.ngMeter.Name = "ngMeter";
             this.ngMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ngMeter.OuterColor2 = System.Drawing.Color.White;
@@ -243,7 +251,7 @@
             this.ulPanel6.ForeColor = System.Drawing.Color.White;
             this.ulPanel6.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel6.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel6.Location = new System.Drawing.Point(1531, 6);
+            this.ulPanel6.Location = new System.Drawing.Point(1530, 6);
             this.ulPanel6.Name = "ulPanel6";
             this.ulPanel6.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel6.OuterColor2 = System.Drawing.Color.White;
@@ -263,7 +271,7 @@
             this.ratioMeter.ForeColor = System.Drawing.Color.Lime;
             this.ratioMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioMeter.InnerColor2 = System.Drawing.Color.White;
-            this.ratioMeter.Location = new System.Drawing.Point(1593, 31);
+            this.ratioMeter.Location = new System.Drawing.Point(1592, 31);
             this.ratioMeter.Name = "ratioMeter";
             this.ratioMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioMeter.OuterColor2 = System.Drawing.Color.White;
@@ -283,7 +291,7 @@
             this.ratioPanel.ForeColor = System.Drawing.Color.White;
             this.ratioPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioPanel.InnerColor2 = System.Drawing.Color.White;
-            this.ratioPanel.Location = new System.Drawing.Point(1593, 6);
+            this.ratioPanel.Location = new System.Drawing.Point(1592, 6);
             this.ratioPanel.Name = "ratioPanel";
             this.ratioPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioPanel.OuterColor2 = System.Drawing.Color.White;
@@ -303,16 +311,94 @@
             this.decisionMeter.ForeColor = System.Drawing.Color.White;
             this.decisionMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.decisionMeter.InnerColor2 = System.Drawing.Color.White;
-            this.decisionMeter.Location = new System.Drawing.Point(1655, 6);
+            this.decisionMeter.Location = new System.Drawing.Point(1654, 6);
             this.decisionMeter.Name = "decisionMeter";
             this.decisionMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.decisionMeter.OuterColor2 = System.Drawing.Color.White;
-            this.decisionMeter.Size = new System.Drawing.Size(65, 50);
+            this.decisionMeter.Size = new System.Drawing.Size(66, 50);
             this.decisionMeter.Spacing = 0;
             this.decisionMeter.TabIndex = 12;
             this.decisionMeter.Text = "OK";
             this.decisionMeter.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.decisionMeter.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // ulPanel3
+            // 
+            this.ulPanel3.BackColor = System.Drawing.Color.Navy;
+            this.ulPanel3.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.ulPanel3.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.ulPanel3.ForeColor = System.Drawing.Color.White;
+            this.ulPanel3.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel3.InnerColor2 = System.Drawing.Color.White;
+            this.ulPanel3.Location = new System.Drawing.Point(290, 6);
+            this.ulPanel3.Name = "ulPanel3";
+            this.ulPanel3.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel3.OuterColor2 = System.Drawing.Color.White;
+            this.ulPanel3.Size = new System.Drawing.Size(68, 23);
+            this.ulPanel3.Spacing = 0;
+            this.ulPanel3.TabIndex = 13;
+            this.ulPanel3.Text = "LOT ID";
+            this.ulPanel3.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.ulPanel3.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // lotPanel
+            // 
+            this.lotPanel.BackColor = System.Drawing.Color.White;
+            this.lotPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.lotPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.lotPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.lotPanel.ForeColor = System.Drawing.Color.Black;
+            this.lotPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.lotPanel.InnerColor2 = System.Drawing.Color.White;
+            this.lotPanel.Location = new System.Drawing.Point(364, 6);
+            this.lotPanel.Name = "lotPanel";
+            this.lotPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.lotPanel.OuterColor2 = System.Drawing.Color.White;
+            this.lotPanel.Size = new System.Drawing.Size(324, 24);
+            this.lotPanel.Spacing = 0;
+            this.lotPanel.TabIndex = 14;
+            this.lotPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Left;
+            this.lotPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // ulPanel2
+            // 
+            this.ulPanel2.BackColor = System.Drawing.Color.White;
+            this.ulPanel2.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.ulPanel2.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.ulPanel2.ForeColor = System.Drawing.Color.Black;
+            this.ulPanel2.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel2.InnerColor2 = System.Drawing.Color.White;
+            this.ulPanel2.Location = new System.Drawing.Point(364, 33);
+            this.ulPanel2.Name = "ulPanel2";
+            this.ulPanel2.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel2.OuterColor2 = System.Drawing.Color.White;
+            this.ulPanel2.Size = new System.Drawing.Size(324, 24);
+            this.ulPanel2.Spacing = 0;
+            this.ulPanel2.TabIndex = 16;
+            this.ulPanel2.TextHAlign = Ulee.Controls.EUlHoriAlign.Left;
+            this.ulPanel2.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // ulPanel5
+            // 
+            this.ulPanel5.BackColor = System.Drawing.Color.Navy;
+            this.ulPanel5.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.ulPanel5.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.ulPanel5.ForeColor = System.Drawing.Color.White;
+            this.ulPanel5.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel5.InnerColor2 = System.Drawing.Color.White;
+            this.ulPanel5.Location = new System.Drawing.Point(290, 33);
+            this.ulPanel5.Name = "ulPanel5";
+            this.ulPanel5.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel5.OuterColor2 = System.Drawing.Color.White;
+            this.ulPanel5.Size = new System.Drawing.Size(68, 23);
+            this.ulPanel5.Spacing = 0;
+            this.ulPanel5.TabIndex = 15;
+            this.ulPanel5.Text = "PCB ID";
+            this.ulPanel5.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.ulPanel5.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
             // CtrlAutoMain
             // 
@@ -343,5 +429,9 @@
         private Ulee.Controls.UlPanel ulPanel6;
         private Ulee.Controls.UlPanel okMeter;
         private Ulee.Controls.UlPanel ulPanel4;
+        private Ulee.Controls.UlPanel ulPanel2;
+        private Ulee.Controls.UlPanel ulPanel5;
+        private Ulee.Controls.UlPanel lotPanel;
+        private Ulee.Controls.UlPanel ulPanel3;
     }
 }

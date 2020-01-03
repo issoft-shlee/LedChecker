@@ -22,6 +22,15 @@ namespace IsSoft.Sec.LedChecker
         {
             try
             {
+                context.Value.Type = EWorkType.Sampling;
+
+                for (int i = 0; i < context.Recipe.Work[EWorkType.Sampling].Tests.Count; i++)
+                {
+                    context.OnInvalidTestIndex(i);
+                    Yield(1000);
+                }
+                context.OnInvalidTestIndex();
+
                 PostMessage(AppRes.WM_TEST_NORMAL_TERMINATED);
             }
             catch (UlThreadTerminatedException e)

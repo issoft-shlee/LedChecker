@@ -80,11 +80,16 @@ namespace IsSoft.Sec.LedChecker
 
         private void CtrlAutoMain_Enter(object sender, EventArgs e)
         {
-            if (context.Recipe.RecNo == 0) recipePanel_DoubleClick(null, null);
+            if (context.Recipe.RecNo == 0)
+            {
+                recipePanel_DoubleClick(null, null);
+            }
         }
 
         private void recipePanel_DoubleClick(object sender, EventArgs e)
         {
+            if (AppRes.Busy == true) return;
+
             DialogRecipeList dialog = new DialogRecipeList();
 
             try
@@ -95,7 +100,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 if (dialog.DialogResult == DialogResult.OK)
                 {
-                    LoadRecipe(dialog.Result.RecNo);
+                    context.Load(dialog.Result.RecNo);
                 }
             }
         }
@@ -106,6 +111,7 @@ namespace IsSoft.Sec.LedChecker
             context.InvalidCounter += DoInvalidCounter;
             context.InvalidRecipe += DoInvalidRecipe;
             context.InvalidValue += DoInvalidValue;
+            context.InvalidTestIndex += DoInvalidTestIndex;
 
             binBook.Document.LoadDocument(AppRes.Properties.FormBin);
             binBook.WorksheetDisplayArea.SetSize(0, 40, 2);
@@ -115,12 +121,6 @@ namespace IsSoft.Sec.LedChecker
 
             samplingReportPage = new CtrlReportPage();
             samplingPage.Controls.Add(samplingReportPage);
-        }
-
-        private void LoadRecipe(Int64 recipeNo)
-        {
-            context.Load(recipeNo);
-            recipePanel.Text = context.Recipe.Code;
         }
 
         private void SetBinItems(BinList bins)
@@ -176,6 +176,18 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
+        private void SetTestIndex(int index)
+        {
+            if (context.Value.Type == EWorkType.Full)
+            {
+                fullReportPage.SetWorkIndex(index);
+            }
+            else
+            {
+                samplingReportPage.SetWorkIndex(index);
+            }
+        }
+
         public void DoInvalidCounter(object sender, EventArgs e)
         {
             if (this.InvokeRequired == true)
@@ -221,6 +233,20 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
+        public void DoInvalidTestIndex(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidTestIndex);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+                TestIndexArgs args = e as TestIndexArgs;
+                SetTestIndex(args.Index);
+            }
+        }
+
         public void InitializeTest()
         {
             context.InitializeThread();
@@ -243,7 +269,7 @@ namespace IsSoft.Sec.LedChecker
 
         public void StopTest()
         {
-            context.TerminateThread(0, false);
+            context.TerminateThread();
         }
     }
 }

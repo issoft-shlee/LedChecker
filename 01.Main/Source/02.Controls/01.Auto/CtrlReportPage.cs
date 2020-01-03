@@ -15,6 +15,8 @@ namespace IsSoft.Sec.LedChecker
 {
     public partial class CtrlReportPage : UlUserControlEng
     {
+        private WorkObject workObject;
+
         public CtrlReportPage()
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace IsSoft.Sec.LedChecker
 
         private void Initialize()
         {
+            workObject = null;
             Dock = DockStyle.Fill;
 
             workBook.Document.LoadDocument(AppRes.Properties.FormWork);
@@ -36,10 +39,42 @@ namespace IsSoft.Sec.LedChecker
             resultBook.Height = Height - (resultPanel.Top + resultPanel.Height);
         }
 
+        public void SetWorkIndex(int index)
+        {
+            if (workObject == null) return;
+
+            Worksheet sheet = workBook.Document.Worksheets[0];
+            workBook.BeginUpdate();
+
+            try
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < workObject.Tests.Count; j++)
+                    {
+                        sheet.Cells[i + 2, j + 1].FillColor = Color.FromKnownColor(KnownColor.Transparent);
+                    }
+                }
+
+                if (index >= 0)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        sheet.Cells[i + 2, index + 1].FillColor = Color.Linen;
+                    }
+                }
+            }
+            finally
+            {
+                workBook.EndUpdate();
+            }
+        }
+
         public void SetWorkObjects(WorkObject work)
         {
-            TestWorkList tests = work.Tests;
-            ReportWorkList reports = work.Reports;
+            workObject = work;
+            TestWorkList tests = workObject.Tests;
+            ReportWorkList reports = workObject.Reports;
             Worksheet sheet = workBook.Document.Worksheets[0];
 
             workBook.BeginUpdate();

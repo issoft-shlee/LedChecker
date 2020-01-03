@@ -14,8 +14,6 @@ namespace IsSoft.Sec.LedChecker
 
     public partial class CtrlAutoRight : UlUserControlEng
     {
-        private TestContext context;
-
         public CtrlAutoRight()
         {
             InitializeComponent();
@@ -26,8 +24,10 @@ namespace IsSoft.Sec.LedChecker
         {
             DefMenu = new UlMenu(viewPanel);
             DefMenu.Add(new CtrlAutoMain(this), mainButton);
-            DefMenu.Add(new CtrlAutoState(), stateButton);
+            DefMenu.Add(new CtrlAutoBin(), binButton);
             DefMenu.Index = 0;
+
+            SetButtonState(ETestButtonState.Stopped);
         }
 
         protected override void WndProc(ref Message m)

@@ -93,6 +93,8 @@ namespace IsSoft.Sec.LedChecker
 
         public string FormBin { get; set; }
 
+        public string FormWholeBin { get; set; }
+
         public AppProperies()
         {
             SmuColors = new List<KnownColor>();
@@ -113,6 +115,7 @@ namespace IsSoft.Sec.LedChecker
             FormulaCount = AppRes.Ini.GetInteger("Bin", "FormulaCount");
 
             FormBin = AppRes.Ini.GetString("Excel", "BinForm");
+            FormWholeBin = AppRes.Ini.GetString("Excel", "BinWholeForm");
             FormWork = AppRes.Ini.GetString("Excel", "WorkForm");
             FormResult = AppRes.Ini.GetString("Excel", "ResultForm");
         }
