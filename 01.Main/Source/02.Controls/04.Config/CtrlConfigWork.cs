@@ -91,51 +91,27 @@ namespace IsSoft.Sec.LedChecker
             SetDataSetMode(EDataSetMode.Modify);
         }
 
-        private void fullTestPluseButton_Click(object sender, EventArgs e)
+        private void testPluseButton_Click(object sender, EventArgs e)
         {
-            CtrlTestWorkGrid ctrl = fullTestPanel.Controls[0] as CtrlTestWorkGrid;
+            CtrlTestWorkGrid ctrl =testProcPanel.Controls[0] as CtrlTestWorkGrid;
             ctrl.AddRow();
         }
 
-        private void fullTestMinusButton_Click(object sender, EventArgs e)
+        private void testMinusButton_Click(object sender, EventArgs e)
         {
-            CtrlTestWorkGrid ctrl = fullTestPanel.Controls[0] as CtrlTestWorkGrid;
+            CtrlTestWorkGrid ctrl = testProcPanel.Controls[0] as CtrlTestWorkGrid;
             ctrl.DeleteRow();
         }
 
-        private void fullReportPluseButton_Click(object sender, EventArgs e)
+        private void reportPluseButton_Click(object sender, EventArgs e)
         {
-            CtrlReportWorkGrid ctrl = fullReportPanel.Controls[0] as CtrlReportWorkGrid;
+            CtrlReportWorkGrid ctrl = reportProcPanel.Controls[0] as CtrlReportWorkGrid;
             ctrl.AddRow();
         }
 
-        private void fullReportMinusButton_Click(object sender, EventArgs e)
+        private void reportMinusButton_Click(object sender, EventArgs e)
         {
-            CtrlReportWorkGrid ctrl = fullReportPanel.Controls[0] as CtrlReportWorkGrid;
-            ctrl.DeleteRow();
-        }
-
-        private void samplingTestPluseButton_Click(object sender, EventArgs e)
-        {
-            CtrlTestWorkGrid ctrl = samplingTestPanel.Controls[0] as CtrlTestWorkGrid;
-            ctrl.AddRow();
-        }
-
-        private void samplingTestMinusButton_Click(object sender, EventArgs e)
-        {
-            CtrlTestWorkGrid ctrl = samplingTestPanel.Controls[0] as CtrlTestWorkGrid;
-            ctrl.DeleteRow();
-        }
-
-        private void samplingReportPluseButton_Click(object sender, EventArgs e)
-        {
-            CtrlReportWorkGrid ctrl = samplingReportPanel.Controls[0] as CtrlReportWorkGrid;
-            ctrl.AddRow();
-        }
-
-        private void samplingReportMinusButton_Click(object sender, EventArgs e)
-        {
-            CtrlReportWorkGrid ctrl = samplingReportPanel.Controls[0] as CtrlReportWorkGrid;
+            CtrlReportWorkGrid ctrl = reportProcPanel.Controls[0] as CtrlReportWorkGrid;
             ctrl.DeleteRow();
         }
 
@@ -163,18 +139,11 @@ namespace IsSoft.Sec.LedChecker
             bookmark = new GridBookmark(recipeGridView);
 
             ctrlTestWork = new CtrlTestWorkGrid();
-            fullTestPanel.Controls.Add(ctrlTestWork);
+            testProcPanel.Controls.Add(ctrlTestWork);
 
             ctrlReportWork = new CtrlReportWorkGrid();
             ctrlReportWork.TestRows = ctrlTestWork.Rows;
-            fullReportPanel.Controls.Add(ctrlReportWork);
-
-            ctrlTestWork = new CtrlTestWorkGrid();
-            samplingTestPanel.Controls.Add(ctrlTestWork);
-
-            ctrlReportWork = new CtrlReportWorkGrid();
-            ctrlReportWork.TestRows = ctrlTestWork.Rows;
-            samplingReportPanel.Controls.Add(ctrlReportWork);
+            reportProcPanel.Controls.Add(ctrlReportWork);
 
             recipeSet = new RecipeDataSet(AppRes.DB.Connect, null, null);
             slaveSet = new SlavePatternDataSet(AppRes.DB.Connect, null, null);
@@ -219,104 +188,59 @@ namespace IsSoft.Sec.LedChecker
         {
             string smuString = GetSmuString();
 
-            CtrlTestWorkGrid fullTestGrid = fullTestPanel.Controls[0] as CtrlTestWorkGrid;
-            fullTestGrid.RecipeNo = recipeNo;
-            fullTestGrid.SmuString = smuString;
-            fullTestGrid.Rows.Clear();
+            CtrlTestWorkGrid testGrid = testProcPanel.Controls[0] as CtrlTestWorkGrid;
+            testGrid.RecipeNo = recipeNo;
+            testGrid.SmuString = smuString;
+            testGrid.Rows.Clear();
 
-            testWorkSet.Select(recipeNo, EWorkType.Full);
+            testWorkSet.Select(recipeNo);
 
             if (testWorkSet.Empty == true)
             {
-                fullTestGrid.AddRow();
+                testGrid.AddRow();
             }
             else
             {
                 for (int i = 0; i < testWorkSet.RowCount; i++)
                 {
                     testWorkSet.Fetch(i);
-                    fullTestGrid.AddRow();
-                    SetTestWorkGridRow(fullTestGrid.Rows[i], testWorkSet);
+                    testGrid.AddRow();
+                    SetTestWorkGridRow(testGrid.Rows[i], testWorkSet);
                 }
             }
 
-            fullTestGrid.RefreshGridData();
+            testGrid.RefreshGridData();
 
-            CtrlReportWorkGrid fullReportGrid = fullReportPanel.Controls[0] as CtrlReportWorkGrid;
-            fullReportGrid.RecipeNo = recipeNo;
-            fullReportGrid.SmuString = smuString;
-            fullReportGrid.Rows.Clear();
+            CtrlReportWorkGrid reportGrid = reportProcPanel.Controls[0] as CtrlReportWorkGrid;
+            reportGrid.RecipeNo = recipeNo;
+            reportGrid.SmuString = smuString;
+            reportGrid.Rows.Clear();
 
-            reportWorkSet.Select(recipeNo, EWorkType.Full);
+            reportWorkSet.Select(recipeNo);
 
             if (reportWorkSet.Empty == true)
             {
-                fullReportGrid.AddRow();
+                reportGrid.AddRow();
             }
             else
             {
                 for (int i = 0; i < reportWorkSet.RowCount; i++)
                 {
                     reportWorkSet.Fetch(i);
-                    fullReportGrid.AddRow();
-                    SetReportWorkGridRow(fullReportGrid.Rows[i], reportWorkSet);
+                    reportGrid.AddRow();
+                    SetReportWorkGridRow(reportGrid.Rows[i], reportWorkSet);
                 }
             }
 
-            fullReportGrid.RefreshGridData();
-
-            CtrlTestWorkGrid samplingTestGrid = samplingTestPanel.Controls[0] as CtrlTestWorkGrid;
-            samplingTestGrid.RecipeNo = recipeNo;
-            samplingTestGrid.SmuString = smuString;
-            samplingTestGrid.Rows.Clear();
-
-            testWorkSet.Select(recipeNo, EWorkType.Sampling);
-
-            if (testWorkSet.Empty == true)
-            {
-                samplingTestGrid.AddRow();
-            }
-            else
-            {
-                for (int i = 0; i < testWorkSet.RowCount; i++)
-                {
-                    testWorkSet.Fetch(i);
-                    samplingTestGrid.AddRow();
-                    SetTestWorkGridRow(samplingTestGrid.Rows[i], testWorkSet);
-                }
-            }
-
-            samplingTestGrid.RefreshGridData();
-
-            CtrlReportWorkGrid samplingReportGrid = samplingReportPanel.Controls[0] as CtrlReportWorkGrid;
-            samplingReportGrid.RecipeNo = recipeNo;
-            samplingReportGrid.SmuString = smuString;
-            samplingReportGrid.Rows.Clear();
-
-            reportWorkSet.Select(recipeNo, EWorkType.Sampling);
-
-            if (reportWorkSet.Empty == true)
-            {
-                samplingReportGrid.AddRow();
-            }
-            else
-            {
-                for (int i = 0; i < reportWorkSet.RowCount; i++)
-                {
-                    reportWorkSet.Fetch(i);
-                    samplingReportGrid.AddRow();
-                    SetReportWorkGridRow(samplingReportGrid.Rows[i], reportWorkSet);
-                }
-            }
-
-            samplingReportGrid.RefreshGridData();
+            reportGrid.RefreshGridData();
         }
 
         private void SetTestWorkGridRow(TestWorkRow row, TestWorkDataSet set)
         {
             row.TestPattern = slaveSet.GetNameRecNoString(set.SlavePatternNo);
             row.Index = set.Index;
-            row.ItemCode = set.ItemCode;
+            row.ItemCodeN = set.ItemCodeN;
+            row.ItemCodeS = set.ItemCodeS;
             row.ItemName = set.ItemName;
             row.ItemRef = set.ItemRef;
             row.BiasValue = set.BiasValue;
@@ -332,6 +256,12 @@ namespace IsSoft.Sec.LedChecker
             row.IntegZ = set.IntegZ;
             row.Gain = set.Gain;
             row.Offset = set.Offset;
+            row.LvGain = set.LvGain;
+            row.LvOffset = set.LvOffset;
+            row.CxGain = set.CxGain;
+            row.CxOffset = set.CxOffset;
+            row.CyGain = set.CyGain;
+            row.CyOffset = set.CyOffset;
         }
 
         private void SetReportWorkGridRow(ReportWorkRow row, ReportWorkDataSet set)
@@ -373,48 +303,34 @@ namespace IsSoft.Sec.LedChecker
         {
             searchPanel.Enabled = enabled;
 
-            (fullTestPanel.Controls[0] as CtrlTestWorkGrid).Editable = !enabled;
-            fullTestPluseButton.Enabled = !enabled;
-            fullTestMinusButton.Enabled = !enabled;
+            (testProcPanel.Controls[0] as CtrlTestWorkGrid).Editable = !enabled;
+            testPluseButton.Enabled = !enabled;
+            testMinusButton.Enabled = !enabled;
 
-            (fullReportPanel.Controls[0] as CtrlReportWorkGrid).Editable = !enabled;
-            fullReportPluseButton.Enabled = !enabled;
-            fullReportMinusButton.Enabled = !enabled;
-
-            (samplingTestPanel.Controls[0] as CtrlTestWorkGrid).Editable = !enabled;
-            samplingTestPluseButton.Enabled = !enabled;
-            samplingTestMinusButton.Enabled = !enabled;
-
-            (samplingReportPanel.Controls[0] as CtrlReportWorkGrid).Editable = !enabled;
-            samplingReportPluseButton.Enabled = !enabled;
-            samplingReportMinusButton.Enabled = !enabled;
+            (reportProcPanel.Controls[0] as CtrlReportWorkGrid).Editable = !enabled;
+            reportPluseButton.Enabled = !enabled;
+            reportMinusButton.Enabled = !enabled;
         }
 
         private void InsertTestWork(FbTransaction trans, TestWorkDataSet set, Int64 recipeNo)
         {
             CtrlTestWorkGrid workGrid;
 
-            workGrid = fullTestPanel.Controls[0] as CtrlTestWorkGrid;
+            workGrid = testProcPanel.Controls[0] as CtrlTestWorkGrid;
             foreach (TestWorkRow row in workGrid.Rows)
             {
-                SetTestWorkDataSet(trans, set, row, EWorkType.Full);
-            }
-
-            workGrid = samplingTestPanel.Controls[0] as CtrlTestWorkGrid;
-            foreach (TestWorkRow row in workGrid.Rows)
-            {
-                SetTestWorkDataSet(trans, set, row, EWorkType.Sampling);
+                SetTestWorkDataSet(trans, set, row);
             }
         }
 
-        private void SetTestWorkDataSet(FbTransaction trans, TestWorkDataSet set, TestWorkRow row, EWorkType type)
+        private void SetTestWorkDataSet(FbTransaction trans, TestWorkDataSet set, TestWorkRow row)
         {
             set.RecNo = AppRes.DB.GetGenNo("GN_TESTWORK");
             set.RecipeNo = recipeNo;
             set.SlavePatternNo = AppHelper.ExtractRecNo(row.TestPattern);
-            set.Type = type;
             set.Index = row.Index;
-            set.ItemCode = row.ItemCode;
+            set.ItemCodeN = row.ItemCodeN;
+            set.ItemCodeS = row.ItemCodeS;
             set.ItemName = row.ItemName;
             set.ItemRef = row.ItemRef;
             set.BiasValue = row.BiasValue;
@@ -430,6 +346,12 @@ namespace IsSoft.Sec.LedChecker
             set.IntegZ = row.IntegZ;
             set.Gain = row.Gain;
             set.Offset = row.Offset;
+            set.LvGain = row.LvGain;
+            set.LvOffset = row.LvOffset;
+            set.CxGain = row.CxGain;
+            set.CxOffset = row.CxOffset;
+            set.CyGain = row.CyGain;
+            set.CyOffset = row.CyOffset;
 
             set.Insert(trans);
         }
@@ -438,24 +360,17 @@ namespace IsSoft.Sec.LedChecker
         {
             CtrlReportWorkGrid workGrid;
 
-            workGrid = fullReportPanel.Controls[0] as CtrlReportWorkGrid;
+            workGrid = reportProcPanel.Controls[0] as CtrlReportWorkGrid;
             foreach (ReportWorkRow row in workGrid.Rows)
             {
-                SetReportWorkDataSet(trans, set, row, EWorkType.Full);
-            }
-
-            workGrid = samplingReportPanel.Controls[0] as CtrlReportWorkGrid;
-            foreach (ReportWorkRow row in workGrid.Rows)
-            {
-                SetReportWorkDataSet(trans, set, row, EWorkType.Sampling);
+                SetReportWorkDataSet(trans, set, row);
             }
         }
 
-        private void SetReportWorkDataSet(FbTransaction trans, ReportWorkDataSet set, ReportWorkRow row, EWorkType type)
+        private void SetReportWorkDataSet(FbTransaction trans, ReportWorkDataSet set, ReportWorkRow row)
         {
             set.RecNo = AppRes.DB.GetGenNo("GN_REPORTWORK");
             set.RecipeNo = recipeNo;
-            set.Type = type;
             set.Index = row.Index;
             set.ItemCode = row.ItemCode;
             set.ItemName = row.ItemName;
@@ -493,7 +408,7 @@ namespace IsSoft.Sec.LedChecker
 
         public void Save()
         {
-            fullTestPluseButton.Focus();
+            testPluseButton.Focus();
             UpdateWork();
             SetDataSetMode(EDataSetMode.View);
             findButton.PerformClick();

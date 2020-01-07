@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using Ulee.Controls;
+using Ulee.Utils;
 
 namespace IsSoft.Sec.LedChecker
 {
@@ -14,6 +15,46 @@ namespace IsSoft.Sec.LedChecker
 
     public partial class CtrlAutoRight : UlUserControlEng
     {
+        private TestContext context;
+
+        public int TotalMeter
+        { set { totalMeter.Text = value.ToString(); } }
+
+        public int OkMeter
+        { set { okMeter.Text = value.ToString(); } }
+
+        public int NgMeter
+        { set { ngMeter.Text = value.ToString(); } }
+
+        public double RatioMeter
+        { set { ratioMeter.Text = $"{value:F1}"; } }
+
+        public ETestDecision DecisionMeter
+        {
+            set
+            {
+                switch (value)
+                {
+                    case ETestDecision.Nt:
+                        decisionMeter.BackColor = Color.White;
+                        decisionMeter.ForeColor = Color.Black;
+                        break;
+
+                    case ETestDecision.Ok:
+                        decisionMeter.BackColor = Color.Blue;
+                        decisionMeter.ForeColor = Color.White;
+                        break;
+
+                    case ETestDecision.Ng:
+                        decisionMeter.BackColor = Color.Red;
+                        decisionMeter.ForeColor = Color.Yellow;
+                        break;
+                }
+
+                decisionMeter.Text = EnumHelper.ToDescription(value);
+            }
+        }
+
         public CtrlAutoRight()
         {
             InitializeComponent();
@@ -22,9 +63,15 @@ namespace IsSoft.Sec.LedChecker
 
         private void Initialize()
         {
+            context = new TestContext(this.Handle);
+            context.InvalidCounter += DoInvalidCounter;
+            context.InvalidRecipe += DoInvalidRecipe;
+            context.InvalidValue += DoInvalidValue;
+            context.InvalidTestIndex += DoInvalidTestIndex;
+
             DefMenu = new UlMenu(viewPanel);
-            DefMenu.Add(new CtrlAutoMain(this), mainButton);
-            DefMenu.Add(new CtrlAutoBin(), binButton);
+            DefMenu.Add(new CtrlAutoMain(context), mainButton);
+            DefMenu.Add(new CtrlAutoBin(context), binButton);
             DefMenu.Index = 0;
 
             SetButtonState(ETestButtonState.Stopped);
@@ -46,28 +93,64 @@ namespace IsSoft.Sec.LedChecker
             base.WndProc(ref m);
         }
 
+        private void CtrlAutoRight_Load(object sender, EventArgs e)
+        {
+            TotalMeter = 0;
+            OkMeter = 0;
+            NgMeter = 0;
+            RatioMeter = 0;
+            DecisionMeter = ETestDecision.Nt;
+        }
+
+        private void CtrlAutoRight_Enter(object sender, EventArgs e)
+        {
+            if (context.Recipe.RecNo == 0)
+            {
+                recipePanel_DoubleClick(null, null);
+            }
+        }
+
+        private void recipePanel_DoubleClick(object sender, EventArgs e)
+        {
+            if (AppRes.Busy == true) return;
+
+            DialogRecipeList dialog = new DialogRecipeList();
+
+            try
+            {
+                dialog.ShowDialog();
+            }
+            finally
+            {
+                if (dialog.DialogResult == DialogResult.OK)
+                {
+                    context.Load(dialog.Result.RecNo);
+                }
+            }
+        }
+
         private void startButton_Click(object sender, EventArgs e)
         {
             DefMenu.Index = 0;
             SetButtonState(ETestButtonState.Started);
-            (DefMenu.Controls(0) as CtrlAutoMain).StartTest();
+            context.StartThread();
         }
 
         private void pauseButton_Click(object sender, EventArgs e)
         {
             SetButtonState(ETestButtonState.Paused);
-            (DefMenu.Controls(0) as CtrlAutoMain).PauseTest();
+            context.SuspendThread();
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            (DefMenu.Controls(0) as CtrlAutoMain).StopTest();
+            context.TerminateThread();
         }
 
         private void FinalizeTest()
         {
             SetButtonState(ETestButtonState.Stopped);
-            (DefMenu.Controls(0) as CtrlAutoMain).FinalizeTest();
+            context.FinalizeThread();
         }
 
         private void SetButtonState(ETestButtonState state)
@@ -91,6 +174,71 @@ namespace IsSoft.Sec.LedChecker
                     pauseButton.Enabled = false;
                     stopButton.Enabled = false;
                     break;
+            }
+        }
+
+        private void DispTestCounter(TestCounter counter)
+        {
+            TotalMeter = counter.Total;
+            OkMeter = counter.Ok;
+            NgMeter = counter.Ng;
+            RatioMeter = counter.OkRate;
+        }
+
+        public void DoInvalidCounter(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidCounter);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+                CounterArgs args = e as CounterArgs;
+                DispTestCounter(args.Counter);
+                (DefMenu.Controls(1) as CtrlAutoBin).DispBinCounter(args.Counter.Bins);
+            }
+        }
+
+        public void DoInvalidRecipe(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidRecipe);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+                recipePanel.Text = context.Recipe.Code;
+
+                (DefMenu.Controls(0) as CtrlAutoMain).SetWorkObjects();
+                (DefMenu.Controls(1) as CtrlAutoBin).SetBinItems();
+            }
+        }
+
+        public void DoInvalidValue(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidValue);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+            }
+        }
+
+        public void DoInvalidTestIndex(object sender, EventArgs e)
+        {
+            if (this.InvokeRequired == true)
+            {
+                EventHandler func = new EventHandler(DoInvalidTestIndex);
+                this.BeginInvoke(func, new object[] { sender, e });
+            }
+            else
+            {
+                TestIndexArgs args = e as TestIndexArgs;
+                (DefMenu.Controls(0) as CtrlAutoMain).SetTestIndex(args.Index);
             }
         }
     }

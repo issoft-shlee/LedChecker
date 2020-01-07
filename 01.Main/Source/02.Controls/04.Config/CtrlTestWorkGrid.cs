@@ -101,7 +101,7 @@ namespace IsSoft.Sec.LedChecker
         {
             int record = workGrid.FocusedRecord;
             int index = (int)GetCellValue(ETestWorkItem.No, record);
-            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCode, record);
+            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCodeN, record);
             string refNo = (string)GetCellValue(ETestWorkItem.ItemRef, record);
 
             if ((code != ETestItemCode.LMK_Luminance) && (code != ETestItemCode.LMK_Color)) return;
@@ -171,7 +171,7 @@ namespace IsSoft.Sec.LedChecker
                 return;
             }
 
-            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCode, workGrid.FocusedRecord);
+            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCodeN, workGrid.FocusedRecord);
             string range = (string)GetCellValue(ETestWorkItem.BiasRange, workGrid.FocusedRecord);
             if (string.IsNullOrEmpty(range) == true) range = "";
 
@@ -203,7 +203,7 @@ namespace IsSoft.Sec.LedChecker
                 return;
             }
 
-            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCode, workGrid.FocusedRecord);
+            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCodeN, workGrid.FocusedRecord);
             string bias = (string)GetCellValue(ETestWorkItem.BiasValue, workGrid.FocusedRecord);
             if (string.IsNullOrEmpty(bias) == true) bias = "";
 
@@ -224,7 +224,7 @@ namespace IsSoft.Sec.LedChecker
         {
             if (RecipeNo <= 0) return;
 
-            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCode, workGrid.FocusedRecord);
+            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCodeN, workGrid.FocusedRecord);
             if (code >= ETestItemCode.IC_ON) return;
 
             string refNo = (string)GetCellValue(ETestWorkItem.ItemRef, workGrid.FocusedRecord);
@@ -253,7 +253,7 @@ namespace IsSoft.Sec.LedChecker
 
         private void workOpticalSpinEdit_EditValueChanging(object sender, ChangingEventArgs e)
         {
-            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCode, workGrid.FocusedRecord);
+            ETestItemCode code = (ETestItemCode)GetCellValue(ETestWorkItem.ItemCodeN, workGrid.FocusedRecord);
             if ((code != ETestItemCode.LMK_Luminance) && (code != ETestItemCode.LMK_Color))
             {
                 e.Cancel = true;
@@ -319,7 +319,7 @@ namespace IsSoft.Sec.LedChecker
 
             foreach (TestWorkRow row in Rows)
             {
-                if ((row.Index < index) && (row.ItemCode == code) && (row.TestPattern != "None(0)"))
+                if ((row.Index < index) && (row.ItemCodeN == code) && (row.TestPattern != "None(0)"))
                 {
                     string item = $"{row.Index}";
                     items.Add(item);
@@ -460,7 +460,7 @@ namespace IsSoft.Sec.LedChecker
 
             foreach (TestWorkRow row in Rows)
             {
-                switch (row.ItemCode)
+                switch (row.ItemCodeN)
                 {
                     case ETestItemCode.VF:
                     case ETestItemCode.IF:
@@ -511,7 +511,7 @@ namespace IsSoft.Sec.LedChecker
             for (int i = 0; i < Rows.Count; i++)
             {
                 Rows[i].Index = i + 1;
-                string name = Rows[i].ItemCode.ToDescription();
+                string name = Rows[i].ItemCodeN.ToDescription();
 
                 if (string.IsNullOrEmpty(Rows[i].ItemName) == true)
                 {

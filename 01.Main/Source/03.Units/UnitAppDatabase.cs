@@ -603,7 +603,7 @@ namespace IsSoft.Sec.LedChecker
                 RollbackTrans(trans, e);
             }
         }
-
+        
         public void Update(FbTransaction trans = null)
         {
             string sql =
@@ -856,7 +856,9 @@ namespace IsSoft.Sec.LedChecker
 
         public int Index { get; set; }
 
-        public ETestItemCode ItemCode { get; set; }
+        public ETestItemCode ItemCodeN { get; set; }
+
+        public ETestItemCode ItemCodeS { get; set; }
 
         public string ItemName { get; set; }
 
@@ -890,18 +892,30 @@ namespace IsSoft.Sec.LedChecker
 
         public double Offset { get; set; }
 
+        public double LvGain { get; set; }
+
+        public double LvOffset { get; set; }
+
+        public double CxGain { get; set; }
+
+        public double CxOffset { get; set; }
+
+        public double CyGain { get; set; }
+
+        public double CyOffset { get; set; }
+
         public TestWorkDataSet(FbConnection connect, FbCommand command, FbDataAdapter adapter)
             : base(connect, command, adapter)
         {
         }
 
-        public void Select(Int64 recipeNo, EWorkType type, FbTransaction trans = null)
+        public void Select(Int64 recipeNo, FbTransaction trans = null)
         {
             SetTrans(trans);
             command.CommandText =
                 $" select ta.*, tb.patternname from TB_TESTWORK ta " +
                 $" join TB_SLAVEPATTERN tb on tb.pk_recno=ta.fk_slavepatternno " +
-                $" where ta.fk_recipeno={recipeNo} and ta.worktype={(int)type} " +
+                $" where ta.fk_recipeno={recipeNo} " +
                 $" order by ta.pk_recno asc ";
 
             dataSet.Clear();
@@ -912,9 +926,10 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" insert into TB_TESTWORK values " +
-                $" ({RecNo}, {RecipeNo}, {SlavePatternNo}, {(int)Type}, {Index}, {(int)ItemCode}, '{ItemName}', " +
-                $" '{ItemRef}', '{BiasValue}', '{BiasRange}', '{BiasCH}', {ApplyTime}, {TransientTime}, {HumCount}, " +
-                $" {(int)Optical}, {IntegVL}, {IntegX1}, {IntegX2}, {IntegZ}, {Gain}, {Offset}) ";
+                $" ({RecNo}, {RecipeNo}, {SlavePatternNo}, {Index}, {(int)ItemCodeN}, {(int)ItemCodeS}, " +
+                $" '{ItemName}', '{ItemRef}', '{BiasValue}', '{BiasRange}', '{BiasCH}', {ApplyTime}, {TransientTime}, " +
+                $" {HumCount}, {(int)Optical}, {IntegVL}, {IntegX1}, {IntegX2}, {IntegZ}, {Gain}, {Offset}, " +
+                $" {LvGain}, {LvOffset}, {CxGain}, {CxOffset}, {CyGain}, {CyOffset}) ";
 
             SetTrans(trans);
 
@@ -935,11 +950,12 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" update TB_TESTWORK set " +
-                $" fk_recipeno={RecipeNo}, fk_slavepatternno={SlavePatternNo}, worktype={(int)Type}, " +
-                $" workno={Index}, itemcode={(int)ItemCode}, itemname='{ItemName}', itemref='{ItemRef}', " +
-                $" bias_value='{BiasValue}', bias_range='{BiasRange}', bias_ch='{BiasCH}', applytime={ApplyTime}, " +
-                $" transtime={TransientTime}, humcnt={HumCount}, optical={(int)Optical}, integ_vl={IntegVL}, " +
-                $" integ_x1={IntegX1}, integ_x2={IntegX1}, integ_z={IntegZ}, gain={Gain}, offset={Offset} " +
+                $" fk_recipeno={RecipeNo}, fk_slavepatternno={SlavePatternNo}, " +
+                $" workno={Index}, itemcode_n={(int)ItemCodeN}, itemcode_s={(int)ItemCodeS}, itemname='{ItemName}', " +
+                $" itemref='{ItemRef}', bias_value='{BiasValue}', bias_range='{BiasRange}', bias_ch='{BiasCH}', " +
+                $" applytime={ApplyTime}, transtime={TransientTime}, humcnt={HumCount}, optical={(int)Optical}, " +
+                $" integ_vl={IntegVL}, integ_x1={IntegX1}, integ_x2={IntegX1}, integ_z={IntegZ}, gain={Gain}, offset={Offset} " +
+                $" lv_gain={LvGain}, lv_offset={LvOffset}, cx_gain={CxGain}, cx_offset={CxOffset}, cy_gain={CyGain}, cy_offset={CyOffset} " +
                 $" where pk_recno={RecNo} ";
 
             SetTrans(trans);
@@ -988,9 +1004,9 @@ namespace IsSoft.Sec.LedChecker
                 RecNo = 0;
                 RecipeNo = 0;
                 SlavePatternNo = 0;
-                Type = EWorkType.Full;
                 Index = 0;
-                ItemCode = ETestItemCode.VF;
+                ItemCodeN = ETestItemCode.VF;
+                ItemCodeS = ETestItemCode.VF;
                 ItemName = "VF";
                 ItemRef = "None";
                 TestPattern = "None";
@@ -1005,8 +1021,14 @@ namespace IsSoft.Sec.LedChecker
                 IntegX1 = 0;
                 IntegX2 = 0;
                 IntegZ = 0;
-                Gain = 0;
+                Gain = 1;
                 Offset = 0;
+                LvGain = 1;
+                LvOffset = 0;
+                CxGain = 1;
+                CxOffset = 0;
+                CyGain = 1;
+                CyOffset = 0;
             }
         }
 
@@ -1015,9 +1037,9 @@ namespace IsSoft.Sec.LedChecker
             RecNo = Convert.ToInt64(row["pk_recno"]);
             RecipeNo = Convert.ToInt64(row["fk_recipeno"]);
             SlavePatternNo = Convert.ToInt64(row["fk_slavepatternno"]);
-            Type = (EWorkType)Convert.ToInt32(row["worktype"]);
             Index = Convert.ToInt32(row["workno"]);
-            ItemCode = (ETestItemCode)Convert.ToInt32(row["itemcode"]);
+            ItemCodeN = (ETestItemCode)Convert.ToInt32(row["itemcode_n"]);
+            ItemCodeS = (ETestItemCode)Convert.ToInt32(row["itemcode_s"]);
             ItemName = Convert.ToString(row["itemname"]);
             ItemRef = Convert.ToString(row["itemref"]);
             TestPattern = Convert.ToString(row["patternname"]);
@@ -1034,6 +1056,12 @@ namespace IsSoft.Sec.LedChecker
             IntegZ = Convert.ToDouble(row["integ_z"]);
             Gain = Convert.ToDouble(row["gain"]);
             Offset = Convert.ToDouble(row["offset"]);
+            LvGain = Convert.ToDouble(row["lv_gain"]);
+            LvOffset = Convert.ToDouble(row["lv_offset"]);
+            CxGain = Convert.ToDouble(row["cx_gain"]);
+            CxOffset = Convert.ToDouble(row["cx_offset"]);
+            CyGain = Convert.ToDouble(row["cy_gain"]);
+            CyOffset = Convert.ToDouble(row["cy_offset"]);
         }
     }
 
@@ -1042,8 +1070,6 @@ namespace IsSoft.Sec.LedChecker
         public Int64 RecNo { get; set; }
 
         public Int64 RecipeNo { get; set; }
-
-        public EWorkType Type { get; set; }
 
         public int Index  { get; set; }
 
@@ -1066,12 +1092,12 @@ namespace IsSoft.Sec.LedChecker
         {
         }
 
-        public void Select(Int64 recipeNo, EWorkType type, FbTransaction trans = null)
+        public void Select(Int64 recipeNo, FbTransaction trans = null)
         {
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_REPORTWORK " +
-                $" where fk_recipeno={recipeNo} and worktype={(int)type} " +
+                $" where fk_recipeno={recipeNo} " +
                 $" order by pk_recno asc ";
 
             dataSet.Clear();
@@ -1082,8 +1108,8 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" insert into TB_REPORTWORK values " +
-                $" ({RecNo}, {RecipeNo}, {(int)Type}, {Index}, {(int)ItemCode}, " +
-                $" '{ItemName}', '{ItemRef}', '{BiasCH}', '{Rank}', {Lower}, {Upper})";
+                $" ({RecNo}, {RecipeNo}, {Index}, {(int)ItemCode}, '{ItemName}', " +
+                $" '{ItemRef}', '{BiasCH}', '{Rank}', {Lower}, {Upper})";
 
             SetTrans(trans);
 
@@ -1104,9 +1130,9 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" update TB_REPORTWORK set " +
-                $" fk_recipeno={RecipeNo}, worktype={(int)Type}, workno={Index}, " +
-                $" itemcode={(int)ItemCode}, itemname='{ItemName}', itemref='{ItemRef}', " +
-                $" biasch='{BiasCH}', rank='{Rank}', lowevalue={Lower}, uppervalue={Upper} " +
+                $" fk_recipeno={RecipeNo}, workno={Index}, itemcode={(int)ItemCode}, " +
+                $" itemname='{ItemName}', itemref='{ItemRef}', biasch='{BiasCH}', " +
+                $" rank='{Rank}', lowevalue={Lower}, uppervalue={Upper} " +
                 $" where pk_recno={RecNo} ";
 
             SetTrans(trans);
@@ -1154,7 +1180,6 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 RecipeNo = 0;
-                Type = EWorkType.Full;
                 Index = 0;
                 ItemCode = EReportItemCode.VF;
                 ItemName = "VF";
@@ -1170,7 +1195,6 @@ namespace IsSoft.Sec.LedChecker
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             RecipeNo = Convert.ToInt64(row["fk_recipeno"]);
-            Type = (EWorkType)Convert.ToInt32(row["worktype"]);
             Index = Convert.ToInt32(row["workno"]);
             ItemCode = (EReportItemCode)Convert.ToInt32(row["itemcode"]);
             ItemName = Convert.ToString(row["itemname"]);

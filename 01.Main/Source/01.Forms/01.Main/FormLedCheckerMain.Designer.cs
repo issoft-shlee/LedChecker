@@ -49,14 +49,24 @@
             this.mainNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.mainTrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.authorLogoPanel = new Ulee.Controls.UlPanel();
+            this.clientLogoPanel = new Ulee.Controls.UlPanel();
+            this.clientPicBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.mainTrayMenu.SuspendLayout();
+            this.authorLogoPanel.SuspendLayout();
+            this.clientLogoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clientPicBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
             // 
             this.bgPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Raised;
+            this.bgPanel.Controls.Add(this.clientLogoPanel);
+            this.bgPanel.Controls.Add(this.authorLogoPanel);
             this.bgPanel.Controls.Add(this.viewPanel);
             this.bgPanel.Controls.Add(this.menuPanel);
             this.bgPanel.Controls.Add(this.messagePanel);
@@ -164,11 +174,11 @@
             this.messagePanel.ForeColor = System.Drawing.Color.White;
             this.messagePanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.messagePanel.InnerColor2 = System.Drawing.Color.White;
-            this.messagePanel.Location = new System.Drawing.Point(8, 1002);
+            this.messagePanel.Location = new System.Drawing.Point(96, 1002);
             this.messagePanel.Name = "messagePanel";
             this.messagePanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.messagePanel.OuterColor2 = System.Drawing.Color.White;
-            this.messagePanel.Size = new System.Drawing.Size(1904, 40);
+            this.messagePanel.Size = new System.Drawing.Size(1728, 40);
             this.messagePanel.Spacing = 0;
             this.messagePanel.TabIndex = 5;
             this.messagePanel.Text = "Ready";
@@ -433,6 +443,67 @@
             this.showUpMenuItem.Text = "Show";
             this.showUpMenuItem.Click += new System.EventHandler(this.showUpMenuItem_Click);
             // 
+            // authorLogoPanel
+            // 
+            this.authorLogoPanel.BackColor = System.Drawing.Color.Black;
+            this.authorLogoPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("authorLogoPanel.BackgroundImage")));
+            this.authorLogoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.authorLogoPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.authorLogoPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.authorLogoPanel.Controls.Add(this.pictureBox1);
+            this.authorLogoPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.authorLogoPanel.InnerColor2 = System.Drawing.Color.White;
+            this.authorLogoPanel.Location = new System.Drawing.Point(8, 1002);
+            this.authorLogoPanel.Name = "authorLogoPanel";
+            this.authorLogoPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.authorLogoPanel.OuterColor2 = System.Drawing.Color.White;
+            this.authorLogoPanel.Size = new System.Drawing.Size(84, 40);
+            this.authorLogoPanel.Spacing = 0;
+            this.authorLogoPanel.TabIndex = 8;
+            this.authorLogoPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.authorLogoPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // clientLogoPanel
+            // 
+            this.clientLogoPanel.BackColor = System.Drawing.Color.Black;
+            this.clientLogoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.clientLogoPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.clientLogoPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.clientLogoPanel.Controls.Add(this.clientPicBox);
+            this.clientLogoPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.clientLogoPanel.InnerColor2 = System.Drawing.Color.White;
+            this.clientLogoPanel.Location = new System.Drawing.Point(1828, 1002);
+            this.clientLogoPanel.Name = "clientLogoPanel";
+            this.clientLogoPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.clientLogoPanel.OuterColor2 = System.Drawing.Color.White;
+            this.clientLogoPanel.Size = new System.Drawing.Size(84, 40);
+            this.clientLogoPanel.Spacing = 0;
+            this.clientLogoPanel.TabIndex = 9;
+            this.clientLogoPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.clientLogoPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // clientPicBox
+            // 
+            this.clientPicBox.BackColor = System.Drawing.Color.Black;
+            this.clientPicBox.Image = ((System.Drawing.Image)(resources.GetObject("clientPicBox.Image")));
+            this.clientPicBox.Location = new System.Drawing.Point(2, 2);
+            this.clientPicBox.Name = "clientPicBox";
+            this.clientPicBox.Size = new System.Drawing.Size(80, 36);
+            this.clientPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.clientPicBox.TabIndex = 0;
+            this.clientPicBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormLedCheckerMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -449,6 +520,10 @@
             this.bgPanel.ResumeLayout(false);
             this.menuPanel.ResumeLayout(false);
             this.mainTrayMenu.ResumeLayout(false);
+            this.authorLogoPanel.ResumeLayout(false);
+            this.clientLogoPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.clientPicBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,5 +550,9 @@
         private System.Windows.Forms.NotifyIcon mainNotifyIcon;
         private System.Windows.Forms.ContextMenuStrip mainTrayMenu;
         private System.Windows.Forms.ToolStripMenuItem showUpMenuItem;
+        private Ulee.Controls.UlPanel clientLogoPanel;
+        private Ulee.Controls.UlPanel authorLogoPanel;
+        private System.Windows.Forms.PictureBox clientPicBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

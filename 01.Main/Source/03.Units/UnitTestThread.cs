@@ -24,10 +24,22 @@ namespace IsSoft.Sec.LedChecker
             {
                 context.Value.Type = EWorkType.Sampling;
 
-                for (int i = 0; i < context.Recipe.Work[EWorkType.Sampling].Tests.Count; i++)
+                for (int i = 0; i < context.Recipe.Work.Tests.Count; i++)
                 {
                     context.OnInvalidTestIndex(i);
-                    Yield(1000);
+
+                    for (int j = 0; j < 20; j++)
+                    {
+                        for (int k = 0; k < context.Counter.Bins.Count; k++)
+                        {
+                            context.Counter.Ok++;
+                            context.Counter.Total++;
+                            context.Counter.Bins[k].Count++;
+                        }
+
+                        context.OnInvalidCounter();
+                        Yield(50);
+                    }
                 }
                 context.OnInvalidTestIndex();
 

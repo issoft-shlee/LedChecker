@@ -67,7 +67,8 @@ namespace IsSoft.Sec.LedChecker
     public enum ETestWorkItem
     {
         No,
-        ItemCode,
+        ItemCodeN,
+        ItemCodeS,
         ItemName,
         ItemRef,
         Empty1,
@@ -86,7 +87,13 @@ namespace IsSoft.Sec.LedChecker
         Integ_Z,
         Empty3,
         Gain,
-        Offet
+        Offet,
+        LvGain,
+        LvOffet,
+        CxGain,
+        CxOffet,
+        CyGain,
+        CyOffet
     }
 
     public enum EReportWorkItem
@@ -506,7 +513,9 @@ namespace IsSoft.Sec.LedChecker
     {
         public int Index { get; set; }
 
-        public ETestItemCode ItemCode { get; set; }
+        public ETestItemCode ItemCodeN { get; set; }
+
+        public ETestItemCode ItemCodeS { get; set; }
 
         public string ItemName { get; set; }
 
@@ -540,22 +549,45 @@ namespace IsSoft.Sec.LedChecker
 
         public double Offset { get; set; }
 
+        public double LvGain { get; set; }
+
+        public double LvOffset { get; set; }
+
+        public double CxGain { get; set; }
+
+        public double CxOffset { get; set; }
+
+        public double CyGain { get; set; }
+
+        public double CyOffset { get; set; }
+
         public TestWorkRow()
         {
             Index = 0;
-            ItemCode = ETestItemCode.VF;
-            ItemName = EnumHelper.ToDescription(ItemCode);
+            ItemCodeN = ETestItemCode.VF;
+            ItemCodeS = ETestItemCode.VF;
+            ItemName = EnumHelper.ToDescription(ItemCodeN);
             ItemRef = "None";
             TestPattern = "None(0)";
             BiasCH = "None";
             BiasValue = "None";
             BiasRange = "None";
+            ApplyTime = 0;
+            TransientTime = 0;
+            HumCounter = 0;
             Optical = EOpticalType.None;
             IntegVL = 0.0001;
             IntegX1 = 0.0001;
             IntegX2 = 0.0001;
             IntegZ = 0.0001;
             Gain = 1;
+            Offset = 0;
+            LvGain = 1;
+            LvOffset = 0;
+            CxGain = 1;
+            CxOffset = 0;
+            CyGain = 1;
+            CyOffset = 0;
         }
     }
 

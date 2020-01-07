@@ -116,7 +116,7 @@ namespace IsSoft.Sec.LedChecker
 
             conditionCombo.SelectedValue = condition;
 
-            workSet.Select(recipeNo, type);
+            workSet.Select(recipeNo);
             workGrid.DataSource = workSet.DataSet.Tables[0];
 
             workGridView.Appearance.EvenRow.BackColor = Color.FromArgb(244, 244, 236);

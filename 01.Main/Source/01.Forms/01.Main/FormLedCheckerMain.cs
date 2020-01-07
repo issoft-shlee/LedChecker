@@ -149,7 +149,7 @@ namespace IsSoft.Sec.LedChecker
         //        DispMessageHandler func = new DispMessageHandler(DispMessage);
         //        Invoke(func, new object[] { state, msg });
         //    }
-        //    elseD:\ShDoc\Projects\VS\IsSoft\SEC\LedChecker\01.Main\Source\03.Units\UnitAppType.cs
+        //    else
         //    {
         //        switch (state)
         //        {

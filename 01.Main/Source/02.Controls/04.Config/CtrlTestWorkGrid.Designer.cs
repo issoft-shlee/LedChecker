@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.workGrid = new DevExpress.XtraVerticalGrid.VGridControl();
             this.workT30TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.workItemCodeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -42,6 +42,9 @@
             this.workReferenceButton = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.workBiasRangeButton = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.workBiasValueButton = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.workTimeSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.workHumCounterSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.workCorrelationSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.workIndexRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workItemCodeRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workItemNameRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -63,9 +66,13 @@
             this.workNull3Row = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.workTimeSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.workHumCounterSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.workCorrelationSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.workLvGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workLvOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workItemCodeSRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workCxGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workCxOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workCyGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workCyOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.bgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.workGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workT30TextEdit)).BeginInit();
@@ -143,10 +150,11 @@
             this.workTimeSpinEdit,
             this.workHumCounterSpinEdit,
             this.workCorrelationSpinEdit});
-            this.workGrid.RowHeaderWidth = 120;
+            this.workGrid.RowHeaderWidth = 146;
             this.workGrid.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.workIndexRow,
             this.workItemCodeRow,
+            this.workItemCodeSRow,
             this.workItemNameRow,
             this.workItemRefRow,
             this.workNull1Row,
@@ -165,7 +173,13 @@
             this.workIntegZRow,
             this.workNull3Row,
             this.workGainRow,
-            this.workOffsetRow});
+            this.workOffsetRow,
+            this.workLvGainRow,
+            this.workLvOffsetRow,
+            this.workCxGainRow,
+            this.workCxOffsetRow,
+            this.workCyGainRow,
+            this.workCyOffsetRow});
             this.workGrid.Size = new System.Drawing.Size(300, 300);
             this.workGrid.TabIndex = 0;
             this.workGrid.RecordCellStyle += new DevExpress.XtraVerticalGrid.Events.GetCustomRowCellStyleEventHandler(this.workGrid_RecordCellStyle);
@@ -210,7 +224,7 @@
             // 
             this.workPatternButton.AutoHeight = false;
             this.workPatternButton.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "...", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "...", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.workPatternButton.LookAndFeel.SkinName = "DevExpress Style";
             this.workPatternButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.workPatternButton.Name = "workPatternButton";
@@ -299,257 +313,6 @@
             this.workBiasValueButton.UseReadOnlyAppearance = false;
             this.workBiasValueButton.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.workBiasValueButton_ButtonClick);
             // 
-            // workIndexRow
-            // 
-            this.workIndexRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workIndexRow.Appearance.Options.UseFont = true;
-            this.workIndexRow.Appearance.Options.UseTextOptions = true;
-            this.workIndexRow.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.workIndexRow.Fixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
-            this.workIndexRow.InternalFixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
-            this.workIndexRow.Name = "workIndexRow";
-            this.workIndexRow.OptionsRow.AllowFocus = false;
-            this.workIndexRow.OptionsRow.AllowMove = false;
-            this.workIndexRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workIndexRow.OptionsRow.DblClickExpanding = false;
-            this.workIndexRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workIndexRow.Properties.AllowEdit = false;
-            this.workIndexRow.Properties.Caption = "No.";
-            this.workIndexRow.Properties.DrawEditorBorder = false;
-            this.workIndexRow.Properties.FieldName = "Index";
-            this.workIndexRow.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.workIndexRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workIndexRow.Properties.ReadOnly = false;
-            this.workIndexRow.TabStop = false;
-            // 
-            // workItemCodeRow
-            // 
-            this.workItemCodeRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workItemCodeRow.Appearance.Options.UseFont = true;
-            this.workItemCodeRow.Name = "workItemCodeRow";
-            this.workItemCodeRow.OptionsRow.AllowMove = false;
-            this.workItemCodeRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workItemCodeRow.OptionsRow.DblClickExpanding = false;
-            this.workItemCodeRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workItemCodeRow.Properties.Caption = "Item Code";
-            this.workItemCodeRow.Properties.FieldName = "ItemCode";
-            this.workItemCodeRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workItemCodeRow.Properties.ReadOnly = false;
-            this.workItemCodeRow.Properties.RowEdit = this.workItemCodeLookUp;
-            // 
-            // workItemNameRow
-            // 
-            this.workItemNameRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workItemNameRow.Appearance.Options.UseFont = true;
-            this.workItemNameRow.Name = "workItemNameRow";
-            this.workItemNameRow.Properties.Caption = "Item Name";
-            this.workItemNameRow.Properties.FieldName = "ItemName";
-            this.workItemNameRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workItemNameRow.Properties.RowEdit = this.workT30TextEdit;
-            // 
-            // workItemRefRow
-            // 
-            this.workItemRefRow.Name = "workItemRefRow";
-            this.workItemRefRow.Properties.Caption = "Item Referance";
-            this.workItemRefRow.Properties.FieldName = "ItemRef";
-            this.workItemRefRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workItemRefRow.Properties.RowEdit = this.workReferenceButton;
-            // 
-            // workNull1Row
-            // 
-            this.workNull1Row.Name = "workNull1Row";
-            this.workNull1Row.OptionsRow.AllowFocus = false;
-            this.workNull1Row.OptionsRow.AllowMove = false;
-            this.workNull1Row.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workNull1Row.OptionsRow.DblClickExpanding = false;
-            this.workNull1Row.OptionsRow.ShowInCustomizationForm = false;
-            this.workNull1Row.Properties.AllowEdit = false;
-            this.workNull1Row.Properties.OptionsFilter.AllowFilter = false;
-            // 
-            // workTestPatternRow
-            // 
-            this.workTestPatternRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workTestPatternRow.Appearance.Options.UseFont = true;
-            this.workTestPatternRow.Name = "workTestPatternRow";
-            this.workTestPatternRow.Properties.Caption = "Test Pattern";
-            this.workTestPatternRow.Properties.FieldName = "TestPattern";
-            this.workTestPatternRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workTestPatternRow.Properties.RowEdit = this.workPatternButton;
-            // 
-            // workBiasCHRow
-            // 
-            this.workBiasCHRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workBiasCHRow.Appearance.Options.UseFont = true;
-            this.workBiasCHRow.Name = "workBiasCHRow";
-            this.workBiasCHRow.Properties.AllowEdit = false;
-            this.workBiasCHRow.Properties.Caption = "Bias-CH";
-            this.workBiasCHRow.Properties.FieldName = "BiasCH";
-            this.workBiasCHRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workBiasCHRow.Properties.ReadOnly = false;
-            // 
-            // workBiasRangeRow
-            // 
-            this.workBiasRangeRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workBiasRangeRow.Appearance.Options.UseFont = true;
-            this.workBiasRangeRow.Name = "workBiasRangeRow";
-            this.workBiasRangeRow.Properties.Caption = "Bias Range";
-            this.workBiasRangeRow.Properties.FieldName = "BiasRange";
-            this.workBiasRangeRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workBiasRangeRow.Properties.ReadOnly = false;
-            this.workBiasRangeRow.Properties.RowEdit = this.workBiasRangeButton;
-            // 
-            // workBiasValueRow
-            // 
-            this.workBiasValueRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workBiasValueRow.Appearance.Options.UseFont = true;
-            this.workBiasValueRow.Name = "workBiasValueRow";
-            this.workBiasValueRow.OptionsRow.AllowMove = false;
-            this.workBiasValueRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workBiasValueRow.OptionsRow.DblClickExpanding = false;
-            this.workBiasValueRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workBiasValueRow.Properties.Caption = "Bias Value";
-            this.workBiasValueRow.Properties.FieldName = "BiasValue";
-            this.workBiasValueRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workBiasValueRow.Properties.RowEdit = this.workBiasValueButton;
-            // 
-            // workApplyTimeRow
-            // 
-            this.workApplyTimeRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workApplyTimeRow.Appearance.Options.UseFont = true;
-            this.workApplyTimeRow.Name = "workApplyTimeRow";
-            this.workApplyTimeRow.OptionsRow.AllowMove = false;
-            this.workApplyTimeRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workApplyTimeRow.OptionsRow.DblClickExpanding = false;
-            this.workApplyTimeRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workApplyTimeRow.Properties.Caption = "Apply Time(SMU)";
-            this.workApplyTimeRow.Properties.FieldName = "ApplyTime";
-            this.workApplyTimeRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workApplyTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
-            // 
-            // workTransientTimeRow
-            // 
-            this.workTransientTimeRow.Name = "workTransientTimeRow";
-            this.workTransientTimeRow.OptionsRow.AllowMove = false;
-            this.workTransientTimeRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workTransientTimeRow.OptionsRow.DblClickExpanding = false;
-            this.workTransientTimeRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workTransientTimeRow.Properties.Caption = "Transient Time";
-            this.workTransientTimeRow.Properties.FieldName = "TransientTime";
-            this.workTransientTimeRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workTransientTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
-            // 
-            // workHumCounterRow
-            // 
-            this.workHumCounterRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workHumCounterRow.Appearance.Options.UseFont = true;
-            this.workHumCounterRow.Name = "workHumCounterRow";
-            this.workHumCounterRow.Properties.Caption = "HUM Counter";
-            this.workHumCounterRow.Properties.FieldName = "HumCounter";
-            this.workHumCounterRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workHumCounterRow.Properties.RowEdit = this.workHumCounterSpinEdit;
-            // 
-            // workNull2Row
-            // 
-            this.workNull2Row.Name = "workNull2Row";
-            this.workNull2Row.OptionsRow.AllowFocus = false;
-            this.workNull2Row.OptionsRow.AllowMove = false;
-            this.workNull2Row.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workNull2Row.OptionsRow.DblClickExpanding = false;
-            this.workNull2Row.OptionsRow.ShowInCustomizationForm = false;
-            this.workNull2Row.Properties.AllowEdit = false;
-            this.workNull2Row.Properties.OptionsFilter.AllowFilter = false;
-            // 
-            // workOpticalRow
-            // 
-            this.workOpticalRow.Name = "workOpticalRow";
-            this.workOpticalRow.OptionsRow.AllowMove = false;
-            this.workOpticalRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workOpticalRow.OptionsRow.DblClickExpanding = false;
-            this.workOpticalRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workOpticalRow.Properties.Caption = "Optical";
-            this.workOpticalRow.Properties.FieldName = "Optical";
-            this.workOpticalRow.Properties.RowEdit = this.workOpticalLookUp;
-            this.workOpticalRow.Visible = false;
-            // 
-            // workIntegVLRow
-            // 
-            this.workIntegVLRow.Name = "workIntegVLRow";
-            this.workIntegVLRow.OptionsRow.AllowMove = false;
-            this.workIntegVLRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workIntegVLRow.OptionsRow.DblClickExpanding = false;
-            this.workIntegVLRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workIntegVLRow.Properties.Caption = "Integration VL";
-            this.workIntegVLRow.Properties.FieldName = "IntegVL";
-            this.workIntegVLRow.Properties.RowEdit = this.workOpticalSpinEdit;
-            // 
-            // workIntegX1Row
-            // 
-            this.workIntegX1Row.Name = "workIntegX1Row";
-            this.workIntegX1Row.OptionsRow.AllowMove = false;
-            this.workIntegX1Row.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workIntegX1Row.OptionsRow.DblClickExpanding = false;
-            this.workIntegX1Row.OptionsRow.ShowInCustomizationForm = false;
-            this.workIntegX1Row.Properties.Caption = "Integration X1";
-            this.workIntegX1Row.Properties.FieldName = "IntegX1";
-            this.workIntegX1Row.Properties.RowEdit = this.workOpticalSpinEdit;
-            // 
-            // workIntegX2Row
-            // 
-            this.workIntegX2Row.Name = "workIntegX2Row";
-            this.workIntegX2Row.OptionsRow.AllowMove = false;
-            this.workIntegX2Row.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workIntegX2Row.OptionsRow.DblClickExpanding = false;
-            this.workIntegX2Row.OptionsRow.ShowInCustomizationForm = false;
-            this.workIntegX2Row.Properties.Caption = "Integration X2";
-            this.workIntegX2Row.Properties.FieldName = "IntegX2";
-            this.workIntegX2Row.Properties.RowEdit = this.workOpticalSpinEdit;
-            // 
-            // workIntegZRow
-            // 
-            this.workIntegZRow.Name = "workIntegZRow";
-            this.workIntegZRow.OptionsRow.AllowMove = false;
-            this.workIntegZRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workIntegZRow.OptionsRow.DblClickExpanding = false;
-            this.workIntegZRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workIntegZRow.Properties.Caption = "Integration Z";
-            this.workIntegZRow.Properties.FieldName = "IntegZ";
-            this.workIntegZRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workIntegZRow.Properties.RowEdit = this.workOpticalSpinEdit;
-            // 
-            // workNull3Row
-            // 
-            this.workNull3Row.Name = "workNull3Row";
-            this.workNull3Row.OptionsRow.AllowFocus = false;
-            this.workNull3Row.OptionsRow.AllowMove = false;
-            this.workNull3Row.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workNull3Row.OptionsRow.DblClickExpanding = false;
-            this.workNull3Row.OptionsRow.ShowInCustomizationForm = false;
-            this.workNull3Row.Properties.AllowEdit = false;
-            this.workNull3Row.Properties.OptionsFilter.AllowFilter = false;
-            // 
-            // workGainRow
-            // 
-            this.workGainRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workGainRow.Appearance.Options.UseFont = true;
-            this.workGainRow.Name = "workGainRow";
-            this.workGainRow.Properties.Caption = "Gain";
-            this.workGainRow.Properties.FieldName = "Gain";
-            this.workGainRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
-            // 
-            // workOffsetRow
-            // 
-            this.workOffsetRow.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workOffsetRow.Appearance.Options.UseFont = true;
-            this.workOffsetRow.Name = "workOffsetRow";
-            this.workOffsetRow.OptionsRow.AllowMove = false;
-            this.workOffsetRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workOffsetRow.OptionsRow.DblClickExpanding = false;
-            this.workOffsetRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workOffsetRow.Properties.Caption = "Offset";
-            this.workOffsetRow.Properties.FieldName = "Offset";
-            this.workOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
-            // 
             // workTimeSpinEdit
             // 
             this.workTimeSpinEdit.AutoHeight = false;
@@ -607,6 +370,384 @@
             0,
             196608});
             this.workCorrelationSpinEdit.Name = "workCorrelationSpinEdit";
+            // 
+            // workIndexRow
+            // 
+            this.workIndexRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workIndexRow.AppearanceCell.Options.UseFont = true;
+            this.workIndexRow.AppearanceCell.Options.UseTextOptions = true;
+            this.workIndexRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.workIndexRow.Fixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.workIndexRow.InternalFixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.workIndexRow.Name = "workIndexRow";
+            this.workIndexRow.OptionsRow.AllowFocus = false;
+            this.workIndexRow.OptionsRow.AllowMove = false;
+            this.workIndexRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workIndexRow.OptionsRow.DblClickExpanding = false;
+            this.workIndexRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workIndexRow.Properties.AllowEdit = false;
+            this.workIndexRow.Properties.Caption = "No.";
+            this.workIndexRow.Properties.DrawEditorBorder = false;
+            this.workIndexRow.Properties.FieldName = "Index";
+            this.workIndexRow.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.workIndexRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workIndexRow.Properties.ReadOnly = false;
+            this.workIndexRow.TabStop = false;
+            // 
+            // workItemCodeRow
+            // 
+            this.workItemCodeRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workItemCodeRow.AppearanceCell.Options.UseFont = true;
+            this.workItemCodeRow.Name = "workItemCodeRow";
+            this.workItemCodeRow.OptionsRow.AllowMove = false;
+            this.workItemCodeRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workItemCodeRow.OptionsRow.DblClickExpanding = false;
+            this.workItemCodeRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workItemCodeRow.Properties.Caption = "Item Code(Normal)";
+            this.workItemCodeRow.Properties.FieldName = "ItemCodeN";
+            this.workItemCodeRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workItemCodeRow.Properties.ReadOnly = false;
+            this.workItemCodeRow.Properties.RowEdit = this.workItemCodeLookUp;
+            // 
+            // workItemNameRow
+            // 
+            this.workItemNameRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workItemNameRow.AppearanceCell.Options.UseFont = true;
+            this.workItemNameRow.Name = "workItemNameRow";
+            this.workItemNameRow.Properties.Caption = "Item Name";
+            this.workItemNameRow.Properties.FieldName = "ItemName";
+            this.workItemNameRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workItemNameRow.Properties.ReadOnly = false;
+            this.workItemNameRow.Properties.RowEdit = this.workT30TextEdit;
+            // 
+            // workItemRefRow
+            // 
+            this.workItemRefRow.Name = "workItemRefRow";
+            this.workItemRefRow.Properties.Caption = "Item Referance";
+            this.workItemRefRow.Properties.FieldName = "ItemRef";
+            this.workItemRefRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workItemRefRow.Properties.ReadOnly = false;
+            this.workItemRefRow.Properties.RowEdit = this.workReferenceButton;
+            // 
+            // workNull1Row
+            // 
+            this.workNull1Row.Name = "workNull1Row";
+            this.workNull1Row.OptionsRow.AllowFocus = false;
+            this.workNull1Row.OptionsRow.AllowMove = false;
+            this.workNull1Row.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workNull1Row.OptionsRow.DblClickExpanding = false;
+            this.workNull1Row.OptionsRow.ShowInCustomizationForm = false;
+            this.workNull1Row.Properties.AllowEdit = false;
+            this.workNull1Row.Properties.OptionsFilter.AllowFilter = false;
+            this.workNull1Row.Properties.ReadOnly = false;
+            this.workNull1Row.TabStop = false;
+            // 
+            // workTestPatternRow
+            // 
+            this.workTestPatternRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workTestPatternRow.AppearanceCell.Options.UseFont = true;
+            this.workTestPatternRow.Name = "workTestPatternRow";
+            this.workTestPatternRow.Properties.Caption = "Test Pattern";
+            this.workTestPatternRow.Properties.FieldName = "TestPattern";
+            this.workTestPatternRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workTestPatternRow.Properties.ReadOnly = false;
+            this.workTestPatternRow.Properties.RowEdit = this.workPatternButton;
+            // 
+            // workBiasCHRow
+            // 
+            this.workBiasCHRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workBiasCHRow.AppearanceCell.Options.UseFont = true;
+            this.workBiasCHRow.Name = "workBiasCHRow";
+            this.workBiasCHRow.Properties.AllowEdit = false;
+            this.workBiasCHRow.Properties.Caption = "Bias-CH";
+            this.workBiasCHRow.Properties.FieldName = "BiasCH";
+            this.workBiasCHRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workBiasCHRow.Properties.ReadOnly = false;
+            // 
+            // workBiasRangeRow
+            // 
+            this.workBiasRangeRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workBiasRangeRow.AppearanceCell.Options.UseFont = true;
+            this.workBiasRangeRow.Name = "workBiasRangeRow";
+            this.workBiasRangeRow.Properties.Caption = "Bias Range";
+            this.workBiasRangeRow.Properties.FieldName = "BiasRange";
+            this.workBiasRangeRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workBiasRangeRow.Properties.ReadOnly = false;
+            this.workBiasRangeRow.Properties.RowEdit = this.workBiasRangeButton;
+            // 
+            // workBiasValueRow
+            // 
+            this.workBiasValueRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workBiasValueRow.AppearanceCell.Options.UseFont = true;
+            this.workBiasValueRow.Name = "workBiasValueRow";
+            this.workBiasValueRow.OptionsRow.AllowMove = false;
+            this.workBiasValueRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workBiasValueRow.OptionsRow.DblClickExpanding = false;
+            this.workBiasValueRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workBiasValueRow.Properties.Caption = "Bias Value";
+            this.workBiasValueRow.Properties.FieldName = "BiasValue";
+            this.workBiasValueRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workBiasValueRow.Properties.ReadOnly = false;
+            this.workBiasValueRow.Properties.RowEdit = this.workBiasValueButton;
+            // 
+            // workApplyTimeRow
+            // 
+            this.workApplyTimeRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workApplyTimeRow.AppearanceCell.Options.UseFont = true;
+            this.workApplyTimeRow.Name = "workApplyTimeRow";
+            this.workApplyTimeRow.OptionsRow.AllowMove = false;
+            this.workApplyTimeRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workApplyTimeRow.OptionsRow.DblClickExpanding = false;
+            this.workApplyTimeRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workApplyTimeRow.Properties.Caption = "Apply Time(SMU)";
+            this.workApplyTimeRow.Properties.FieldName = "ApplyTime";
+            this.workApplyTimeRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workApplyTimeRow.Properties.ReadOnly = false;
+            this.workApplyTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
+            // 
+            // workTransientTimeRow
+            // 
+            this.workTransientTimeRow.Name = "workTransientTimeRow";
+            this.workTransientTimeRow.OptionsRow.AllowMove = false;
+            this.workTransientTimeRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workTransientTimeRow.OptionsRow.DblClickExpanding = false;
+            this.workTransientTimeRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workTransientTimeRow.Properties.Caption = "Transient Time";
+            this.workTransientTimeRow.Properties.FieldName = "TransientTime";
+            this.workTransientTimeRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workTransientTimeRow.Properties.ReadOnly = false;
+            this.workTransientTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
+            // 
+            // workHumCounterRow
+            // 
+            this.workHumCounterRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workHumCounterRow.AppearanceCell.Options.UseFont = true;
+            this.workHumCounterRow.Name = "workHumCounterRow";
+            this.workHumCounterRow.Properties.Caption = "HUM Counter";
+            this.workHumCounterRow.Properties.FieldName = "HumCounter";
+            this.workHumCounterRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workHumCounterRow.Properties.ReadOnly = false;
+            this.workHumCounterRow.Properties.RowEdit = this.workHumCounterSpinEdit;
+            // 
+            // workNull2Row
+            // 
+            this.workNull2Row.Name = "workNull2Row";
+            this.workNull2Row.OptionsRow.AllowFocus = false;
+            this.workNull2Row.OptionsRow.AllowMove = false;
+            this.workNull2Row.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workNull2Row.OptionsRow.DblClickExpanding = false;
+            this.workNull2Row.OptionsRow.ShowInCustomizationForm = false;
+            this.workNull2Row.Properties.AllowEdit = false;
+            this.workNull2Row.Properties.OptionsFilter.AllowFilter = false;
+            this.workNull2Row.Properties.ReadOnly = false;
+            this.workNull2Row.TabStop = false;
+            // 
+            // workOpticalRow
+            // 
+            this.workOpticalRow.Name = "workOpticalRow";
+            this.workOpticalRow.OptionsRow.AllowMove = false;
+            this.workOpticalRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workOpticalRow.OptionsRow.DblClickExpanding = false;
+            this.workOpticalRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workOpticalRow.Properties.Caption = "Optical";
+            this.workOpticalRow.Properties.FieldName = "Optical";
+            this.workOpticalRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workOpticalRow.Properties.ReadOnly = false;
+            this.workOpticalRow.Properties.RowEdit = this.workOpticalLookUp;
+            this.workOpticalRow.Visible = false;
+            // 
+            // workIntegVLRow
+            // 
+            this.workIntegVLRow.Name = "workIntegVLRow";
+            this.workIntegVLRow.OptionsRow.AllowMove = false;
+            this.workIntegVLRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workIntegVLRow.OptionsRow.DblClickExpanding = false;
+            this.workIntegVLRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workIntegVLRow.Properties.Caption = "Integration VL";
+            this.workIntegVLRow.Properties.FieldName = "IntegVL";
+            this.workIntegVLRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workIntegVLRow.Properties.ReadOnly = false;
+            this.workIntegVLRow.Properties.RowEdit = this.workOpticalSpinEdit;
+            // 
+            // workIntegX1Row
+            // 
+            this.workIntegX1Row.Name = "workIntegX1Row";
+            this.workIntegX1Row.OptionsRow.AllowMove = false;
+            this.workIntegX1Row.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workIntegX1Row.OptionsRow.DblClickExpanding = false;
+            this.workIntegX1Row.OptionsRow.ShowInCustomizationForm = false;
+            this.workIntegX1Row.Properties.Caption = "Integration X1";
+            this.workIntegX1Row.Properties.FieldName = "IntegX1";
+            this.workIntegX1Row.Properties.OptionsFilter.AllowFilter = false;
+            this.workIntegX1Row.Properties.ReadOnly = false;
+            this.workIntegX1Row.Properties.RowEdit = this.workOpticalSpinEdit;
+            // 
+            // workIntegX2Row
+            // 
+            this.workIntegX2Row.Name = "workIntegX2Row";
+            this.workIntegX2Row.OptionsRow.AllowMove = false;
+            this.workIntegX2Row.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workIntegX2Row.OptionsRow.DblClickExpanding = false;
+            this.workIntegX2Row.OptionsRow.ShowInCustomizationForm = false;
+            this.workIntegX2Row.Properties.Caption = "Integration X2";
+            this.workIntegX2Row.Properties.FieldName = "IntegX2";
+            this.workIntegX2Row.Properties.OptionsFilter.AllowFilter = false;
+            this.workIntegX2Row.Properties.ReadOnly = false;
+            this.workIntegX2Row.Properties.RowEdit = this.workOpticalSpinEdit;
+            // 
+            // workIntegZRow
+            // 
+            this.workIntegZRow.Name = "workIntegZRow";
+            this.workIntegZRow.OptionsRow.AllowMove = false;
+            this.workIntegZRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workIntegZRow.OptionsRow.DblClickExpanding = false;
+            this.workIntegZRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workIntegZRow.Properties.Caption = "Integration Z";
+            this.workIntegZRow.Properties.FieldName = "IntegZ";
+            this.workIntegZRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workIntegZRow.Properties.ReadOnly = false;
+            this.workIntegZRow.Properties.RowEdit = this.workOpticalSpinEdit;
+            // 
+            // workNull3Row
+            // 
+            this.workNull3Row.Name = "workNull3Row";
+            this.workNull3Row.OptionsRow.AllowFocus = false;
+            this.workNull3Row.OptionsRow.AllowMove = false;
+            this.workNull3Row.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workNull3Row.OptionsRow.DblClickExpanding = false;
+            this.workNull3Row.OptionsRow.ShowInCustomizationForm = false;
+            this.workNull3Row.Properties.AllowEdit = false;
+            this.workNull3Row.Properties.OptionsFilter.AllowFilter = false;
+            this.workNull3Row.Properties.ReadOnly = false;
+            this.workNull3Row.TabStop = false;
+            // 
+            // workGainRow
+            // 
+            this.workGainRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workGainRow.AppearanceCell.Options.UseFont = true;
+            this.workGainRow.Name = "workGainRow";
+            this.workGainRow.OptionsRow.AllowMove = false;
+            this.workGainRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workGainRow.OptionsRow.DblClickExpanding = false;
+            this.workGainRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workGainRow.Properties.Caption = "Gain";
+            this.workGainRow.Properties.FieldName = "Gain";
+            this.workGainRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workGainRow.Properties.ReadOnly = false;
+            this.workGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workOffsetRow
+            // 
+            this.workOffsetRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workOffsetRow.AppearanceCell.Options.UseFont = true;
+            this.workOffsetRow.Name = "workOffsetRow";
+            this.workOffsetRow.OptionsRow.AllowMove = false;
+            this.workOffsetRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workOffsetRow.OptionsRow.DblClickExpanding = false;
+            this.workOffsetRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workOffsetRow.Properties.Caption = "Offset";
+            this.workOffsetRow.Properties.FieldName = "Offset";
+            this.workOffsetRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workOffsetRow.Properties.ReadOnly = false;
+            this.workOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workLvGainRow
+            // 
+            this.workLvGainRow.AppearanceCell.Options.UseFont = true;
+            this.workLvGainRow.Name = "workLvGainRow";
+            this.workLvGainRow.OptionsRow.AllowMove = false;
+            this.workLvGainRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workLvGainRow.OptionsRow.DblClickExpanding = false;
+            this.workLvGainRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workLvGainRow.Properties.Caption = "Lv Gain";
+            this.workLvGainRow.Properties.FieldName = "LvGain";
+            this.workLvGainRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workLvGainRow.Properties.ReadOnly = false;
+            this.workLvGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workLvOffsetRow
+            // 
+            this.workLvOffsetRow.AppearanceCell.Options.UseFont = true;
+            this.workLvOffsetRow.Name = "workLvOffsetRow";
+            this.workLvOffsetRow.OptionsRow.AllowMove = false;
+            this.workLvOffsetRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workLvOffsetRow.OptionsRow.DblClickExpanding = false;
+            this.workLvOffsetRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workLvOffsetRow.Properties.Caption = "Lv Offset";
+            this.workLvOffsetRow.Properties.FieldName = "LvOffset";
+            this.workLvOffsetRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workLvOffsetRow.Properties.ReadOnly = false;
+            this.workLvOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workItemCodeSRow
+            // 
+            this.workItemCodeSRow.AppearanceCell.Options.UseFont = true;
+            this.workItemCodeSRow.Name = "workItemCodeSRow";
+            this.workItemCodeSRow.OptionsRow.AllowMove = false;
+            this.workItemCodeSRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workItemCodeSRow.OptionsRow.DblClickExpanding = false;
+            this.workItemCodeSRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workItemCodeSRow.Properties.Caption = "Item Code(Sampling)";
+            this.workItemCodeSRow.Properties.FieldName = "ItemCodeS";
+            this.workItemCodeSRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workItemCodeSRow.Properties.ReadOnly = false;
+            this.workItemCodeSRow.Properties.RowEdit = this.workItemCodeLookUp;
+            // 
+            // workCxGainRow
+            // 
+            this.workCxGainRow.AppearanceCell.Options.UseFont = true;
+            this.workCxGainRow.Name = "workCxGainRow";
+            this.workCxGainRow.OptionsRow.AllowMove = false;
+            this.workCxGainRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workCxGainRow.OptionsRow.DblClickExpanding = false;
+            this.workCxGainRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workCxGainRow.Properties.Caption = "Cx Gain";
+            this.workCxGainRow.Properties.FieldName = "CxGain";
+            this.workCxGainRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workCxGainRow.Properties.ReadOnly = false;
+            this.workCxGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workCxOffsetRow
+            // 
+            this.workCxOffsetRow.AppearanceCell.Options.UseFont = true;
+            this.workCxOffsetRow.Name = "workCxOffsetRow";
+            this.workCxOffsetRow.OptionsRow.AllowMove = false;
+            this.workCxOffsetRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workCxOffsetRow.OptionsRow.DblClickExpanding = false;
+            this.workCxOffsetRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workCxOffsetRow.Properties.Caption = "Cx Offset";
+            this.workCxOffsetRow.Properties.FieldName = "CxOffset";
+            this.workCxOffsetRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workCxOffsetRow.Properties.ReadOnly = false;
+            this.workCxOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workCyGainRow
+            // 
+            this.workCyGainRow.AppearanceCell.Options.UseFont = true;
+            this.workCyGainRow.Name = "workCyGainRow";
+            this.workCyGainRow.OptionsRow.AllowMove = false;
+            this.workCyGainRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workCyGainRow.OptionsRow.DblClickExpanding = false;
+            this.workCyGainRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workCyGainRow.Properties.Caption = "Cy Gain";
+            this.workCyGainRow.Properties.FieldName = "CyGain";
+            this.workCyGainRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workCyGainRow.Properties.ReadOnly = false;
+            this.workCyGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            // 
+            // workCyOffsetRow
+            // 
+            this.workCyOffsetRow.AppearanceCell.Options.UseFont = true;
+            this.workCyOffsetRow.Name = "workCyOffsetRow";
+            this.workCyOffsetRow.OptionsRow.AllowMove = false;
+            this.workCyOffsetRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workCyOffsetRow.OptionsRow.DblClickExpanding = false;
+            this.workCyOffsetRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workCyOffsetRow.Properties.Caption = "Cy Offset";
+            this.workCyOffsetRow.Properties.FieldName = "CyOffset";
+            this.workCyOffsetRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workCyOffsetRow.Properties.ReadOnly = false;
+            this.workCyOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
             // 
             // CtrlTestWorkGrid
             // 
@@ -666,5 +807,12 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit workTimeSpinEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit workHumCounterSpinEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit workCorrelationSpinEdit;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workLvGainRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemCodeSRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workLvOffsetRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workCxGainRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workCxOffsetRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workCyGainRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workCyOffsetRow;
     }
 }

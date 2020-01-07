@@ -48,19 +48,19 @@ namespace IsSoft.Sec.LedChecker
 
             try
             {
-                for (int i = 0; i < 8; i++)
+                for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < workObject.Tests.Count; j++)
                     {
-                        sheet.Cells[i + 2, j + 1].FillColor = Color.FromKnownColor(KnownColor.Transparent);
+                        sheet.Cells[i + 1, j + 1].FillColor = Color.FromKnownColor(KnownColor.Transparent);
                     }
                 }
 
                 if (index >= 0)
                 {
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < 9; i++)
                     {
-                        sheet.Cells[i + 2, index + 1].FillColor = Color.Linen;
+                        sheet.Cells[i + 1, index + 1].FillColor = Color.Linen;
                     }
                 }
             }
@@ -81,12 +81,13 @@ namespace IsSoft.Sec.LedChecker
 
             try
             {
-                sheet.ClearContents(sheet["B2:ZZ17"]);
+                sheet.ClearContents(sheet["B1:ZZ17"]);
 
                 for (int i = 0; i < tests.Count; i++)
                 {
-                    sheet.Cells[1, i + 1].Value = tests[i + 1].Index;
-                    sheet.Cells[2, i + 1].Value = tests[i + 1].ItemCode.ToString();
+                    sheet.Cells[0, i + 1].Value = tests[i + 1].Index;
+                    sheet.Cells[1, i + 1].Value = tests[i + 1].ItemCodeN.ToString();
+                    sheet.Cells[2, i + 1].Value = tests[i + 1].ItemCodeS.ToString();
                     sheet.Cells[3, i + 1].Value = tests[i + 1].ItemName;
                     sheet.Cells[4, i + 1].Value = tests[i + 1].ItemRef;
                     sheet.Cells[5, i + 1].Value = tests[i + 1].TestPattern;
@@ -117,7 +118,7 @@ namespace IsSoft.Sec.LedChecker
                     workBook.Options.HorizontalScrollbar.Visibility = SpreadsheetScrollbarVisibility.Visible;
                 }
 
-                workBook.WorksheetDisplayArea.SetSize(0, maxCount, 17);
+                workBook.WorksheetDisplayArea.SetSize(0, maxCount, 18);
             }
             finally
             {
@@ -130,7 +131,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 sheet.ClearContents(sheet["A1:ZZ1000"]);
                 sheet.Cells["A1"].Value = "DateTime";
-                sheet.Cells["B1"].Value = "ElapsedTime";
+                sheet.Cells["B1"].Value = "Elapsed Time";
                 sheet.Cells["C1"].Value = "Bin";
 
                 for (int i = 0; i < reports.Count; i++)

@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlConfigRecipe));
-            DevExpress.Data.UnboundSourceProperty unboundSourceProperty3 = new DevExpress.Data.UnboundSourceProperty();
+            DevExpress.Data.UnboundSourceProperty unboundSourceProperty1 = new DevExpress.Data.UnboundSourceProperty();
             this.viewerPanel = new Ulee.Controls.UlPanel();
-            this.patternGroup = new System.Windows.Forms.GroupBox();
-            this.patternGridPanel = new Ulee.Controls.UlPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.binGrid = new DevExpress.XtraGrid.GridControl();
+            this.binGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.binIndexColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.binNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.binT20TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.binMarkColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.binColorEdit = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
+            this.binTypeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.binTypeLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.smuGrid = new DevExpress.XtraGrid.GridControl();
             this.smuGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.patternGroup = new System.Windows.Forms.GroupBox();
+            this.patternGridPanel = new Ulee.Controls.UlPanel();
             this.createButton = new System.Windows.Forms.Button();
             this.ledCountEdit = new DevExpress.XtraEditors.SpinEdit();
             this.label14 = new System.Windows.Forms.Label();
@@ -81,23 +92,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.unboundSource1 = new DevExpress.Data.UnboundSource(this.components);
             this.unboundSource2 = new DevExpress.Data.UnboundSource(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.binGrid = new DevExpress.XtraGrid.GridControl();
-            this.binGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.binIndexColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.binNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.binT20TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.binMarkColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.binColorEdit = new DevExpress.XtraEditors.Repository.RepositoryItemColorEdit();
-            this.binTypeLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.binTypeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bgPanel.SuspendLayout();
             this.viewerPanel.SuspendLayout();
-            this.patternGroup.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.binGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binT20TextEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binColorEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binTypeLookUpEdit)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.smuGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.smuGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            this.patternGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ledCountEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stringCountEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yHeightEdit.Properties)).BeginInit();
@@ -116,13 +123,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.findNameEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unboundSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unboundSource2)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.binGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binT20TextEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binColorEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binTypeLookUpEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -173,40 +173,237 @@
             this.viewerPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewerPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
-            // patternGroup
+            // groupBox2
             // 
-            this.patternGroup.Controls.Add(this.patternGridPanel);
-            this.patternGroup.Controls.Add(this.createButton);
-            this.patternGroup.Controls.Add(this.ledCountEdit);
-            this.patternGroup.Controls.Add(this.label14);
-            this.patternGroup.Controls.Add(this.stringCountEdit);
-            this.patternGroup.Controls.Add(this.label15);
-            this.patternGroup.Controls.Add(this.yHeightEdit);
-            this.patternGroup.Controls.Add(this.label13);
-            this.patternGroup.Controls.Add(this.xLengthEdit);
-            this.patternGroup.Controls.Add(this.label12);
-            this.patternGroup.Location = new System.Drawing.Point(10, 130);
-            this.patternGroup.Name = "patternGroup";
-            this.patternGroup.Size = new System.Drawing.Size(1302, 258);
-            this.patternGroup.TabIndex = 144;
-            this.patternGroup.TabStop = false;
-            this.patternGroup.Text = "  Master Pattern  ";
+            this.groupBox2.Controls.Add(this.binGrid);
+            this.groupBox2.Location = new System.Drawing.Point(664, 394);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(648, 544);
+            this.groupBox2.TabIndex = 146;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "  BIN  ";
             // 
-            // patternGridPanel
+            // binGrid
             // 
-            this.patternGridPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.patternGridPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
-            this.patternGridPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.patternGridPanel.InnerColor2 = System.Drawing.Color.White;
-            this.patternGridPanel.Location = new System.Drawing.Point(10, 48);
-            this.patternGridPanel.Name = "patternGridPanel";
-            this.patternGridPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.patternGridPanel.OuterColor2 = System.Drawing.Color.White;
-            this.patternGridPanel.Size = new System.Drawing.Size(1282, 198);
-            this.patternGridPanel.Spacing = 0;
-            this.patternGridPanel.TabIndex = 98;
-            this.patternGridPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
-            this.patternGridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.binGrid.Location = new System.Drawing.Point(10, 30);
+            this.binGrid.LookAndFeel.SkinName = "DevExpress Style";
+            this.binGrid.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.binGrid.MainView = this.binGridView;
+            this.binGrid.Name = "binGrid";
+            this.binGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.binT20TextEdit,
+            this.binColorEdit,
+            this.binTypeLookUpEdit});
+            this.binGrid.Size = new System.Drawing.Size(628, 504);
+            this.binGrid.TabIndex = 1;
+            this.binGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.binGridView});
+            // 
+            // binGridView
+            // 
+            this.binGridView.ActiveFilterEnabled = false;
+            this.binGridView.Appearance.Empty.Options.UseFont = true;
+            this.binGridView.Appearance.EvenRow.Options.UseFont = true;
+            this.binGridView.Appearance.FilterCloseButton.Options.UseFont = true;
+            this.binGridView.Appearance.FilterPanel.Options.UseFont = true;
+            this.binGridView.Appearance.FixedLine.Options.UseFont = true;
+            this.binGridView.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.binGridView.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
+            this.binGridView.Appearance.FocusedCell.Options.UseFont = true;
+            this.binGridView.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.binGridView.Appearance.FocusedRow.Options.UseFont = true;
+            this.binGridView.Appearance.FooterPanel.Options.UseFont = true;
+            this.binGridView.Appearance.GroupButton.Options.UseFont = true;
+            this.binGridView.Appearance.GroupFooter.Options.UseFont = true;
+            this.binGridView.Appearance.GroupPanel.Options.UseFont = true;
+            this.binGridView.Appearance.GroupRow.Options.UseFont = true;
+            this.binGridView.Appearance.HeaderPanel.Options.UseFont = true;
+            this.binGridView.Appearance.HideSelectionRow.Options.UseFont = true;
+            this.binGridView.Appearance.OddRow.Options.UseFont = true;
+            this.binGridView.Appearance.Preview.Options.UseFont = true;
+            this.binGridView.Appearance.Row.Options.UseFont = true;
+            this.binGridView.Appearance.SelectedRow.Options.UseFont = true;
+            this.binGridView.Appearance.TopNewRow.Options.UseFont = true;
+            this.binGridView.Appearance.ViewCaption.Options.UseFont = true;
+            this.binGridView.ColumnPanelRowHeight = 20;
+            this.binGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.binIndexColumn,
+            this.binNameColumn,
+            this.binMarkColumn,
+            this.binTypeColumn});
+            this.binGridView.CustomizationFormBounds = new System.Drawing.Rectangle(1710, 580, 210, 186);
+            this.binGridView.GridControl = this.binGrid;
+            this.binGridView.Name = "binGridView";
+            this.binGridView.OptionsCustomization.AllowColumnMoving = false;
+            this.binGridView.OptionsCustomization.AllowFilter = false;
+            this.binGridView.OptionsCustomization.AllowGroup = false;
+            this.binGridView.OptionsCustomization.AllowSort = false;
+            this.binGridView.OptionsFilter.AllowFilterEditor = false;
+            this.binGridView.OptionsFind.AllowFindPanel = false;
+            this.binGridView.OptionsFind.ShowClearButton = false;
+            this.binGridView.OptionsFind.ShowCloseButton = false;
+            this.binGridView.OptionsFind.ShowFindButton = false;
+            this.binGridView.OptionsFind.ShowSearchNavButtons = false;
+            this.binGridView.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.binGridView.OptionsSelection.EnableAppearanceHideSelection = false;
+            this.binGridView.OptionsSelection.InvertSelection = true;
+            this.binGridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.binGridView.OptionsView.ColumnAutoWidth = false;
+            this.binGridView.OptionsView.ShowGroupExpandCollapseButtons = false;
+            this.binGridView.OptionsView.ShowGroupPanel = false;
+            this.binGridView.OptionsView.ShowIndicator = false;
+            this.binGridView.RowHeight = 24;
+            this.binGridView.Tag = 1;
+            // 
+            // binIndexColumn
+            // 
+            this.binIndexColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.binIndexColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binIndexColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.binIndexColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binIndexColumn.Caption = "No.";
+            this.binIndexColumn.FieldName = "Index";
+            this.binIndexColumn.Name = "binIndexColumn";
+            this.binIndexColumn.OptionsColumn.AllowEdit = false;
+            this.binIndexColumn.OptionsColumn.AllowFocus = false;
+            this.binIndexColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.binIndexColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.binIndexColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.binIndexColumn.OptionsColumn.AllowMove = false;
+            this.binIndexColumn.OptionsColumn.AllowShowHide = false;
+            this.binIndexColumn.OptionsColumn.AllowSize = false;
+            this.binIndexColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.binIndexColumn.OptionsColumn.FixedWidth = true;
+            this.binIndexColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.binIndexColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.binIndexColumn.OptionsColumn.TabStop = false;
+            this.binIndexColumn.OptionsFilter.AllowAutoFilter = false;
+            this.binIndexColumn.OptionsFilter.AllowFilter = false;
+            this.binIndexColumn.Visible = true;
+            this.binIndexColumn.VisibleIndex = 0;
+            this.binIndexColumn.Width = 40;
+            // 
+            // binNameColumn
+            // 
+            this.binNameColumn.Caption = "Name";
+            this.binNameColumn.ColumnEdit = this.binT20TextEdit;
+            this.binNameColumn.FieldName = "Name";
+            this.binNameColumn.Name = "binNameColumn";
+            this.binNameColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.binNameColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.binNameColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.binNameColumn.OptionsColumn.AllowMove = false;
+            this.binNameColumn.OptionsColumn.AllowShowHide = false;
+            this.binNameColumn.OptionsColumn.AllowSize = false;
+            this.binNameColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.binNameColumn.OptionsColumn.FixedWidth = true;
+            this.binNameColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.binNameColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.binNameColumn.OptionsFilter.AllowAutoFilter = false;
+            this.binNameColumn.OptionsFilter.AllowFilter = false;
+            this.binNameColumn.Visible = true;
+            this.binNameColumn.VisibleIndex = 1;
+            this.binNameColumn.Width = 200;
+            // 
+            // binT20TextEdit
+            // 
+            this.binT20TextEdit.AutoHeight = false;
+            this.binT20TextEdit.LookAndFeel.SkinName = "DevExpress Style";
+            this.binT20TextEdit.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.binT20TextEdit.MaxLength = 20;
+            this.binT20TextEdit.Name = "binT20TextEdit";
+            // 
+            // binMarkColumn
+            // 
+            this.binMarkColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.binMarkColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binMarkColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.binMarkColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binMarkColumn.Caption = "Mark";
+            this.binMarkColumn.ColumnEdit = this.binColorEdit;
+            this.binMarkColumn.FieldName = "Mark";
+            this.binMarkColumn.Name = "binMarkColumn";
+            this.binMarkColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.binMarkColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.binMarkColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.binMarkColumn.OptionsColumn.AllowMove = false;
+            this.binMarkColumn.OptionsColumn.AllowShowHide = false;
+            this.binMarkColumn.OptionsColumn.AllowSize = false;
+            this.binMarkColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.binMarkColumn.OptionsColumn.FixedWidth = true;
+            this.binMarkColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.binMarkColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.binMarkColumn.OptionsFilter.AllowAutoFilter = false;
+            this.binMarkColumn.OptionsFilter.AllowFilter = false;
+            this.binMarkColumn.Visible = true;
+            this.binMarkColumn.VisibleIndex = 2;
+            this.binMarkColumn.Width = 48;
+            // 
+            // binColorEdit
+            // 
+            this.binColorEdit.Appearance.Options.UseFont = true;
+            this.binColorEdit.Appearance.Options.UseTextOptions = true;
+            this.binColorEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binColorEdit.AppearanceDropDown.Options.UseTextOptions = true;
+            this.binColorEdit.AppearanceDropDown.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binColorEdit.AppearanceFocused.Options.UseTextOptions = true;
+            this.binColorEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binColorEdit.AppearanceReadOnly.Options.UseTextOptions = true;
+            this.binColorEdit.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binColorEdit.AutoHeight = false;
+            this.binColorEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.binColorEdit.ColorAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binColorEdit.LookAndFeel.SkinName = "DevExpress Style";
+            this.binColorEdit.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.binColorEdit.Name = "binColorEdit";
+            this.binColorEdit.ShowColorDialog = false;
+            this.binColorEdit.ShowCustomColors = false;
+            this.binColorEdit.ShowMoreColorsButton = false;
+            this.binColorEdit.ShowPopupShadow = false;
+            this.binColorEdit.ShowSystemColors = false;
+            // 
+            // binTypeColumn
+            // 
+            this.binTypeColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.binTypeColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binTypeColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.binTypeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.binTypeColumn.Caption = "Type";
+            this.binTypeColumn.ColumnEdit = this.binTypeLookUpEdit;
+            this.binTypeColumn.FieldName = "Type";
+            this.binTypeColumn.Name = "binTypeColumn";
+            this.binTypeColumn.Visible = true;
+            this.binTypeColumn.VisibleIndex = 3;
+            this.binTypeColumn.Width = 48;
+            // 
+            // binTypeLookUpEdit
+            // 
+            this.binTypeLookUpEdit.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.binTypeLookUpEdit.AutoHeight = false;
+            this.binTypeLookUpEdit.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
+            this.binTypeLookUpEdit.BestFitRowCount = 2;
+            this.binTypeLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.binTypeLookUpEdit.DropDownRows = 2;
+            this.binTypeLookUpEdit.HideSelection = false;
+            this.binTypeLookUpEdit.LookAndFeel.SkinName = "DevExpress Style";
+            this.binTypeLookUpEdit.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.binTypeLookUpEdit.Name = "binTypeLookUpEdit";
+            this.binTypeLookUpEdit.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth;
+            this.binTypeLookUpEdit.ShowFooter = false;
+            this.binTypeLookUpEdit.ShowHeader = false;
+            this.binTypeLookUpEdit.UseReadOnlyAppearance = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.smuGrid);
+            this.groupBox1.Location = new System.Drawing.Point(10, 394);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(648, 544);
+            this.groupBox1.TabIndex = 145;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "  SMU  ";
             // 
             // smuGrid
             // 
@@ -254,6 +451,41 @@
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
+            // patternGroup
+            // 
+            this.patternGroup.Controls.Add(this.patternGridPanel);
+            this.patternGroup.Controls.Add(this.createButton);
+            this.patternGroup.Controls.Add(this.ledCountEdit);
+            this.patternGroup.Controls.Add(this.label14);
+            this.patternGroup.Controls.Add(this.stringCountEdit);
+            this.patternGroup.Controls.Add(this.label15);
+            this.patternGroup.Controls.Add(this.yHeightEdit);
+            this.patternGroup.Controls.Add(this.label13);
+            this.patternGroup.Controls.Add(this.xLengthEdit);
+            this.patternGroup.Controls.Add(this.label12);
+            this.patternGroup.Location = new System.Drawing.Point(10, 130);
+            this.patternGroup.Name = "patternGroup";
+            this.patternGroup.Size = new System.Drawing.Size(1302, 258);
+            this.patternGroup.TabIndex = 144;
+            this.patternGroup.TabStop = false;
+            this.patternGroup.Text = "  Master Pattern  ";
+            // 
+            // patternGridPanel
+            // 
+            this.patternGridPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.patternGridPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.patternGridPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.patternGridPanel.InnerColor2 = System.Drawing.Color.White;
+            this.patternGridPanel.Location = new System.Drawing.Point(10, 48);
+            this.patternGridPanel.Name = "patternGridPanel";
+            this.patternGridPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.patternGridPanel.OuterColor2 = System.Drawing.Color.White;
+            this.patternGridPanel.Size = new System.Drawing.Size(1282, 198);
+            this.patternGridPanel.Spacing = 0;
+            this.patternGridPanel.TabIndex = 98;
+            this.patternGridPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.patternGridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
             // createButton
             // 
@@ -947,241 +1179,9 @@
             // 
             // unboundSource2
             // 
-            unboundSourceProperty3.DisplayName = "qweqwe";
-            unboundSourceProperty3.Name = "Property0";
-            this.unboundSource2.Properties.Add(unboundSourceProperty3);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.smuGrid);
-            this.groupBox1.Location = new System.Drawing.Point(10, 394);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(648, 544);
-            this.groupBox1.TabIndex = 145;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "  SMU  ";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.binGrid);
-            this.groupBox2.Location = new System.Drawing.Point(664, 394);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(648, 544);
-            this.groupBox2.TabIndex = 146;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "  BIN  ";
-            // 
-            // binGrid
-            // 
-            this.binGrid.Location = new System.Drawing.Point(10, 30);
-            this.binGrid.LookAndFeel.SkinName = "DevExpress Style";
-            this.binGrid.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.binGrid.MainView = this.binGridView;
-            this.binGrid.Name = "binGrid";
-            this.binGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.binT20TextEdit,
-            this.binColorEdit,
-            this.binTypeLookUpEdit});
-            this.binGrid.Size = new System.Drawing.Size(628, 504);
-            this.binGrid.TabIndex = 1;
-            this.binGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.binGridView});
-            // 
-            // binGridView
-            // 
-            this.binGridView.ActiveFilterEnabled = false;
-            this.binGridView.Appearance.Empty.Options.UseFont = true;
-            this.binGridView.Appearance.EvenRow.Options.UseFont = true;
-            this.binGridView.Appearance.FilterCloseButton.Options.UseFont = true;
-            this.binGridView.Appearance.FilterPanel.Options.UseFont = true;
-            this.binGridView.Appearance.FixedLine.Options.UseFont = true;
-            this.binGridView.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.binGridView.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
-            this.binGridView.Appearance.FocusedCell.Options.UseFont = true;
-            this.binGridView.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.binGridView.Appearance.FocusedRow.Options.UseFont = true;
-            this.binGridView.Appearance.FooterPanel.Options.UseFont = true;
-            this.binGridView.Appearance.GroupButton.Options.UseFont = true;
-            this.binGridView.Appearance.GroupFooter.Options.UseFont = true;
-            this.binGridView.Appearance.GroupPanel.Options.UseFont = true;
-            this.binGridView.Appearance.GroupRow.Options.UseFont = true;
-            this.binGridView.Appearance.HeaderPanel.Options.UseFont = true;
-            this.binGridView.Appearance.HideSelectionRow.Options.UseFont = true;
-            this.binGridView.Appearance.OddRow.Options.UseFont = true;
-            this.binGridView.Appearance.Preview.Options.UseFont = true;
-            this.binGridView.Appearance.Row.Options.UseFont = true;
-            this.binGridView.Appearance.SelectedRow.Options.UseFont = true;
-            this.binGridView.Appearance.TopNewRow.Options.UseFont = true;
-            this.binGridView.Appearance.ViewCaption.Options.UseFont = true;
-            this.binGridView.ColumnPanelRowHeight = 20;
-            this.binGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.binIndexColumn,
-            this.binNameColumn,
-            this.binMarkColumn,
-            this.binTypeColumn});
-            this.binGridView.CustomizationFormBounds = new System.Drawing.Rectangle(1710, 580, 210, 186);
-            this.binGridView.GridControl = this.binGrid;
-            this.binGridView.Name = "binGridView";
-            this.binGridView.OptionsCustomization.AllowColumnMoving = false;
-            this.binGridView.OptionsCustomization.AllowFilter = false;
-            this.binGridView.OptionsCustomization.AllowGroup = false;
-            this.binGridView.OptionsCustomization.AllowSort = false;
-            this.binGridView.OptionsFilter.AllowFilterEditor = false;
-            this.binGridView.OptionsFind.AllowFindPanel = false;
-            this.binGridView.OptionsFind.ShowClearButton = false;
-            this.binGridView.OptionsFind.ShowCloseButton = false;
-            this.binGridView.OptionsFind.ShowFindButton = false;
-            this.binGridView.OptionsFind.ShowSearchNavButtons = false;
-            this.binGridView.OptionsSelection.EnableAppearanceFocusedRow = false;
-            this.binGridView.OptionsSelection.EnableAppearanceHideSelection = false;
-            this.binGridView.OptionsSelection.InvertSelection = true;
-            this.binGridView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
-            this.binGridView.OptionsView.ColumnAutoWidth = false;
-            this.binGridView.OptionsView.ShowGroupExpandCollapseButtons = false;
-            this.binGridView.OptionsView.ShowGroupPanel = false;
-            this.binGridView.OptionsView.ShowIndicator = false;
-            this.binGridView.RowHeight = 24;
-            this.binGridView.Tag = 1;
-            // 
-            // binIndexColumn
-            // 
-            this.binIndexColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.binIndexColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binIndexColumn.AppearanceHeader.Options.UseTextOptions = true;
-            this.binIndexColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binIndexColumn.Caption = "No.";
-            this.binIndexColumn.FieldName = "Index";
-            this.binIndexColumn.Name = "binIndexColumn";
-            this.binIndexColumn.OptionsColumn.AllowEdit = false;
-            this.binIndexColumn.OptionsColumn.AllowFocus = false;
-            this.binIndexColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.binIndexColumn.OptionsColumn.AllowIncrementalSearch = false;
-            this.binIndexColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.binIndexColumn.OptionsColumn.AllowMove = false;
-            this.binIndexColumn.OptionsColumn.AllowShowHide = false;
-            this.binIndexColumn.OptionsColumn.AllowSize = false;
-            this.binIndexColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.binIndexColumn.OptionsColumn.FixedWidth = true;
-            this.binIndexColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
-            this.binIndexColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
-            this.binIndexColumn.OptionsColumn.TabStop = false;
-            this.binIndexColumn.OptionsFilter.AllowAutoFilter = false;
-            this.binIndexColumn.OptionsFilter.AllowFilter = false;
-            this.binIndexColumn.Visible = true;
-            this.binIndexColumn.VisibleIndex = 0;
-            this.binIndexColumn.Width = 40;
-            // 
-            // binNameColumn
-            // 
-            this.binNameColumn.Caption = "Name";
-            this.binNameColumn.ColumnEdit = this.binT20TextEdit;
-            this.binNameColumn.FieldName = "Name";
-            this.binNameColumn.Name = "binNameColumn";
-            this.binNameColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.binNameColumn.OptionsColumn.AllowIncrementalSearch = false;
-            this.binNameColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.binNameColumn.OptionsColumn.AllowMove = false;
-            this.binNameColumn.OptionsColumn.AllowShowHide = false;
-            this.binNameColumn.OptionsColumn.AllowSize = false;
-            this.binNameColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.binNameColumn.OptionsColumn.FixedWidth = true;
-            this.binNameColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
-            this.binNameColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
-            this.binNameColumn.OptionsFilter.AllowAutoFilter = false;
-            this.binNameColumn.OptionsFilter.AllowFilter = false;
-            this.binNameColumn.Visible = true;
-            this.binNameColumn.VisibleIndex = 1;
-            this.binNameColumn.Width = 200;
-            // 
-            // binT20TextEdit
-            // 
-            this.binT20TextEdit.AutoHeight = false;
-            this.binT20TextEdit.LookAndFeel.SkinName = "DevExpress Style";
-            this.binT20TextEdit.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.binT20TextEdit.MaxLength = 20;
-            this.binT20TextEdit.Name = "binT20TextEdit";
-            // 
-            // binMarkColumn
-            // 
-            this.binMarkColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.binMarkColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binMarkColumn.AppearanceHeader.Options.UseTextOptions = true;
-            this.binMarkColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binMarkColumn.Caption = "Mark";
-            this.binMarkColumn.ColumnEdit = this.binColorEdit;
-            this.binMarkColumn.FieldName = "Mark";
-            this.binMarkColumn.Name = "binMarkColumn";
-            this.binMarkColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.binMarkColumn.OptionsColumn.AllowIncrementalSearch = false;
-            this.binMarkColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.binMarkColumn.OptionsColumn.AllowMove = false;
-            this.binMarkColumn.OptionsColumn.AllowShowHide = false;
-            this.binMarkColumn.OptionsColumn.AllowSize = false;
-            this.binMarkColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.binMarkColumn.OptionsColumn.FixedWidth = true;
-            this.binMarkColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
-            this.binMarkColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
-            this.binMarkColumn.OptionsFilter.AllowAutoFilter = false;
-            this.binMarkColumn.OptionsFilter.AllowFilter = false;
-            this.binMarkColumn.Visible = true;
-            this.binMarkColumn.VisibleIndex = 2;
-            this.binMarkColumn.Width = 48;
-            // 
-            // binColorEdit
-            // 
-            this.binColorEdit.Appearance.Options.UseFont = true;
-            this.binColorEdit.Appearance.Options.UseTextOptions = true;
-            this.binColorEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binColorEdit.AppearanceDropDown.Options.UseTextOptions = true;
-            this.binColorEdit.AppearanceDropDown.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binColorEdit.AppearanceFocused.Options.UseTextOptions = true;
-            this.binColorEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binColorEdit.AppearanceReadOnly.Options.UseTextOptions = true;
-            this.binColorEdit.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binColorEdit.AutoHeight = false;
-            this.binColorEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.binColorEdit.ColorAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binColorEdit.LookAndFeel.SkinName = "DevExpress Style";
-            this.binColorEdit.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.binColorEdit.Name = "binColorEdit";
-            this.binColorEdit.ShowColorDialog = false;
-            this.binColorEdit.ShowCustomColors = false;
-            this.binColorEdit.ShowMoreColorsButton = false;
-            this.binColorEdit.ShowPopupShadow = false;
-            this.binColorEdit.ShowSystemColors = false;
-            // 
-            // binTypeLookUpEdit
-            // 
-            this.binTypeLookUpEdit.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
-            this.binTypeLookUpEdit.AutoHeight = false;
-            this.binTypeLookUpEdit.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
-            this.binTypeLookUpEdit.BestFitRowCount = 2;
-            this.binTypeLookUpEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.binTypeLookUpEdit.DropDownRows = 2;
-            this.binTypeLookUpEdit.HideSelection = false;
-            this.binTypeLookUpEdit.LookAndFeel.SkinName = "DevExpress Style";
-            this.binTypeLookUpEdit.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.binTypeLookUpEdit.Name = "binTypeLookUpEdit";
-            this.binTypeLookUpEdit.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth;
-            this.binTypeLookUpEdit.ShowFooter = false;
-            this.binTypeLookUpEdit.ShowHeader = false;
-            this.binTypeLookUpEdit.UseReadOnlyAppearance = false;
-            // 
-            // binTypeColumn
-            // 
-            this.binTypeColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.binTypeColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binTypeColumn.AppearanceHeader.Options.UseTextOptions = true;
-            this.binTypeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.binTypeColumn.Caption = "Type";
-            this.binTypeColumn.ColumnEdit = this.binTypeLookUpEdit;
-            this.binTypeColumn.FieldName = "Type";
-            this.binTypeColumn.Name = "binTypeColumn";
-            this.binTypeColumn.Visible = true;
-            this.binTypeColumn.VisibleIndex = 3;
-            this.binTypeColumn.Width = 48;
+            unboundSourceProperty1.DisplayName = "qweqwe";
+            unboundSourceProperty1.Name = "Property0";
+            this.unboundSource2.Properties.Add(unboundSourceProperty1);
             // 
             // CtrlConfigRecipe
             // 
@@ -1193,10 +1193,17 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CtrlConfigRecipe_KeyPress);
             this.bgPanel.ResumeLayout(false);
             this.viewerPanel.ResumeLayout(false);
-            this.patternGroup.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.binGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binT20TextEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binColorEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.binTypeLookUpEdit)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.smuGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.smuGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            this.patternGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ledCountEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stringCountEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yHeightEdit.Properties)).EndInit();
@@ -1215,13 +1222,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.findNameEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unboundSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unboundSource2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.binGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binT20TextEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binColorEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.binTypeLookUpEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

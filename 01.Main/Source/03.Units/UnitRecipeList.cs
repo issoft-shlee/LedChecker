@@ -67,7 +67,7 @@ namespace IsSoft.Sec.LedChecker
 
         public RankList Rank { get; private set; }
 
-        public Dictionary<EWorkType, WorkObject> Work { get; private set; }
+        public WorkObject Work { get; private set; }
 
         public BinList Bin { get; private set; }
 
@@ -108,13 +108,10 @@ namespace IsSoft.Sec.LedChecker
             ST2_Y = recipeSet.ST2_Y;
             ST2_QR = recipeSet.ST2_QR;
 
-            Work = new Dictionary<EWorkType, WorkObject>();
+            Work = new WorkObject(RecNo);
             Pattern = new PatternList(RecNo);
             Rank = new RankList(RecNo);
             Bin = new BinList(RecNo);
-
-            Work.Add(EWorkType.Full, new WorkObject(RecNo, EWorkType.Full));
-            Work.Add(EWorkType.Sampling, new WorkObject(RecNo, EWorkType.Sampling));
 
             return true;
         }
@@ -155,13 +152,10 @@ namespace IsSoft.Sec.LedChecker
             ST2_Y = recipeSet.ST2_Y;
             ST2_QR = recipeSet.ST2_QR;
 
-            Work = new Dictionary<EWorkType, WorkObject>();
+            Work = new WorkObject(RecNo);
             Pattern = new PatternList(RecNo);
             Rank = new RankList(RecNo);
             Bin = new BinList(RecNo);
-
-            Work.Add(EWorkType.Full, new WorkObject(RecNo, EWorkType.Full));
-            Work.Add(EWorkType.Sampling, new WorkObject(RecNo, EWorkType.Sampling));
 
             return true;
         }
@@ -461,10 +455,10 @@ namespace IsSoft.Sec.LedChecker
 
         public ReportWorkList Reports { get; set; }
 
-        public WorkObject(Int64 recipeNo, EWorkType type)
+        public WorkObject(Int64 recipeNo)
         {
-            Tests = new TestWorkList(recipeNo, type);
-            Reports = new ReportWorkList(recipeNo, type);
+            Tests = new TestWorkList(recipeNo);
+            Reports = new ReportWorkList(recipeNo);
         }
     }
 
@@ -484,18 +478,18 @@ namespace IsSoft.Sec.LedChecker
         public TestWorkObject this[string name]
         { get { return names[name]; } }
         
-        public TestWorkList(Int64 recipeNo, EWorkType type)
+        public TestWorkList(Int64 recipeNo)
         {
             testSet = new TestWorkDataSet(AppRes.DB.Connect, null, null);
             indexes = new Dictionary<int, TestWorkObject>();
             names = new Dictionary<string, TestWorkObject>();
 
-            Load(recipeNo, type);
+            Load(recipeNo);
         }
 
-        private void Load(Int64 recipeNo, EWorkType type)
+        private void Load(Int64 recipeNo)
         {
-            testSet.Select(recipeNo, type);
+            testSet.Select(recipeNo);
 
             Count = testSet.RowCount;
             for (int i=0; i<Count; i++)
@@ -506,9 +500,9 @@ namespace IsSoft.Sec.LedChecker
                 item.RecNo = testSet.RecNo;
                 item.RecipeNo = testSet.RecipeNo;
                 item.SlavePatternNo = testSet.SlavePatternNo;
-                item.Type = testSet.Type;
                 item.Index = testSet.Index;
-                item.ItemCode = testSet.ItemCode;
+                item.ItemCodeN = testSet.ItemCodeN;
+                item.ItemCodeS = testSet.ItemCodeS;
                 item.ItemName = testSet.ItemName;
                 item.ItemRef = testSet.ItemRef;
                 item.TestPattern = testSet.TestPattern;
@@ -525,6 +519,12 @@ namespace IsSoft.Sec.LedChecker
                 item.IntegZ = testSet.IntegZ;
                 item.Gain = testSet.Gain;
                 item.Offset = testSet.Offset;
+                item.LvGain = testSet.LvGain;
+                item.LvOffset = testSet.LvOffset;
+                item.CxGain = testSet.CxGain;
+                item.CxOffset = testSet.CxOffset;
+                item.CyGain = testSet.CyGain;
+                item.CyOffset = testSet.CyOffset;
 
                 indexes.Add(item.Index, item);
                 names.Add(item.ItemName, item);
@@ -540,11 +540,11 @@ namespace IsSoft.Sec.LedChecker
 
         public Int64 SlavePatternNo { get; set; }
 
-        public EWorkType Type { get; set; }
-
         public int Index { get; set; }
 
-        public ETestItemCode ItemCode { get; set; }
+        public ETestItemCode ItemCodeN { get; set; }
+
+        public ETestItemCode ItemCodeS { get; set; }
 
         public string ItemName { get; set; }
 
@@ -578,6 +578,18 @@ namespace IsSoft.Sec.LedChecker
 
         public double Offset { get; set; }
 
+        public double LvGain { get; set; }
+
+        public double LvOffset { get; set; }
+
+        public double CxGain { get; set; }
+
+        public double CxOffset { get; set; }
+
+        public double CyGain { get; set; }
+
+        public double CyOffset { get; set; }
+
         public TestWorkObject()
         {
         }
@@ -600,18 +612,18 @@ namespace IsSoft.Sec.LedChecker
 
         public int Count { get; set; }
 
-        public ReportWorkList(Int64 recipeNo, EWorkType type)
+        public ReportWorkList(Int64 recipeNo)
         {
             reportSet = new ReportWorkDataSet(AppRes.DB.Connect, null, null);
             indexes = new Dictionary<int, ReportWorkObject>();
             names = new Dictionary<string, ReportWorkObject>();
 
-            Load(recipeNo, type);
+            Load(recipeNo);
         }
 
-        private void Load(Int64 recipeNo, EWorkType type)
+        private void Load(Int64 recipeNo)
         {
-            reportSet.Select(recipeNo, type);
+            reportSet.Select(recipeNo);
             Count = reportSet.RowCount;
 
             for (int i = 0; i < reportSet.RowCount; i++)
@@ -621,7 +633,6 @@ namespace IsSoft.Sec.LedChecker
                 ReportWorkObject item = new ReportWorkObject();
                 item.RecNo = reportSet.RecNo;
                 item.RecipeNo = reportSet.RecipeNo;
-                item.Type = reportSet.Type;
                 item.Index = reportSet.Index;
                 item.ItemCode = reportSet.ItemCode;
                 item.ItemName = reportSet.ItemName;
@@ -642,8 +653,6 @@ namespace IsSoft.Sec.LedChecker
         public Int64 RecNo { get; set; }
 
         public Int64 RecipeNo { get; set; }
-
-        public EWorkType Type { get; set; }
 
         public int Index { get; set; }
 

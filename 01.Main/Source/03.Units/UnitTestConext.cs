@@ -18,15 +18,15 @@ namespace IsSoft.Sec.LedChecker
         public TestCounter Counter { get; set; }
     }
 
-    public class RecipeArgs : EventArgs
-    {
-        public RecipeArgs(RecipeObject recipe)
-        {
-            Recipe = recipe;
-        }
+    //public class RecipeArgs : EventArgs
+    //{
+    //    public RecipeArgs(RecipeObject recipe)
+    //    {
+    //        Recipe = recipe;
+    //    }
 
-        public RecipeObject Recipe { get; set; }
-    }
+    //    public RecipeObject Recipe { get; set; }
+    //}
 
     public class ValueArgs : EventArgs
     {
@@ -227,7 +227,7 @@ namespace IsSoft.Sec.LedChecker
         public event EventHandler InvalidRecipe = null;
         public void OnInvalidRecipe()
         {
-            InvalidRecipe?.Invoke(null, new RecipeArgs(Recipe));
+            InvalidRecipe?.Invoke(null, new EventArgs());
         }
 
         public event EventHandler InvalidValue = null;
