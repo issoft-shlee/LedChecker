@@ -22,10 +22,12 @@ namespace IsSoft.Sec.LedChecker
         {
             try
             {
-                context.Value.Type = EWorkType.Sampling;
+                context.Value.Type = EWorkType.Normal;
+                AppRes.TestLog[(int)ELogType.Note] = $"Begin {context.Value.Type.ToString()} Test";
 
                 for (int i = 0; i < context.Recipe.Work.Tests.Count; i++)
                 {
+                    AppRes.TestLog[(int)ELogType.Note] = $"Test No : {i+1}";
                     context.OnInvalidTestIndex(i);
 
                     for (int j = 0; j < 20; j++)
@@ -41,9 +43,11 @@ namespace IsSoft.Sec.LedChecker
                         Yield(50);
                     }
                 }
-                context.OnInvalidTestIndex();
 
+                context.OnInvalidTestIndex();
                 PostMessage(AppRes.WM_TEST_NORMAL_TERMINATED);
+
+                AppRes.TestLog[(int)ELogType.Note] = $"End Test";
             }
             catch (UlThreadTerminatedException e)
             {

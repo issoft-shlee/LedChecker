@@ -33,7 +33,7 @@ namespace IsSoft.Sec.LedChecker
         {
             this.bins = bins;
             RecipeNo = 0;
-            Type = EWorkType.Full;
+            Type = EWorkType.Normal;
 
             InitializeComponent();
             Initialize();

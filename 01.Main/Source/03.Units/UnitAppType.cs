@@ -27,7 +27,7 @@ namespace IsSoft.Sec.LedChecker
     { View, New, Modify }
 
     public enum EWorkType
-    { Full, Sampling }
+    { Normal, Sampling }
 
     public enum EOpticalType
     { None, Luminance, Color }
@@ -107,6 +107,16 @@ namespace IsSoft.Sec.LedChecker
         Rank,
         Lower,
         Upper
+    }
+
+    public enum ETestItemType
+    {
+        [Description("Both")]
+        Both,
+        [Description("Normal")]
+        Normal,
+        [Description("Sampling")]
+        Sampling
     }
 
     public enum ETestItemCode
@@ -513,9 +523,9 @@ namespace IsSoft.Sec.LedChecker
     {
         public int Index { get; set; }
 
-        public ETestItemCode ItemCodeN { get; set; }
+        public ETestItemType ItemType { get; set; }
 
-        public ETestItemCode ItemCodeS { get; set; }
+        public ETestItemCode ItemCode { get; set; }
 
         public string ItemName { get; set; }
 
@@ -564,9 +574,9 @@ namespace IsSoft.Sec.LedChecker
         public TestWorkRow()
         {
             Index = 0;
-            ItemCodeN = ETestItemCode.VF;
-            ItemCodeS = ETestItemCode.VF;
-            ItemName = EnumHelper.ToDescription(ItemCodeN);
+            ItemType = ETestItemType.Both;
+            ItemCode = ETestItemCode.VF;
+            ItemName = EnumHelper.ToDescription(ItemCode);
             ItemRef = "None";
             TestPattern = "None(0)";
             BiasCH = "None";

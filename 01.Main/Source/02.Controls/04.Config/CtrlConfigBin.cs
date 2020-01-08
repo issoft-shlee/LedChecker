@@ -129,7 +129,7 @@ namespace IsSoft.Sec.LedChecker
 
             fullBin = new CtrlBinGrid(fullBinRows);
             fullBin.RecipeNo = 0;
-            fullBin.Type = EWorkType.Full;
+            fullBin.Type = EWorkType.Normal;
             binFullPage.Controls.Add(fullBin);
 
             samplingBin = new CtrlBinGrid(samplingBinRows);
@@ -183,7 +183,7 @@ namespace IsSoft.Sec.LedChecker
                 fullBinRows[i].Mark = binSet.Mark;
                 fullBinRows[i].Clear();
 
-                binFormulaSet.Select(binSet.RecNo, EWorkType.Full);
+                binFormulaSet.Select(binSet.RecNo, EWorkType.Normal);
 
                 for (int j = 0; j < binFormulaSet.RowCount; j++)
                 {
@@ -225,12 +225,12 @@ namespace IsSoft.Sec.LedChecker
             {
                 if (fullBinRows[0].Formulas[0].RecNo == 0)
                 {
-                    InsertBins(trans, fullBinRows, EWorkType.Full);
+                    InsertBins(trans, fullBinRows, EWorkType.Normal);
                     InsertBins(trans, samplingBinRows, EWorkType.Sampling);
                 }
                 else
                 {
-                    UpdateBins(trans, fullBinRows, EWorkType.Full);
+                    UpdateBins(trans, fullBinRows, EWorkType.Normal);
                     UpdateBins(trans, samplingBinRows, EWorkType.Sampling);
                 }
 

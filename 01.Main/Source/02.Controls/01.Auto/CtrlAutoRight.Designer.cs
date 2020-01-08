@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlAutoRight));
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.logButton = new DevExpress.XtraEditors.SimpleButton();
             this.pauseButton = new DevExpress.XtraEditors.SimpleButton();
             this.startButton = new DevExpress.XtraEditors.SimpleButton();
             this.stopButton = new DevExpress.XtraEditors.SimpleButton();
@@ -50,6 +51,10 @@
             this.ulPanel4 = new Ulee.Controls.UlPanel();
             this.ulPanel1 = new Ulee.Controls.UlPanel();
             this.recipePanel = new Ulee.Controls.UlPanel();
+            this.normalLamp = new Ulee.Controls.UlPanel();
+            this.samplingLamp = new Ulee.Controls.UlPanel();
+            this.autoLamp = new Ulee.Controls.UlPanel();
+            this.manualLamp = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +62,10 @@
             // bgPanel
             // 
             this.bgPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.bgPanel.Controls.Add(this.manualLamp);
+            this.bgPanel.Controls.Add(this.autoLamp);
+            this.bgPanel.Controls.Add(this.samplingLamp);
+            this.bgPanel.Controls.Add(this.normalLamp);
             this.bgPanel.Controls.Add(this.ulPanel2);
             this.bgPanel.Controls.Add(this.viewPanel);
             this.bgPanel.Controls.Add(this.ulPanel5);
@@ -74,12 +83,14 @@
             this.bgPanel.Controls.Add(this.okMeter);
             this.bgPanel.Controls.Add(this.ulPanel6);
             this.bgPanel.Size = new System.Drawing.Size(1816, 946);
+            this.bgPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.bgPanel_Paint);
             // 
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.menuPanel.Controls.Add(this.logButton);
             this.menuPanel.Controls.Add(this.pauseButton);
             this.menuPanel.Controls.Add(this.startButton);
             this.menuPanel.Controls.Add(this.stopButton);
@@ -96,6 +107,25 @@
             this.menuPanel.TabIndex = 7;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // logButton
+            // 
+            this.logButton.AllowFocus = false;
+            this.logButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logButton.Appearance.Options.UseFont = true;
+            this.logButton.Appearance.Options.UseTextOptions = true;
+            this.logButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.logButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("logButton.ImageOptions.Image")));
+            this.logButton.ImageOptions.ImageToTextIndent = 0;
+            this.logButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.logButton.Location = new System.Drawing.Point(2, 122);
+            this.logButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.logButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.logButton.Name = "logButton";
+            this.logButton.Size = new System.Drawing.Size(80, 58);
+            this.logButton.TabIndex = 31;
+            this.logButton.TabStop = false;
+            this.logButton.Text = "LOG";
             // 
             // pauseButton
             // 
@@ -115,7 +145,7 @@
             this.pauseButton.Size = new System.Drawing.Size(80, 58);
             this.pauseButton.TabIndex = 30;
             this.pauseButton.TabStop = false;
-            this.pauseButton.Text = "Pause";
+            this.pauseButton.Text = "PAUSE";
             this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // startButton
@@ -165,8 +195,8 @@
             this.binButton.Appearance.Options.UseFont = true;
             this.binButton.Appearance.Options.UseTextOptions = true;
             this.binButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.binButton.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.binButton.ImageOptions.ImageToTextIndent = 12;
+            this.binButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("binButton.ImageOptions.Image")));
+            this.binButton.ImageOptions.ImageToTextIndent = 0;
             this.binButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.binButton.Location = new System.Drawing.Point(2, 62);
             this.binButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -175,7 +205,7 @@
             this.binButton.Size = new System.Drawing.Size(80, 58);
             this.binButton.TabIndex = 4;
             this.binButton.TabStop = false;
-            this.binButton.Text = "BIN\r\nCOUNTER";
+            this.binButton.Text = "BIN COUNT";
             // 
             // mainButton
             // 
@@ -184,6 +214,7 @@
             this.mainButton.Appearance.Options.UseFont = true;
             this.mainButton.Appearance.Options.UseTextOptions = true;
             this.mainButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.mainButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("mainButton.ImageOptions.Image")));
             this.mainButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.mainButton.Location = new System.Drawing.Point(2, 2);
             this.mainButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -192,7 +223,7 @@
             this.mainButton.Size = new System.Drawing.Size(80, 58);
             this.mainButton.TabIndex = 3;
             this.mainButton.TabStop = false;
-            this.mainButton.Text = "MAIN";
+            this.mainButton.Text = "TEST DATA";
             // 
             // viewPanel
             // 
@@ -219,7 +250,7 @@
             this.ulPanel2.ForeColor = System.Drawing.Color.Black;
             this.ulPanel2.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel2.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel2.Location = new System.Drawing.Point(356, 26);
+            this.ulPanel2.Location = new System.Drawing.Point(648, 26);
             this.ulPanel2.Name = "ulPanel2";
             this.ulPanel2.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel2.OuterColor2 = System.Drawing.Color.White;
@@ -233,12 +264,12 @@
             // 
             this.ulPanel5.BackColor = System.Drawing.Color.Navy;
             this.ulPanel5.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ulPanel5.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel5.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
             this.ulPanel5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ulPanel5.ForeColor = System.Drawing.Color.White;
             this.ulPanel5.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel5.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel5.Location = new System.Drawing.Point(284, 26);
+            this.ulPanel5.Location = new System.Drawing.Point(576, 26);
             this.ulPanel5.Name = "ulPanel5";
             this.ulPanel5.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel5.OuterColor2 = System.Drawing.Color.White;
@@ -258,7 +289,7 @@
             this.lotPanel.ForeColor = System.Drawing.Color.Black;
             this.lotPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.lotPanel.InnerColor2 = System.Drawing.Color.White;
-            this.lotPanel.Location = new System.Drawing.Point(356, 0);
+            this.lotPanel.Location = new System.Drawing.Point(648, 0);
             this.lotPanel.Name = "lotPanel";
             this.lotPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.lotPanel.OuterColor2 = System.Drawing.Color.White;
@@ -272,12 +303,12 @@
             // 
             this.ulPanel3.BackColor = System.Drawing.Color.Navy;
             this.ulPanel3.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ulPanel3.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel3.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
             this.ulPanel3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ulPanel3.ForeColor = System.Drawing.Color.White;
             this.ulPanel3.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel3.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel3.Location = new System.Drawing.Point(284, 0);
+            this.ulPanel3.Location = new System.Drawing.Point(576, 0);
             this.ulPanel3.Name = "ulPanel3";
             this.ulPanel3.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel3.OuterColor2 = System.Drawing.Color.White;
@@ -352,7 +383,7 @@
             // 
             this.ratioPanel.BackColor = System.Drawing.Color.Navy;
             this.ratioPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ratioPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
+            this.ratioPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
             this.ratioPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ratioPanel.ForeColor = System.Drawing.Color.White;
             this.ratioPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -372,7 +403,7 @@
             // 
             this.ulPanel6.BackColor = System.Drawing.Color.Red;
             this.ulPanel6.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ulPanel6.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
+            this.ulPanel6.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
             this.ulPanel6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ulPanel6.ForeColor = System.Drawing.Color.White;
             this.ulPanel6.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -432,7 +463,7 @@
             // 
             this.ulPanel4.BackColor = System.Drawing.Color.Blue;
             this.ulPanel4.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ulPanel4.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
+            this.ulPanel4.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
             this.ulPanel4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ulPanel4.ForeColor = System.Drawing.Color.White;
             this.ulPanel4.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -452,7 +483,7 @@
             // 
             this.ulPanel1.BackColor = System.Drawing.Color.Navy;
             this.ulPanel1.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.ulPanel1.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
+            this.ulPanel1.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
             this.ulPanel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.ulPanel1.ForeColor = System.Drawing.Color.White;
             this.ulPanel1.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -477,16 +508,100 @@
             this.recipePanel.ForeColor = System.Drawing.Color.Blue;
             this.recipePanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.recipePanel.InnerColor2 = System.Drawing.Color.White;
-            this.recipePanel.Location = new System.Drawing.Point(0, 0);
+            this.recipePanel.Location = new System.Drawing.Point(232, 0);
             this.recipePanel.Name = "recipePanel";
             this.recipePanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.recipePanel.OuterColor2 = System.Drawing.Color.White;
-            this.recipePanel.Size = new System.Drawing.Size(280, 50);
+            this.recipePanel.Size = new System.Drawing.Size(340, 50);
             this.recipePanel.Spacing = 0;
             this.recipePanel.TabIndex = 18;
             this.recipePanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.recipePanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             this.recipePanel.DoubleClick += new System.EventHandler(this.recipePanel_DoubleClick);
+            // 
+            // normalLamp
+            // 
+            this.normalLamp.BackColor = System.Drawing.Color.Black;
+            this.normalLamp.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.normalLamp.BevelOuter = Ulee.Controls.EUlBevelStyle.Raised;
+            this.normalLamp.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.normalLamp.ForeColor = System.Drawing.Color.White;
+            this.normalLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.normalLamp.InnerColor2 = System.Drawing.Color.White;
+            this.normalLamp.Location = new System.Drawing.Point(148, 0);
+            this.normalLamp.Name = "normalLamp";
+            this.normalLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.normalLamp.OuterColor2 = System.Drawing.Color.White;
+            this.normalLamp.Size = new System.Drawing.Size(80, 24);
+            this.normalLamp.Spacing = 0;
+            this.normalLamp.TabIndex = 32;
+            this.normalLamp.Text = "NORMAL";
+            this.normalLamp.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.normalLamp.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.normalLamp.Click += new System.EventHandler(this.normalLamp_Click);
+            // 
+            // samplingLamp
+            // 
+            this.samplingLamp.BackColor = System.Drawing.Color.Black;
+            this.samplingLamp.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.samplingLamp.BevelOuter = Ulee.Controls.EUlBevelStyle.Raised;
+            this.samplingLamp.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.samplingLamp.ForeColor = System.Drawing.Color.White;
+            this.samplingLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.samplingLamp.InnerColor2 = System.Drawing.Color.White;
+            this.samplingLamp.Location = new System.Drawing.Point(148, 26);
+            this.samplingLamp.Name = "samplingLamp";
+            this.samplingLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.samplingLamp.OuterColor2 = System.Drawing.Color.White;
+            this.samplingLamp.Size = new System.Drawing.Size(80, 24);
+            this.samplingLamp.Spacing = 0;
+            this.samplingLamp.TabIndex = 33;
+            this.samplingLamp.Text = "SAMPLING";
+            this.samplingLamp.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.samplingLamp.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.samplingLamp.Click += new System.EventHandler(this.samplingLamp_Click);
+            // 
+            // autoLamp
+            // 
+            this.autoLamp.BackColor = System.Drawing.Color.Black;
+            this.autoLamp.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.autoLamp.BevelOuter = Ulee.Controls.EUlBevelStyle.Raised;
+            this.autoLamp.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.autoLamp.ForeColor = System.Drawing.Color.White;
+            this.autoLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.autoLamp.InnerColor2 = System.Drawing.Color.White;
+            this.autoLamp.Location = new System.Drawing.Point(0, 0);
+            this.autoLamp.Name = "autoLamp";
+            this.autoLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.autoLamp.OuterColor2 = System.Drawing.Color.White;
+            this.autoLamp.Size = new System.Drawing.Size(70, 50);
+            this.autoLamp.Spacing = 0;
+            this.autoLamp.TabIndex = 34;
+            this.autoLamp.Text = "AUTO";
+            this.autoLamp.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.autoLamp.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.autoLamp.Click += new System.EventHandler(this.autoLamp_Click);
+            // 
+            // manualLamp
+            // 
+            this.manualLamp.BackColor = System.Drawing.Color.Black;
+            this.manualLamp.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.manualLamp.BevelOuter = Ulee.Controls.EUlBevelStyle.Raised;
+            this.manualLamp.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.manualLamp.ForeColor = System.Drawing.Color.White;
+            this.manualLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.manualLamp.InnerColor2 = System.Drawing.Color.White;
+            this.manualLamp.Location = new System.Drawing.Point(74, 0);
+            this.manualLamp.Name = "manualLamp";
+            this.manualLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.manualLamp.OuterColor2 = System.Drawing.Color.White;
+            this.manualLamp.Size = new System.Drawing.Size(70, 50);
+            this.manualLamp.Spacing = 0;
+            this.manualLamp.TabIndex = 35;
+            this.manualLamp.Text = "MANUAL";
+            this.manualLamp.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.manualLamp.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.manualLamp.Click += new System.EventHandler(this.manualLamp_Click);
             // 
             // CtrlAutoRight
             // 
@@ -525,5 +640,10 @@
         private Ulee.Controls.UlPanel ulPanel4;
         private Ulee.Controls.UlPanel ulPanel1;
         private Ulee.Controls.UlPanel recipePanel;
+        private DevExpress.XtraEditors.SimpleButton logButton;
+        private Ulee.Controls.UlPanel samplingLamp;
+        private Ulee.Controls.UlPanel normalLamp;
+        private Ulee.Controls.UlPanel manualLamp;
+        private Ulee.Controls.UlPanel autoLamp;
     }
 }

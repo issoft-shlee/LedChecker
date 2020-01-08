@@ -30,7 +30,9 @@ namespace IsSoft.Sec.LedChecker
 
         public static UlIniFile Ini { get; private set; }
 
-        public static UlLogger TLog { get; private set; }
+        public static UlLogger TotalLog { get; private set; }
+
+        public static UlLogger TestLog { get; private set; }
 
         public static AppDatabase DB { get; private set; }
 
@@ -42,12 +44,19 @@ namespace IsSoft.Sec.LedChecker
         {
             Ini = new UlIniFile(csIniFName);
 
-            TLog = new UlLogger();
-            TLog.Path = Ini.GetString("Log", "TotalPath");
-            TLog.FName = Ini.GetString("Log", "TotalFileName");
-            TLog.AddHead("NOTE");
-            TLog.AddHead("ERROR");
-            TLog.AddHead("EXCEPTION");
+            TotalLog = new UlLogger();
+            TotalLog.Path = Ini.GetString("Log", "TotalPath");
+            TotalLog.FName = Ini.GetString("Log", "TotalFileName");
+            TotalLog.AddHead("NOTE");
+            TotalLog.AddHead("ERROR");
+            TotalLog.AddHead("EXCEPTION");
+
+            TestLog = new UlLogger();
+            TestLog.Path = Ini.GetString("Log", "TestPath");
+            TestLog.FName = Ini.GetString("Log", "TestFileName");
+            TestLog.AddHead("NOTE");
+            TestLog.AddHead("ERROR");
+            TestLog.AddHead("EXCEPTION");
         }
 
         public static void Initialize()

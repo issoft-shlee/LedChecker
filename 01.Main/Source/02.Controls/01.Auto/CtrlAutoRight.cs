@@ -11,10 +11,18 @@ using Ulee.Utils;
 
 namespace IsSoft.Sec.LedChecker
 {
+    public enum ETestModeLamp { Auto, Manual }
+
+    public enum ETestTypeLamp { None, Normal, Sampling }
+
     public enum ETestButtonState { Started, Paused, Stopped }
 
     public partial class CtrlAutoRight : UlUserControlEng
     {
+        private ETestModeLamp mode;
+
+        private ETestTypeLamp type;
+
         private TestContext context;
 
         public int TotalMeter
@@ -72,8 +80,11 @@ namespace IsSoft.Sec.LedChecker
             DefMenu = new UlMenu(viewPanel);
             DefMenu.Add(new CtrlAutoMain(context), mainButton);
             DefMenu.Add(new CtrlAutoBin(context), binButton);
+            DefMenu.Add(new CtrlAutoLog(), logButton);
             DefMenu.Index = 0;
 
+            SetModeLamp(ETestModeLamp.Auto);
+            SetTypeLamp(ETestTypeLamp.None);
             SetButtonState(ETestButtonState.Stopped);
         }
 
@@ -110,6 +121,34 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
+        private void autoLamp_Click(object sender, EventArgs e)
+        {
+            if (AppRes.Busy == true) return;
+
+            SetModeLamp(ETestModeLamp.Auto);
+        }
+
+        private void manualLamp_Click(object sender, EventArgs e)
+        {
+            if (AppRes.Busy == true) return;
+
+            SetModeLamp(ETestModeLamp.Manual);
+        }
+
+        private void normalLamp_Click(object sender, EventArgs e)
+        {
+            if (AppRes.Busy == true) return;
+
+            SetTypeLamp((type == ETestTypeLamp.Normal) ? ETestTypeLamp.None : ETestTypeLamp.Normal);
+        }
+
+        private void samplingLamp_Click(object sender, EventArgs e)
+        {
+            if (AppRes.Busy == true) return;
+
+            SetTypeLamp((type == ETestTypeLamp.Sampling) ? ETestTypeLamp.None : ETestTypeLamp.Sampling);
+        }
+
         private void recipePanel_DoubleClick(object sender, EventArgs e)
         {
             if (AppRes.Busy == true) return;
@@ -133,6 +172,8 @@ namespace IsSoft.Sec.LedChecker
         {
             DefMenu.Index = 0;
             SetButtonState(ETestButtonState.Started);
+            (DefMenu.Controls(2) as CtrlAutoLog).Clear();
+            SetTypeLamp(ETestTypeLamp.Normal);
             context.StartThread();
         }
 
@@ -150,6 +191,7 @@ namespace IsSoft.Sec.LedChecker
         private void FinalizeTest()
         {
             SetButtonState(ETestButtonState.Stopped);
+            SetTypeLamp(ETestTypeLamp.None);
             context.FinalizeThread();
         }
 
@@ -173,6 +215,47 @@ namespace IsSoft.Sec.LedChecker
                     startButton.Enabled = true;
                     pauseButton.Enabled = false;
                     stopButton.Enabled = false;
+                    break;
+            }
+        }
+
+        private void SetModeLamp(ETestModeLamp mode)
+        {
+            this.mode = mode;
+
+            switch (mode)
+            {
+                case ETestModeLamp.Auto:
+                    autoLamp.BackColor = Color.Lime;
+                    manualLamp.BackColor = Color.Black;
+                    break;
+
+                case ETestModeLamp.Manual:
+                    autoLamp.BackColor = Color.Black;
+                    manualLamp.BackColor = Color.Lime;
+                    break;
+            }
+        }
+
+        private void SetTypeLamp(ETestTypeLamp type)
+        {
+            this.type = type;
+
+            switch (type)
+            {
+                case ETestTypeLamp.None:
+                    normalLamp.BackColor = Color.Black;
+                    samplingLamp.BackColor = Color.Black;
+                    break;
+
+                case ETestTypeLamp.Normal:
+                    normalLamp.BackColor = Color.Violet;
+                    samplingLamp.BackColor = Color.Black;
+                    break;
+
+                case ETestTypeLamp.Sampling:
+                    normalLamp.BackColor = Color.Black;
+                    samplingLamp.BackColor = Color.Violet;
                     break;
             }
         }
@@ -240,6 +323,11 @@ namespace IsSoft.Sec.LedChecker
                 TestIndexArgs args = e as TestIndexArgs;
                 (DefMenu.Controls(0) as CtrlAutoMain).SetTestIndex(args.Index);
             }
+        }
+
+        private void bgPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

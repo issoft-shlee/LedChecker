@@ -72,7 +72,7 @@ namespace IsSoft.Sec.LedChecker
         public void Clear()
         {
             BinNo = 0;
-            Type = EWorkType.Full;
+            Type = EWorkType.Normal;
             StartTime = DateTime.Now;
             ElapsedTime = TimeSpan.Zero;
             TestProcedures.Clear();

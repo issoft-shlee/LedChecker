@@ -501,8 +501,8 @@ namespace IsSoft.Sec.LedChecker
                 item.RecipeNo = testSet.RecipeNo;
                 item.SlavePatternNo = testSet.SlavePatternNo;
                 item.Index = testSet.Index;
-                item.ItemCodeN = testSet.ItemCodeN;
-                item.ItemCodeS = testSet.ItemCodeS;
+                item.ItemType = testSet.ItemType;
+                item.ItemCode = testSet.ItemCode;
                 item.ItemName = testSet.ItemName;
                 item.ItemRef = testSet.ItemRef;
                 item.TestPattern = testSet.TestPattern;
@@ -542,9 +542,9 @@ namespace IsSoft.Sec.LedChecker
 
         public int Index { get; set; }
 
-        public ETestItemCode ItemCodeN { get; set; }
+        public ETestItemType ItemType { get; set; }
 
-        public ETestItemCode ItemCodeS { get; set; }
+        public ETestItemCode ItemCode { get; set; }
 
         public string ItemName { get; set; }
 
@@ -756,7 +756,7 @@ namespace IsSoft.Sec.LedChecker
         {
             List<BinFormulaObject> formulaList = new List<BinFormulaObject>();
 
-            formulaSet.Select(recNo, EWorkType.Full);
+            formulaSet.Select(recNo, EWorkType.Normal);
             for (int i = 0; i < formulaSet.RowCount; i++)
             {
                 formulaSet.Fetch(i);
@@ -767,7 +767,7 @@ namespace IsSoft.Sec.LedChecker
                 item.Logic = formulaSet.Logic;
                 formulaList.Add(item);
             }
-            Formulas.Add(EWorkType.Full, formulaList);
+            Formulas.Add(EWorkType.Normal, formulaList);
 
             formulaSet.Select(recNo, EWorkType.Sampling);
             for (int i = 0; i < formulaSet.RowCount; i++)

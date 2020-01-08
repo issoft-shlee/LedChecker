@@ -289,7 +289,7 @@ namespace IsSoft.Sec.LedChecker
 
             foreach (TestWorkRow row in TestRows)
             {
-                if (row.ItemCodeN == code)
+                if (row.ItemCode == code)
                 {
                     string item = $"{row.ItemName}({row.Index})";
                     items.Add(item);

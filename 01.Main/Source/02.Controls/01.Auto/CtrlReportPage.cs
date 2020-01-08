@@ -86,8 +86,8 @@ namespace IsSoft.Sec.LedChecker
                 for (int i = 0; i < tests.Count; i++)
                 {
                     sheet.Cells[0, i + 1].Value = tests[i + 1].Index;
-                    sheet.Cells[1, i + 1].Value = tests[i + 1].ItemCodeN.ToString();
-                    sheet.Cells[2, i + 1].Value = tests[i + 1].ItemCodeS.ToString();
+                    sheet.Cells[1, i + 1].Value = tests[i + 1].ItemType.ToString();
+                    sheet.Cells[2, i + 1].Value = tests[i + 1].ItemCode.ToString();
                     sheet.Cells[3, i + 1].Value = tests[i + 1].ItemName;
                     sheet.Cells[4, i + 1].Value = tests[i + 1].ItemRef;
                     sheet.Cells[5, i + 1].Value = tests[i + 1].TestPattern;

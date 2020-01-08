@@ -45,7 +45,9 @@
             this.workTimeSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.workHumCounterSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.workCorrelationSpinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.workItemTypeLookUp = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.workIndexRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.workItemTypeRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workItemCodeRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workItemNameRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workItemRefRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -68,7 +70,6 @@
             this.workOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workLvGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workLvOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.workItemCodeSRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workCxGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workCxOffsetRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.workCyGainRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
@@ -86,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.workTimeSpinEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workHumCounterSpinEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workCorrelationSpinEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workItemTypeLookUp)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -149,12 +151,13 @@
             this.workBiasValueButton,
             this.workTimeSpinEdit,
             this.workHumCounterSpinEdit,
-            this.workCorrelationSpinEdit});
-            this.workGrid.RowHeaderWidth = 146;
+            this.workCorrelationSpinEdit,
+            this.workItemTypeLookUp});
+            this.workGrid.RowHeaderWidth = 120;
             this.workGrid.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
             this.workIndexRow,
+            this.workItemTypeRow,
             this.workItemCodeRow,
-            this.workItemCodeSRow,
             this.workItemNameRow,
             this.workItemRefRow,
             this.workNull1Row,
@@ -371,6 +374,21 @@
             196608});
             this.workCorrelationSpinEdit.Name = "workCorrelationSpinEdit";
             // 
+            // workItemTypeLookUp
+            // 
+            this.workItemTypeLookUp.AutoHeight = false;
+            this.workItemTypeLookUp.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.workItemTypeLookUp.BestFitRowCount = 3;
+            this.workItemTypeLookUp.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.workItemTypeLookUp.DropDownRows = 3;
+            this.workItemTypeLookUp.LookAndFeel.SkinName = "DevExpress Style";
+            this.workItemTypeLookUp.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.workItemTypeLookUp.Name = "workItemTypeLookUp";
+            this.workItemTypeLookUp.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth;
+            this.workItemTypeLookUp.ShowFooter = false;
+            this.workItemTypeLookUp.ShowHeader = false;
+            // 
             // workIndexRow
             // 
             this.workIndexRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -393,21 +411,38 @@
             this.workIndexRow.Properties.OptionsFilter.AllowFilter = false;
             this.workIndexRow.Properties.ReadOnly = false;
             this.workIndexRow.TabStop = false;
+            this.workIndexRow.Tag = 0;
+            // 
+            // workItemTypeRow
+            // 
+            this.workItemTypeRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workItemTypeRow.AppearanceCell.Options.UseFont = true;
+            this.workItemTypeRow.Name = "workItemTypeRow";
+            this.workItemTypeRow.OptionsRow.AllowMove = false;
+            this.workItemTypeRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.workItemTypeRow.OptionsRow.DblClickExpanding = false;
+            this.workItemTypeRow.OptionsRow.ShowInCustomizationForm = false;
+            this.workItemTypeRow.Properties.Caption = "Item Type";
+            this.workItemTypeRow.Properties.FieldName = "ItemType";
+            this.workItemTypeRow.Properties.OptionsFilter.AllowFilter = false;
+            this.workItemTypeRow.Properties.ReadOnly = false;
+            this.workItemTypeRow.Properties.RowEdit = this.workItemTypeLookUp;
+            this.workItemTypeRow.Tag = 1;
             // 
             // workItemCodeRow
             // 
-            this.workItemCodeRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.workItemCodeRow.AppearanceCell.Options.UseFont = true;
             this.workItemCodeRow.Name = "workItemCodeRow";
             this.workItemCodeRow.OptionsRow.AllowMove = false;
             this.workItemCodeRow.OptionsRow.AllowMoveToCustomizationForm = false;
             this.workItemCodeRow.OptionsRow.DblClickExpanding = false;
             this.workItemCodeRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workItemCodeRow.Properties.Caption = "Item Code(Normal)";
-            this.workItemCodeRow.Properties.FieldName = "ItemCodeN";
+            this.workItemCodeRow.Properties.Caption = "Item Code";
+            this.workItemCodeRow.Properties.FieldName = "ItemCode";
             this.workItemCodeRow.Properties.OptionsFilter.AllowFilter = false;
             this.workItemCodeRow.Properties.ReadOnly = false;
             this.workItemCodeRow.Properties.RowEdit = this.workItemCodeLookUp;
+            this.workItemCodeRow.Tag = 2;
             // 
             // workItemNameRow
             // 
@@ -419,6 +454,7 @@
             this.workItemNameRow.Properties.OptionsFilter.AllowFilter = false;
             this.workItemNameRow.Properties.ReadOnly = false;
             this.workItemNameRow.Properties.RowEdit = this.workT30TextEdit;
+            this.workItemNameRow.Tag = 3;
             // 
             // workItemRefRow
             // 
@@ -428,6 +464,7 @@
             this.workItemRefRow.Properties.OptionsFilter.AllowFilter = false;
             this.workItemRefRow.Properties.ReadOnly = false;
             this.workItemRefRow.Properties.RowEdit = this.workReferenceButton;
+            this.workItemRefRow.Tag = 4;
             // 
             // workNull1Row
             // 
@@ -441,6 +478,7 @@
             this.workNull1Row.Properties.OptionsFilter.AllowFilter = false;
             this.workNull1Row.Properties.ReadOnly = false;
             this.workNull1Row.TabStop = false;
+            this.workNull1Row.Tag = 5;
             // 
             // workTestPatternRow
             // 
@@ -452,6 +490,7 @@
             this.workTestPatternRow.Properties.OptionsFilter.AllowFilter = false;
             this.workTestPatternRow.Properties.ReadOnly = false;
             this.workTestPatternRow.Properties.RowEdit = this.workPatternButton;
+            this.workTestPatternRow.Tag = 6;
             // 
             // workBiasCHRow
             // 
@@ -463,6 +502,7 @@
             this.workBiasCHRow.Properties.FieldName = "BiasCH";
             this.workBiasCHRow.Properties.OptionsFilter.AllowFilter = false;
             this.workBiasCHRow.Properties.ReadOnly = false;
+            this.workBiasCHRow.Tag = 7;
             // 
             // workBiasRangeRow
             // 
@@ -474,6 +514,7 @@
             this.workBiasRangeRow.Properties.OptionsFilter.AllowFilter = false;
             this.workBiasRangeRow.Properties.ReadOnly = false;
             this.workBiasRangeRow.Properties.RowEdit = this.workBiasRangeButton;
+            this.workBiasRangeRow.Tag = 8;
             // 
             // workBiasValueRow
             // 
@@ -489,6 +530,7 @@
             this.workBiasValueRow.Properties.OptionsFilter.AllowFilter = false;
             this.workBiasValueRow.Properties.ReadOnly = false;
             this.workBiasValueRow.Properties.RowEdit = this.workBiasValueButton;
+            this.workBiasValueRow.Tag = 9;
             // 
             // workApplyTimeRow
             // 
@@ -504,6 +546,7 @@
             this.workApplyTimeRow.Properties.OptionsFilter.AllowFilter = false;
             this.workApplyTimeRow.Properties.ReadOnly = false;
             this.workApplyTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
+            this.workApplyTimeRow.Tag = 10;
             // 
             // workTransientTimeRow
             // 
@@ -517,6 +560,7 @@
             this.workTransientTimeRow.Properties.OptionsFilter.AllowFilter = false;
             this.workTransientTimeRow.Properties.ReadOnly = false;
             this.workTransientTimeRow.Properties.RowEdit = this.workTimeSpinEdit;
+            this.workTransientTimeRow.Tag = 11;
             // 
             // workHumCounterRow
             // 
@@ -528,6 +572,7 @@
             this.workHumCounterRow.Properties.OptionsFilter.AllowFilter = false;
             this.workHumCounterRow.Properties.ReadOnly = false;
             this.workHumCounterRow.Properties.RowEdit = this.workHumCounterSpinEdit;
+            this.workHumCounterRow.Tag = 12;
             // 
             // workNull2Row
             // 
@@ -541,6 +586,7 @@
             this.workNull2Row.Properties.OptionsFilter.AllowFilter = false;
             this.workNull2Row.Properties.ReadOnly = false;
             this.workNull2Row.TabStop = false;
+            this.workNull2Row.Tag = 13;
             // 
             // workOpticalRow
             // 
@@ -554,6 +600,7 @@
             this.workOpticalRow.Properties.OptionsFilter.AllowFilter = false;
             this.workOpticalRow.Properties.ReadOnly = false;
             this.workOpticalRow.Properties.RowEdit = this.workOpticalLookUp;
+            this.workOpticalRow.Tag = 14;
             this.workOpticalRow.Visible = false;
             // 
             // workIntegVLRow
@@ -568,6 +615,7 @@
             this.workIntegVLRow.Properties.OptionsFilter.AllowFilter = false;
             this.workIntegVLRow.Properties.ReadOnly = false;
             this.workIntegVLRow.Properties.RowEdit = this.workOpticalSpinEdit;
+            this.workIntegVLRow.Tag = 15;
             // 
             // workIntegX1Row
             // 
@@ -581,6 +629,7 @@
             this.workIntegX1Row.Properties.OptionsFilter.AllowFilter = false;
             this.workIntegX1Row.Properties.ReadOnly = false;
             this.workIntegX1Row.Properties.RowEdit = this.workOpticalSpinEdit;
+            this.workIntegX1Row.Tag = 16;
             // 
             // workIntegX2Row
             // 
@@ -594,6 +643,7 @@
             this.workIntegX2Row.Properties.OptionsFilter.AllowFilter = false;
             this.workIntegX2Row.Properties.ReadOnly = false;
             this.workIntegX2Row.Properties.RowEdit = this.workOpticalSpinEdit;
+            this.workIntegX2Row.Tag = 17;
             // 
             // workIntegZRow
             // 
@@ -607,6 +657,7 @@
             this.workIntegZRow.Properties.OptionsFilter.AllowFilter = false;
             this.workIntegZRow.Properties.ReadOnly = false;
             this.workIntegZRow.Properties.RowEdit = this.workOpticalSpinEdit;
+            this.workIntegZRow.Tag = 18;
             // 
             // workNull3Row
             // 
@@ -620,6 +671,7 @@
             this.workNull3Row.Properties.OptionsFilter.AllowFilter = false;
             this.workNull3Row.Properties.ReadOnly = false;
             this.workNull3Row.TabStop = false;
+            this.workNull3Row.Tag = 19;
             // 
             // workGainRow
             // 
@@ -635,6 +687,7 @@
             this.workGainRow.Properties.OptionsFilter.AllowFilter = false;
             this.workGainRow.Properties.ReadOnly = false;
             this.workGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workGainRow.Tag = 20;
             // 
             // workOffsetRow
             // 
@@ -650,6 +703,7 @@
             this.workOffsetRow.Properties.OptionsFilter.AllowFilter = false;
             this.workOffsetRow.Properties.ReadOnly = false;
             this.workOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workOffsetRow.Tag = 21;
             // 
             // workLvGainRow
             // 
@@ -664,6 +718,7 @@
             this.workLvGainRow.Properties.OptionsFilter.AllowFilter = false;
             this.workLvGainRow.Properties.ReadOnly = false;
             this.workLvGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workLvGainRow.Tag = 22;
             // 
             // workLvOffsetRow
             // 
@@ -678,20 +733,7 @@
             this.workLvOffsetRow.Properties.OptionsFilter.AllowFilter = false;
             this.workLvOffsetRow.Properties.ReadOnly = false;
             this.workLvOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
-            // 
-            // workItemCodeSRow
-            // 
-            this.workItemCodeSRow.AppearanceCell.Options.UseFont = true;
-            this.workItemCodeSRow.Name = "workItemCodeSRow";
-            this.workItemCodeSRow.OptionsRow.AllowMove = false;
-            this.workItemCodeSRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.workItemCodeSRow.OptionsRow.DblClickExpanding = false;
-            this.workItemCodeSRow.OptionsRow.ShowInCustomizationForm = false;
-            this.workItemCodeSRow.Properties.Caption = "Item Code(Sampling)";
-            this.workItemCodeSRow.Properties.FieldName = "ItemCodeS";
-            this.workItemCodeSRow.Properties.OptionsFilter.AllowFilter = false;
-            this.workItemCodeSRow.Properties.ReadOnly = false;
-            this.workItemCodeSRow.Properties.RowEdit = this.workItemCodeLookUp;
+            this.workLvOffsetRow.Tag = 23;
             // 
             // workCxGainRow
             // 
@@ -706,6 +748,7 @@
             this.workCxGainRow.Properties.OptionsFilter.AllowFilter = false;
             this.workCxGainRow.Properties.ReadOnly = false;
             this.workCxGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workCxGainRow.Tag = 24;
             // 
             // workCxOffsetRow
             // 
@@ -720,6 +763,7 @@
             this.workCxOffsetRow.Properties.OptionsFilter.AllowFilter = false;
             this.workCxOffsetRow.Properties.ReadOnly = false;
             this.workCxOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workCxOffsetRow.Tag = 25;
             // 
             // workCyGainRow
             // 
@@ -734,6 +778,7 @@
             this.workCyGainRow.Properties.OptionsFilter.AllowFilter = false;
             this.workCyGainRow.Properties.ReadOnly = false;
             this.workCyGainRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workCyGainRow.Tag = 26;
             // 
             // workCyOffsetRow
             // 
@@ -748,6 +793,7 @@
             this.workCyOffsetRow.Properties.OptionsFilter.AllowFilter = false;
             this.workCyOffsetRow.Properties.ReadOnly = false;
             this.workCyOffsetRow.Properties.RowEdit = this.workCorrelationSpinEdit;
+            this.workCyOffsetRow.Tag = 27;
             // 
             // CtrlTestWorkGrid
             // 
@@ -767,6 +813,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.workTimeSpinEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workHumCounterSpinEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.workCorrelationSpinEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workItemTypeLookUp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -782,7 +829,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit workOpticalLookUp;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit workReferenceButton;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workIndexRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemCodeRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemTypeRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemNameRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemRefRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workNull1Row;
@@ -808,11 +855,12 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit workHumCounterSpinEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit workCorrelationSpinEdit;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workLvGainRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemCodeSRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow workItemCodeRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workLvOffsetRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workCxGainRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workCxOffsetRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workCyGainRow;
         private DevExpress.XtraVerticalGrid.Rows.EditorRow workCyOffsetRow;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit workItemTypeLookUp;
     }
 }

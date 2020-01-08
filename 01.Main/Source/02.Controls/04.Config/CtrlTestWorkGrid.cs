@@ -46,6 +46,12 @@ namespace IsSoft.Sec.LedChecker
 
         private void Initialize()
         {
+            NameValue<ETestItemType>[] itemTypes = EnumHelper.GetNameValues<ETestItemType>();
+            workItemTypeLookUp.DataSource = itemTypes;
+            workItemTypeLookUp.DisplayMember = "Name";
+            workItemTypeLookUp.ValueMember = "Value";
+            workItemTypeLookUp.KeyMember = "Value";
+
             NameValue<ETestItemCode>[] itemCodes = EnumHelper.GetNameValues<ETestItemCode>();
             workItemCodeLookUp.DataSource = itemCodes;
             workItemCodeLookUp.DisplayMember = "Name";
@@ -90,7 +96,7 @@ namespace IsSoft.Sec.LedChecker
         {
             ETestItemCode code = (ETestItemCode)e.Value;
 
-            workGrid.SetCellValue(workGrid.VisibleRows[(int)ETestWorkItem.ItemName], 
+            workGrid.SetCellValue(workGrid.VisibleRows[(int)ETestWorkItem.ItemName],
                 workGrid.FocusedRecord, $"{code.ToDescription()}-{workGrid.FocusedRecord + 1}");
 
             workGrid.SetCellValue(workGrid.VisibleRows[(int)ETestWorkItem.ItemRef],
@@ -153,6 +159,12 @@ namespace IsSoft.Sec.LedChecker
                     SetCellValue(ETestWorkItem.Integ_Z, record, 0.0001);
                     SetCellValue(ETestWorkItem.Gain, record, 1.0);
                     SetCellValue(ETestWorkItem.Offet, record, 0.0);
+                    SetCellValue(ETestWorkItem.LvGain, record, 1.0);
+                    SetCellValue(ETestWorkItem.LvOffet, record, 0.0);
+                    SetCellValue(ETestWorkItem.CxGain, record, 1.0);
+                    SetCellValue(ETestWorkItem.CxOffet, record, 0.0);
+                    SetCellValue(ETestWorkItem.CyGain, record, 1.0);
+                    SetCellValue(ETestWorkItem.CyOffet, record, 0.0);
                 }
             }
         }
@@ -311,6 +323,12 @@ namespace IsSoft.Sec.LedChecker
             workNull3Row.Visible = !enabled;
             workGainRow.Visible = !enabled;
             workOffsetRow.Visible = !enabled;
+            workLvGainRow.Visible = !enabled;
+            workLvOffsetRow.Visible = !enabled;
+            workCxGainRow.Visible = !enabled;
+            workCxOffsetRow.Visible = !enabled;
+            workCyGainRow.Visible = !enabled;
+            workCyOffsetRow.Visible = !enabled;
         }
 
         private List<string> CreateItemRefItems(ETestItemCode code, int index)
@@ -319,7 +337,7 @@ namespace IsSoft.Sec.LedChecker
 
             foreach (TestWorkRow row in Rows)
             {
-                if ((row.Index < index) && (row.ItemCodeN == code) && (row.TestPattern != "None(0)"))
+                if ((row.Index < index) && (row.ItemCode == code) && (row.TestPattern != "None(0)"))
                 {
                     string item = $"{row.Index}";
                     items.Add(item);
@@ -460,7 +478,7 @@ namespace IsSoft.Sec.LedChecker
 
             foreach (TestWorkRow row in Rows)
             {
-                switch (row.ItemCodeN)
+                switch (row.ItemCode)
                 {
                     case ETestItemCode.VF:
                     case ETestItemCode.IF:
@@ -511,7 +529,7 @@ namespace IsSoft.Sec.LedChecker
             for (int i = 0; i < Rows.Count; i++)
             {
                 Rows[i].Index = i + 1;
-                string name = Rows[i].ItemCodeN.ToDescription();
+                string name = Rows[i].ItemCode.ToDescription();
 
                 if (string.IsNullOrEmpty(Rows[i].ItemName) == true)
                 {

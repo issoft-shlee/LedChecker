@@ -856,9 +856,9 @@ namespace IsSoft.Sec.LedChecker
 
         public int Index { get; set; }
 
-        public ETestItemCode ItemCodeN { get; set; }
+        public ETestItemType ItemType { get; set; }
 
-        public ETestItemCode ItemCodeS { get; set; }
+        public ETestItemCode ItemCode { get; set; }
 
         public string ItemName { get; set; }
 
@@ -926,7 +926,7 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" insert into TB_TESTWORK values " +
-                $" ({RecNo}, {RecipeNo}, {SlavePatternNo}, {Index}, {(int)ItemCodeN}, {(int)ItemCodeS}, " +
+                $" ({RecNo}, {RecipeNo}, {SlavePatternNo}, {Index}, {(int)ItemType}, {(int)ItemCode}, " +
                 $" '{ItemName}', '{ItemRef}', '{BiasValue}', '{BiasRange}', '{BiasCH}', {ApplyTime}, {TransientTime}, " +
                 $" {HumCount}, {(int)Optical}, {IntegVL}, {IntegX1}, {IntegX2}, {IntegZ}, {Gain}, {Offset}, " +
                 $" {LvGain}, {LvOffset}, {CxGain}, {CxOffset}, {CyGain}, {CyOffset}) ";
@@ -951,7 +951,7 @@ namespace IsSoft.Sec.LedChecker
             string sql =
                 $" update TB_TESTWORK set " +
                 $" fk_recipeno={RecipeNo}, fk_slavepatternno={SlavePatternNo}, " +
-                $" workno={Index}, itemcode_n={(int)ItemCodeN}, itemcode_s={(int)ItemCodeS}, itemname='{ItemName}', " +
+                $" workno={Index}, itemtype={(int)ItemType}, itemcode={(int)ItemCode}, itemname='{ItemName}', " +
                 $" itemref='{ItemRef}', bias_value='{BiasValue}', bias_range='{BiasRange}', bias_ch='{BiasCH}', " +
                 $" applytime={ApplyTime}, transtime={TransientTime}, humcnt={HumCount}, optical={(int)Optical}, " +
                 $" integ_vl={IntegVL}, integ_x1={IntegX1}, integ_x2={IntegX1}, integ_z={IntegZ}, gain={Gain}, offset={Offset} " +
@@ -1005,8 +1005,8 @@ namespace IsSoft.Sec.LedChecker
                 RecipeNo = 0;
                 SlavePatternNo = 0;
                 Index = 0;
-                ItemCodeN = ETestItemCode.VF;
-                ItemCodeS = ETestItemCode.VF;
+                ItemType = ETestItemType.Both;
+                ItemCode = ETestItemCode.VF;
                 ItemName = "VF";
                 ItemRef = "None";
                 TestPattern = "None";
@@ -1038,8 +1038,8 @@ namespace IsSoft.Sec.LedChecker
             RecipeNo = Convert.ToInt64(row["fk_recipeno"]);
             SlavePatternNo = Convert.ToInt64(row["fk_slavepatternno"]);
             Index = Convert.ToInt32(row["workno"]);
-            ItemCodeN = (ETestItemCode)Convert.ToInt32(row["itemcode_n"]);
-            ItemCodeS = (ETestItemCode)Convert.ToInt32(row["itemcode_s"]);
+            ItemType = (ETestItemType)Convert.ToInt32(row["itemtype"]);
+            ItemCode = (ETestItemCode)Convert.ToInt32(row["itemcode"]);
             ItemName = Convert.ToString(row["itemname"]);
             ItemRef = Convert.ToString(row["itemref"]);
             TestPattern = Convert.ToString(row["patternname"]);
@@ -1697,7 +1697,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 BinNo = 0;
-                WorkType = EWorkType.Full;
+                WorkType = EWorkType.Normal;
                 Logic = EBinLogic.OR;
                 Formula = "";
             }
@@ -1963,7 +1963,7 @@ namespace IsSoft.Sec.LedChecker
                 RecNo = 0;
                 RecipeNo = 0;
                 BinNo = 0;
-                Type = EWorkType.Full;
+                Type = EWorkType.Normal;
                 StartTime = "";
                 ElapsedTime = "";
             }

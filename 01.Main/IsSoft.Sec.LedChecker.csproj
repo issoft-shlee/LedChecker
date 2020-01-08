@@ -88,7 +88,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Ulee.Framework, Version=1.1.1.31595, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ulee.Framework, Version=1.1.1.19181, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\03.Pakages\Ulee.Framework\Ulee.Framework.dll</HintPath>
     </Reference>
@@ -148,6 +148,12 @@
     </Compile>
     <Compile Include="Source\01.Forms\02.Dialog\DialogSmuSelector.Designer.cs">
       <DependentUpon>DialogSmuSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\02.Controls\01.Auto\CtrlAutoLog.Designer.cs">
+      <DependentUpon>CtrlAutoLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\02.Controls\01.Auto\CtrlAutoMain.cs">
       <SubType>UserControl</SubType>
@@ -292,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\01.Forms\02.Dialog\DialogSmuSelector.resx">
       <DependentUpon>DialogSmuSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoLog.resx">
+      <DependentUpon>CtrlAutoLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlAutoMain.resx">
       <DependentUpon>CtrlAutoMain.cs</DependentUpon>

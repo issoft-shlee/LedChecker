@@ -239,8 +239,8 @@ namespace IsSoft.Sec.LedChecker
         {
             row.TestPattern = slaveSet.GetNameRecNoString(set.SlavePatternNo);
             row.Index = set.Index;
-            row.ItemCodeN = set.ItemCodeN;
-            row.ItemCodeS = set.ItemCodeS;
+            row.ItemType = set.ItemType;
+            row.ItemCode = set.ItemCode;
             row.ItemName = set.ItemName;
             row.ItemRef = set.ItemRef;
             row.BiasValue = set.BiasValue;
@@ -329,8 +329,8 @@ namespace IsSoft.Sec.LedChecker
             set.RecipeNo = recipeNo;
             set.SlavePatternNo = AppHelper.ExtractRecNo(row.TestPattern);
             set.Index = row.Index;
-            set.ItemCodeN = row.ItemCodeN;
-            set.ItemCodeS = row.ItemCodeS;
+            set.ItemType = row.ItemType;
+            set.ItemCode = row.ItemCode;
             set.ItemName = row.ItemName;
             set.ItemRef = row.ItemRef;
             set.BiasValue = row.BiasValue;

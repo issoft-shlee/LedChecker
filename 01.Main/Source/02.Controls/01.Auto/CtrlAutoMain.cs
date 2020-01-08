@@ -48,5 +48,10 @@ namespace IsSoft.Sec.LedChecker
         {
             reportPage.SetWorkIndex(index);
         }
+
+        public void SetTypeLamp()
+        {
+
+        }
     }
 }
