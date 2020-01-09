@@ -25,18 +25,18 @@ namespace IsSoft.Sec.LedChecker
                 try
                 {
                     AppRes.Create();
-                    AppRes.TotalLog[(int)ELogType.Note] = "Begin program";
+                    AppRes.TotalLog.Log("Begin program");
                     Application.Run(new FormLedCheckerMain());
                 }
                 catch (Exception e)
                 {
-                    AppRes.TotalLog[(int)ELogType.Exception] = e.ToString();
+                    AppRes.TotalLog["EXCEPTION"] = e.ToString();
                     MessageBox.Show(e.ToString(), AppRes.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     AppRes.Destroy();
-                    AppRes.TotalLog[(int)ELogType.Note] = "End program";
+                    AppRes.TotalLog.Log("End program");
 
                     mutex.ReleaseMutex();
                 }

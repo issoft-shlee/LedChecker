@@ -108,17 +108,17 @@ namespace IsSoft.Sec.LedChecker
 
                 int maxCount = (tests.Count > reports.Count) ? tests.Count + 1 : reports.Count + 1;
 
-                if (maxCount < 12)
-                {
-                    maxCount = 12;
-                    workBook.Options.HorizontalScrollbar.Visibility = SpreadsheetScrollbarVisibility.Hidden;
-                }
-                else
-                {
-                    workBook.Options.HorizontalScrollbar.Visibility = SpreadsheetScrollbarVisibility.Visible;
-                }
+                //if (maxCount < 12)
+                //{
+                //    maxCount = 12;
+                //    workBook.Options.HorizontalScrollbar.Visibility = SpreadsheetScrollbarVisibility.Hidden;
+                //}
+                //else
+                //{
+                //    workBook.Options.HorizontalScrollbar.Visibility = SpreadsheetScrollbarVisibility.Visible;
+                //}
 
-                workBook.WorksheetDisplayArea.SetSize(0, maxCount, 18);
+                workBook.WorksheetDisplayArea.SetSize(0, maxCount, 17);
             }
             finally
             {

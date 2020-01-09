@@ -716,7 +716,7 @@ namespace IsSoft.Sec.LedChecker
             Type = EBinType.Ok;
             Index = index;
             Name = "";
-            Mark = Color.FromKnownColor(KnownColor.Black);
+            Mark = Color.FromKnownColor(KnownColor.LightGray);
         }
     }
 

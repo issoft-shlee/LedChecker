@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.viewPanel = new Ulee.Controls.UlPanel();
             this.menuPanel = new Ulee.Controls.UlPanel();
             this.stateButton = new DevExpress.XtraEditors.SimpleButton();
             this.mainButton = new DevExpress.XtraEditors.SimpleButton();
+            this.viewPanel = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
@@ -42,24 +42,6 @@
             this.bgPanel.Controls.Add(this.viewPanel);
             this.bgPanel.Controls.Add(this.menuPanel);
             this.bgPanel.Size = new System.Drawing.Size(1816, 946);
-            // 
-            // viewPanel
-            // 
-            this.viewPanel.BevelInner = Ulee.Controls.EUlBevelStyle.Raised;
-            this.viewPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
-            this.viewPanel.Font = new System.Drawing.Font("Arial", 20F);
-            this.viewPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.viewPanel.InnerColor2 = System.Drawing.Color.White;
-            this.viewPanel.Location = new System.Drawing.Point(0, 0);
-            this.viewPanel.Name = "viewPanel";
-            this.viewPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.viewPanel.OuterColor2 = System.Drawing.Color.White;
-            this.viewPanel.Size = new System.Drawing.Size(1728, 946);
-            this.viewPanel.Spacing = 0;
-            this.viewPanel.TabIndex = 10;
-            this.viewPanel.Text = "VIEW";
-            this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
-            this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
             // menuPanel
             // 
@@ -117,6 +99,23 @@
             this.mainButton.TabStop = false;
             this.mainButton.Text = "MENU1";
             // 
+            // viewPanel
+            // 
+            this.viewPanel.BevelInner = Ulee.Controls.EUlBevelStyle.Raised;
+            this.viewPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.viewPanel.Font = new System.Drawing.Font("Arial", 20F);
+            this.viewPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.viewPanel.InnerColor2 = System.Drawing.Color.White;
+            this.viewPanel.Location = new System.Drawing.Point(0, 0);
+            this.viewPanel.Name = "viewPanel";
+            this.viewPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.viewPanel.OuterColor2 = System.Drawing.Color.White;
+            this.viewPanel.Size = new System.Drawing.Size(1728, 946);
+            this.viewPanel.Spacing = 0;
+            this.viewPanel.TabIndex = 10;
+            this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
             // CtrlViewRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -130,10 +129,9 @@
         }
 
         #endregion
-
-        private Ulee.Controls.UlPanel viewPanel;
         private Ulee.Controls.UlPanel menuPanel;
         private DevExpress.XtraEditors.SimpleButton stateButton;
         private DevExpress.XtraEditors.SimpleButton mainButton;
+        private Ulee.Controls.UlPanel viewPanel;
     }
 }

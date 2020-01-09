@@ -22,26 +22,41 @@ namespace IsSoft.Sec.LedChecker
 
         private void CtrlAutoLog_Load(object sender, EventArgs e)
         {
-            AppRes.TestLog.LoggerMessage += DoLoggerMessage;
+
+            AppRes.TotalLog.LoggerMessage += DoTotalLoggerMessage;
+            AppRes.TestLog.LoggerMessage += DoTestLoggerMessage;
         }
 
-        private void DoLoggerMessage(string message)
+        private void DoTotalLoggerMessage(string message)
         {
             if (this.InvokeRequired == true)
             {
-                LoggerMessageHandler func = new LoggerMessageHandler(DoLoggerMessage);
+                LoggerMessageHandler func = new LoggerMessageHandler(DoTotalLoggerMessage);
+                this.BeginInvoke(func, new object[] { message });
+            }
+            else
+            {
+                totalLogEdit.Text += message + "\r\n";
+            }
+        }
+
+        private void DoTestLoggerMessage(string message)
+        {
+            if (this.InvokeRequired == true)
+            {
+                LoggerMessageHandler func = new LoggerMessageHandler(DoTestLoggerMessage);
                 this.BeginInvoke(func, new object[] { message });
             }
             else
             {
                 AppRes.TotalLog.Log("TIMELESS", message);
-                logEdit.Text += message + "\r\n";
+                testLogEdit.Text += message + "\r\n";
             }
         }
 
         public void Clear()
         {
-            logEdit.Clear();
+            testLogEdit.Clear();
         }
     }
 }

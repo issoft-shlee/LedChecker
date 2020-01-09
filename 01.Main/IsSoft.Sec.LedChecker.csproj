@@ -179,16 +179,16 @@
     <Compile Include="Source\02.Controls\01.Auto\CtrlReportPage.Designer.cs">
       <DependentUpon>CtrlReportPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\02.Controls\02.View\CtrlViewRight.cs">
+    <Compile Include="Source\02.Controls\03.View\CtrlViewRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\02.Controls\02.View\CtrlViewRight.Designer.cs">
+    <Compile Include="Source\02.Controls\03.View\CtrlViewRight.Designer.cs">
       <DependentUpon>CtrlViewRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\02.Controls\03.Manual\CtrlManualRight.cs">
+    <Compile Include="Source\02.Controls\02.Manual\CtrlManualRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\02.Controls\03.Manual\CtrlManualRight.Designer.cs">
+    <Compile Include="Source\02.Controls\02.Manual\CtrlManualRight.Designer.cs">
       <DependentUpon>CtrlManualRight.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\02.Controls\04.Config\CtrlBinGrid.cs">
@@ -314,10 +314,10 @@
     <EmbeddedResource Include="Source\02.Controls\01.Auto\CtrlReportPage.resx">
       <DependentUpon>CtrlReportPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\02.Controls\02.View\CtrlViewRight.resx">
+    <EmbeddedResource Include="Source\02.Controls\03.View\CtrlViewRight.resx">
       <DependentUpon>CtrlViewRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\02.Controls\03.Manual\CtrlManualRight.resx">
+    <EmbeddedResource Include="Source\02.Controls\02.Manual\CtrlManualRight.resx">
       <DependentUpon>CtrlManualRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\02.Controls\04.Config\CtrlBinGrid.resx">

@@ -8,9 +8,6 @@ using System.Windows.Forms;
 
 using FirebirdSql.Data.FirebirdClient;
 
-using DevExpress.Utils;
-using DevExpress.XtraEditors.Controls;
-using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 
 using Ulee.Controls;
@@ -27,9 +24,7 @@ namespace IsSoft.Sec.LedChecker
 
         private CtrlConfigRight ctrlParent;
 
-        private CtrlBinGrid fullBin;
-
-        private CtrlBinGrid samplingBin;
+        private CtrlBinGrid binGrid;
 
         private RecipeDataSet recipeSet;
 
@@ -37,9 +32,7 @@ namespace IsSoft.Sec.LedChecker
 
         private BinFormulaDataSet binFormulaSet;
 
-        private List<BinRow> fullBinRows;
-
-        private List<BinRow> samplingBinRows;
+        private List<BinRow> binRows;
 
         public CtrlConfigBin(CtrlConfigRight parent)
         {
@@ -80,7 +73,7 @@ namespace IsSoft.Sec.LedChecker
             if (recipeGridView.FocusedRowHandle < 0) return;
 
             SetDataSetMode(EDataSetMode.Modify);
-            binTab.Focus();
+            binGridPanel.Focus();
         }
 
         private void recipeGrid_DoubleClick(object sender, EventArgs e)
@@ -99,8 +92,7 @@ namespace IsSoft.Sec.LedChecker
             recipeSet.Fetch(row);
 
             recipeNo = recipeSet.RecNo;
-            fullBin.RecipeNo = recipeNo;
-            samplingBin.RecipeNo = recipeNo;
+            binGrid.RecipeNo = recipeNo;
 
             SetBinValueFromDataSet();
         }
@@ -114,28 +106,19 @@ namespace IsSoft.Sec.LedChecker
             mode = EDataSetMode.View;
             bookmark = new GridBookmark(recipeGridView);
 
-            fullBinRows = new List<BinRow>();
-            samplingBinRows = new List<BinRow>();
+            binRows = new List<BinRow>();
 
             BinRow row;
             for (int i=0; i<AppRes.Properties.BinCount; i++)
             {
                 row = new BinRow();
-                fullBinRows.Add(row);
-
-                row = new BinRow();
-                samplingBinRows.Add(row);
+                binRows.Add(row);
             }
 
-            fullBin = new CtrlBinGrid(fullBinRows);
-            fullBin.RecipeNo = 0;
-            fullBin.Type = EWorkType.Normal;
-            binFullPage.Controls.Add(fullBin);
-
-            samplingBin = new CtrlBinGrid(samplingBinRows);
-            samplingBin.RecipeNo = 0;
-            samplingBin.Type = EWorkType.Sampling;
-            binSamplingPage.Controls.Add(samplingBin);
+            binGrid = new CtrlBinGrid(binRows);
+            binGrid.RecipeNo = 0;
+            binGrid.Type = EWorkType.Normal;
+            binGridPanel.Controls.Add(binGrid);
         }
 
         private void SetDataSetMode(EDataSetMode mode)
@@ -176,45 +159,27 @@ namespace IsSoft.Sec.LedChecker
             {
                 binSet.Fetch(i);
 
-                fullBinRows[i].RecNo = binSet.RecNo;
-                fullBinRows[i].Type = binSet.Type;
-                fullBinRows[i].Index = binSet.Index;
-                fullBinRows[i].Name = binSet.Name;
-                fullBinRows[i].Mark = binSet.Mark;
-                fullBinRows[i].Clear();
+                binRows[i].RecNo = binSet.RecNo;
+                binRows[i].Type = binSet.Type;
+                binRows[i].Index = binSet.Index;
+                binRows[i].Name = binSet.Name;
+                binRows[i].Mark = binSet.Mark;
+                binRows[i].Clear();
 
-                binFormulaSet.Select(binSet.RecNo, EWorkType.Normal);
-
-                for (int j = 0; j < binFormulaSet.RowCount; j++)
-                {
-                    binFormulaSet.Fetch(j);
-
-                    fullBinRows[i].Formulas[j].RecNo = binFormulaSet.RecNo;
-                    fullBinRows[i].Formulas[j].Logic = binFormulaSet.Logic;
-                    fullBinRows[i].Formulas[j].Formula = binFormulaSet.Formula;
-                }
-
-                samplingBinRows[i].RecNo = binSet.RecNo;
-                samplingBinRows[i].Type = binSet.Type;
-                samplingBinRows[i].Index = binSet.Index;
-                samplingBinRows[i].Name = binSet.Name;
-                samplingBinRows[i].Mark = binSet.Mark;
-                samplingBinRows[i].Clear();
-
-                binFormulaSet.Select(binSet.RecNo, EWorkType.Sampling);
+                binFormulaSet.Select(binSet.RecNo);
 
                 for (int j = 0; j < binFormulaSet.RowCount; j++)
                 {
                     binFormulaSet.Fetch(j);
 
-                    samplingBinRows[i].Formulas[j].RecNo = binFormulaSet.RecNo;
-                    samplingBinRows[i].Formulas[j].Logic = binFormulaSet.Logic;
-                    samplingBinRows[i].Formulas[j].Formula = binFormulaSet.Formula;
+                    binRows[i].Formulas[j].RecNo = binFormulaSet.RecNo;
+                    binRows[i].Formulas[j].Logic = binFormulaSet.Logic;
+                    binRows[i].Formulas[j].Formula = binFormulaSet.Formula;
                 }
+
             }
 
-            fullBin.RefreshData();
-            samplingBin.RefreshData();
+            binGrid.RefreshData();
         }
 
         private void SaveBins()
@@ -223,15 +188,13 @@ namespace IsSoft.Sec.LedChecker
 
             try
             {
-                if (fullBinRows[0].Formulas[0].RecNo == 0)
+                if (binRows[0].Formulas[0].RecNo == 0)
                 {
-                    InsertBins(trans, fullBinRows, EWorkType.Normal);
-                    InsertBins(trans, samplingBinRows, EWorkType.Sampling);
+                    InsertBins(trans, binRows);
                 }
                 else
                 {
-                    UpdateBins(trans, fullBinRows, EWorkType.Normal);
-                    UpdateBins(trans, samplingBinRows, EWorkType.Sampling);
+                    UpdateBins(trans, binRows);
                 }
 
                 AppRes.DB.CommitTrans();
@@ -242,7 +205,7 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        private void InsertBins(FbTransaction trans, List<BinRow> binRows, EWorkType type)
+        private void InsertBins(FbTransaction trans, List<BinRow> binRows)
         {
             foreach (BinRow row in binRows)
             {
@@ -250,7 +213,6 @@ namespace IsSoft.Sec.LedChecker
                 {
                     binFormulaSet.RecNo = AppRes.DB.GetGenNo("GN_BINFORMULA");
                     binFormulaSet.BinNo = row.RecNo;
-                    binFormulaSet.WorkType = type; 
                     binFormulaSet.Logic = formula.Logic;
                     binFormulaSet.Formula = formula.Formula;
                     binFormulaSet.Insert(trans);
@@ -258,7 +220,7 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        private void UpdateBins(FbTransaction trans, List<BinRow> binRows, EWorkType type)
+        private void UpdateBins(FbTransaction trans, List<BinRow> binRows)
         {
             foreach (BinRow row in binRows)
             {
@@ -266,7 +228,6 @@ namespace IsSoft.Sec.LedChecker
                 {
                     binFormulaSet.RecNo = formula.RecNo;
                     binFormulaSet.BinNo = row.RecNo;
-                    binFormulaSet.WorkType = type;
                     binFormulaSet.Logic = formula.Logic;
                     binFormulaSet.Formula = formula.Formula;
                     binFormulaSet.Update(trans);
@@ -278,8 +239,7 @@ namespace IsSoft.Sec.LedChecker
         {
             searchPanel.Enabled = enabled;
 
-            fullBin.ReadOnly = enabled;
-            samplingBin.ReadOnly = enabled;
+            binGrid.ReadOnly = enabled;
         }
 
         public void Save()

@@ -1599,8 +1599,6 @@ namespace IsSoft.Sec.LedChecker
 
         public Int64 BinNo { get; set; }
 
-        public EWorkType WorkType { get; set; }
-
         public EBinLogic Logic { get; set; }
 
         public string Formula { get; set; }
@@ -1610,13 +1608,13 @@ namespace IsSoft.Sec.LedChecker
         {
         }
 
-        public void Select(Int64 binNo, EWorkType workType, FbTransaction trans = null)
+        public void Select(Int64 binNo, FbTransaction trans = null)
         {
 
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_BINFORMULA " +
-                $" where fk_binno={binNo} and worktype={(int)workType} " +
+                $" where fk_binno={binNo} " +
                 $" order by pk_recno asc ";
 
             dataSet.Clear();
@@ -1627,7 +1625,7 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" insert into TB_BINFORMULA values " +
-                $" ({RecNo}, {BinNo}, {(int)WorkType}, {(int)Logic}, '{Formula}') ";
+                $" ({RecNo}, {BinNo}, {(int)Logic}, '{Formula}') ";
 
             SetTrans(trans);
 
@@ -1648,7 +1646,7 @@ namespace IsSoft.Sec.LedChecker
         {
             string sql =
                 $" update TB_BINFORMULA set " +
-                $" fk_binno={BinNo}, worktype={(int)WorkType}, logic={(int)Logic}, formula='{Formula}' " +
+                $" fk_binno={BinNo}, logic={(int)Logic}, formula='{Formula}' " +
                 $" where pk_recno={RecNo} ";
 
             SetTrans(trans);
@@ -1697,7 +1695,6 @@ namespace IsSoft.Sec.LedChecker
             {
                 RecNo = 0;
                 BinNo = 0;
-                WorkType = EWorkType.Normal;
                 Logic = EBinLogic.OR;
                 Formula = "";
             }
@@ -1707,7 +1704,6 @@ namespace IsSoft.Sec.LedChecker
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             BinNo = Convert.ToInt64(row["fk_binno"]);
-            WorkType = (EWorkType)Convert.ToInt32(row["worktype"]);
             Logic = (EBinLogic)Convert.ToInt32(row["logic"]);
             Formula = Convert.ToString(row["formula"]);
         }

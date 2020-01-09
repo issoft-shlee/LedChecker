@@ -44,12 +44,21 @@ namespace IsSoft.Sec.LedChecker
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        int index = i * 10 + j;
-
-                        if (index < bins.Count)
+                        if (i * 10 + j < bins.Count)
                         {
                             sheet.Cells[i * 2 + 0, j].FillColor = bins[i * 10 + j + 1].Mark;
-                            sheet.Cells[i * 2 + 0, j].Value = bins[i * 10 + j + 1].Name;
+
+                            int index = bins[i * 10 + j + 1].Index;
+                            string name = bins[i * 10 + j + 1].Name;
+
+                            if (string.IsNullOrWhiteSpace(name) == true)
+                            {
+                                sheet.Cells[i * 2 + 0, j].Value = $"{index}";
+                            }
+                            else
+                            {
+                                sheet.Cells[i * 2 + 0, j].Value = $"{name}({index})";
+                            }
                         }
                         else
                         {
@@ -82,7 +91,7 @@ namespace IsSoft.Sec.LedChecker
                         {
                             string sValue = sheet.Cells[i * 2 + 0, j].Value.ToString();
 
-                            if (sValue == "")
+                            if (sValue.Contains("(") == false)
                                 sheet.Cells[i * 2 + 1, j].Value = "";
                             else
                                 sheet.Cells[i * 2 + 1, j].Value = bins[i * 10 + j].Count;

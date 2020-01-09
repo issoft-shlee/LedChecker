@@ -30,9 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlConfigBin));
             this.viewerPanel = new Ulee.Controls.UlPanel();
-            this.binTab = new System.Windows.Forms.TabControl();
-            this.binFullPage = new System.Windows.Forms.TabPage();
-            this.binSamplingPage = new System.Windows.Forms.TabPage();
             this.viewStatePanel = new Ulee.Controls.UlPanel();
             this.searchPanel = new Ulee.Controls.UlPanel();
             this.findButton = new System.Windows.Forms.Button();
@@ -43,9 +40,9 @@
             this.recipeNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.recipeMemoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.modifyButton = new System.Windows.Forms.Button();
+            this.binGridPanel = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             this.viewerPanel.SuspendLayout();
-            this.binTab.SuspendLayout();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findNameEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeGrid)).BeginInit();
@@ -63,7 +60,7 @@
             // 
             this.viewerPanel.BevelInner = Ulee.Controls.EUlBevelStyle.Raised;
             this.viewerPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
-            this.viewerPanel.Controls.Add(this.binTab);
+            this.viewerPanel.Controls.Add(this.binGridPanel);
             this.viewerPanel.Controls.Add(this.viewStatePanel);
             this.viewerPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.viewerPanel.InnerColor2 = System.Drawing.Color.White;
@@ -77,38 +74,6 @@
             this.viewerPanel.TabStop = true;
             this.viewerPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewerPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
-            // 
-            // binTab
-            // 
-            this.binTab.Controls.Add(this.binFullPage);
-            this.binTab.Controls.Add(this.binSamplingPage);
-            this.binTab.Location = new System.Drawing.Point(6, 40);
-            this.binTab.Name = "binTab";
-            this.binTab.SelectedIndex = 0;
-            this.binTab.Size = new System.Drawing.Size(1310, 898);
-            this.binTab.TabIndex = 151;
-            // 
-            // binFullPage
-            // 
-            this.binFullPage.BackColor = System.Drawing.Color.White;
-            this.binFullPage.Location = new System.Drawing.Point(4, 24);
-            this.binFullPage.Margin = new System.Windows.Forms.Padding(4);
-            this.binFullPage.Name = "binFullPage";
-            this.binFullPage.Padding = new System.Windows.Forms.Padding(4);
-            this.binFullPage.Size = new System.Drawing.Size(1302, 870);
-            this.binFullPage.TabIndex = 0;
-            this.binFullPage.Text = "  Full  ";
-            // 
-            // binSamplingPage
-            // 
-            this.binSamplingPage.BackColor = System.Drawing.Color.White;
-            this.binSamplingPage.Location = new System.Drawing.Point(4, 24);
-            this.binSamplingPage.Margin = new System.Windows.Forms.Padding(4);
-            this.binSamplingPage.Name = "binSamplingPage";
-            this.binSamplingPage.Padding = new System.Windows.Forms.Padding(4);
-            this.binSamplingPage.Size = new System.Drawing.Size(1302, 870);
-            this.binSamplingPage.TabIndex = 1;
-            this.binSamplingPage.Text = "  Sampling  ";
             // 
             // viewStatePanel
             // 
@@ -297,6 +262,22 @@
             this.modifyButton.UseVisualStyleBackColor = true;
             this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
+            // binGridPanel
+            // 
+            this.binGridPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.binGridPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.binGridPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.binGridPanel.InnerColor2 = System.Drawing.Color.White;
+            this.binGridPanel.Location = new System.Drawing.Point(6, 40);
+            this.binGridPanel.Name = "binGridPanel";
+            this.binGridPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.binGridPanel.OuterColor2 = System.Drawing.Color.White;
+            this.binGridPanel.Size = new System.Drawing.Size(1310, 898);
+            this.binGridPanel.Spacing = 0;
+            this.binGridPanel.TabIndex = 130;
+            this.binGridPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.binGridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
             // CtrlConfigBin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -305,7 +286,6 @@
             this.Load += new System.EventHandler(this.CtrlConfigBin_Load);
             this.bgPanel.ResumeLayout(false);
             this.viewerPanel.ResumeLayout(false);
-            this.binTab.ResumeLayout(false);
             this.searchPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.findNameEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeGrid)).EndInit();
@@ -328,8 +308,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn recipeNameColumn;
         private DevExpress.XtraGrid.Columns.GridColumn recipeMemoColumn;
         private System.Windows.Forms.Button modifyButton;
-        private System.Windows.Forms.TabControl binTab;
-        private System.Windows.Forms.TabPage binFullPage;
-        private System.Windows.Forms.TabPage binSamplingPage;
+        private Ulee.Controls.UlPanel binGridPanel;
     }
 }

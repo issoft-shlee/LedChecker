@@ -55,6 +55,7 @@
             this.samplingLamp = new Ulee.Controls.UlPanel();
             this.autoLamp = new Ulee.Controls.UlPanel();
             this.manualLamp = new Ulee.Controls.UlPanel();
+            this.ulPanel7 = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             // bgPanel
             // 
             this.bgPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.bgPanel.Controls.Add(this.ulPanel7);
             this.bgPanel.Controls.Add(this.manualLamp);
             this.bgPanel.Controls.Add(this.autoLamp);
             this.bgPanel.Controls.Add(this.samplingLamp);
@@ -223,7 +225,7 @@
             this.mainButton.Size = new System.Drawing.Size(80, 58);
             this.mainButton.TabIndex = 3;
             this.mainButton.TabStop = false;
-            this.mainButton.Text = "TEST DATA";
+            this.mainButton.Text = "MAIN";
             // 
             // viewPanel
             // 
@@ -250,7 +252,7 @@
             this.ulPanel2.ForeColor = System.Drawing.Color.Black;
             this.ulPanel2.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel2.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel2.Location = new System.Drawing.Point(648, 26);
+            this.ulPanel2.Location = new System.Drawing.Point(500, 26);
             this.ulPanel2.Name = "ulPanel2";
             this.ulPanel2.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel2.OuterColor2 = System.Drawing.Color.White;
@@ -269,7 +271,7 @@
             this.ulPanel5.ForeColor = System.Drawing.Color.White;
             this.ulPanel5.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel5.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel5.Location = new System.Drawing.Point(576, 26);
+            this.ulPanel5.Location = new System.Drawing.Point(428, 26);
             this.ulPanel5.Name = "ulPanel5";
             this.ulPanel5.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel5.OuterColor2 = System.Drawing.Color.White;
@@ -289,7 +291,7 @@
             this.lotPanel.ForeColor = System.Drawing.Color.Black;
             this.lotPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.lotPanel.InnerColor2 = System.Drawing.Color.White;
-            this.lotPanel.Location = new System.Drawing.Point(648, 0);
+            this.lotPanel.Location = new System.Drawing.Point(500, 0);
             this.lotPanel.Name = "lotPanel";
             this.lotPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.lotPanel.OuterColor2 = System.Drawing.Color.White;
@@ -308,7 +310,7 @@
             this.ulPanel3.ForeColor = System.Drawing.Color.White;
             this.ulPanel3.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel3.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel3.Location = new System.Drawing.Point(576, 0);
+            this.ulPanel3.Location = new System.Drawing.Point(428, 0);
             this.ulPanel3.Name = "ulPanel3";
             this.ulPanel3.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel3.OuterColor2 = System.Drawing.Color.White;
@@ -328,7 +330,7 @@
             this.decisionMeter.ForeColor = System.Drawing.Color.White;
             this.decisionMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.decisionMeter.InnerColor2 = System.Drawing.Color.White;
-            this.decisionMeter.Location = new System.Drawing.Point(1662, 0);
+            this.decisionMeter.Location = new System.Drawing.Point(1578, 0);
             this.decisionMeter.Name = "decisionMeter";
             this.decisionMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.decisionMeter.OuterColor2 = System.Drawing.Color.White;
@@ -348,7 +350,7 @@
             this.ratioMeter.ForeColor = System.Drawing.Color.Lime;
             this.ratioMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioMeter.InnerColor2 = System.Drawing.Color.White;
-            this.ratioMeter.Location = new System.Drawing.Point(1600, 26);
+            this.ratioMeter.Location = new System.Drawing.Point(1516, 26);
             this.ratioMeter.Name = "ratioMeter";
             this.ratioMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioMeter.OuterColor2 = System.Drawing.Color.White;
@@ -368,7 +370,7 @@
             this.ngMeter.ForeColor = System.Drawing.Color.Lime;
             this.ngMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ngMeter.InnerColor2 = System.Drawing.Color.White;
-            this.ngMeter.Location = new System.Drawing.Point(1538, 26);
+            this.ngMeter.Location = new System.Drawing.Point(1454, 26);
             this.ngMeter.Name = "ngMeter";
             this.ngMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ngMeter.OuterColor2 = System.Drawing.Color.White;
@@ -388,7 +390,7 @@
             this.ratioPanel.ForeColor = System.Drawing.Color.White;
             this.ratioPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioPanel.InnerColor2 = System.Drawing.Color.White;
-            this.ratioPanel.Location = new System.Drawing.Point(1600, 0);
+            this.ratioPanel.Location = new System.Drawing.Point(1516, 0);
             this.ratioPanel.Name = "ratioPanel";
             this.ratioPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ratioPanel.OuterColor2 = System.Drawing.Color.White;
@@ -408,7 +410,7 @@
             this.ulPanel6.ForeColor = System.Drawing.Color.White;
             this.ulPanel6.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel6.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel6.Location = new System.Drawing.Point(1538, 0);
+            this.ulPanel6.Location = new System.Drawing.Point(1454, 0);
             this.ulPanel6.Name = "ulPanel6";
             this.ulPanel6.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel6.OuterColor2 = System.Drawing.Color.White;
@@ -428,7 +430,7 @@
             this.okMeter.ForeColor = System.Drawing.Color.Lime;
             this.okMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.okMeter.InnerColor2 = System.Drawing.Color.White;
-            this.okMeter.Location = new System.Drawing.Point(1476, 26);
+            this.okMeter.Location = new System.Drawing.Point(1392, 26);
             this.okMeter.Name = "okMeter";
             this.okMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.okMeter.OuterColor2 = System.Drawing.Color.White;
@@ -448,7 +450,7 @@
             this.totalMeter.ForeColor = System.Drawing.Color.Lime;
             this.totalMeter.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.totalMeter.InnerColor2 = System.Drawing.Color.White;
-            this.totalMeter.Location = new System.Drawing.Point(1414, 26);
+            this.totalMeter.Location = new System.Drawing.Point(1330, 26);
             this.totalMeter.Name = "totalMeter";
             this.totalMeter.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.totalMeter.OuterColor2 = System.Drawing.Color.White;
@@ -468,7 +470,7 @@
             this.ulPanel4.ForeColor = System.Drawing.Color.White;
             this.ulPanel4.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel4.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel4.Location = new System.Drawing.Point(1476, 0);
+            this.ulPanel4.Location = new System.Drawing.Point(1392, 0);
             this.ulPanel4.Name = "ulPanel4";
             this.ulPanel4.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel4.OuterColor2 = System.Drawing.Color.White;
@@ -488,7 +490,7 @@
             this.ulPanel1.ForeColor = System.Drawing.Color.White;
             this.ulPanel1.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel1.InnerColor2 = System.Drawing.Color.White;
-            this.ulPanel1.Location = new System.Drawing.Point(1414, 0);
+            this.ulPanel1.Location = new System.Drawing.Point(1330, 0);
             this.ulPanel1.Name = "ulPanel1";
             this.ulPanel1.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.ulPanel1.OuterColor2 = System.Drawing.Color.White;
@@ -508,7 +510,7 @@
             this.recipePanel.ForeColor = System.Drawing.Color.Blue;
             this.recipePanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.recipePanel.InnerColor2 = System.Drawing.Color.White;
-            this.recipePanel.Location = new System.Drawing.Point(232, 0);
+            this.recipePanel.Location = new System.Drawing.Point(84, 0);
             this.recipePanel.Name = "recipePanel";
             this.recipePanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.recipePanel.OuterColor2 = System.Drawing.Color.White;
@@ -528,7 +530,7 @@
             this.normalLamp.ForeColor = System.Drawing.Color.White;
             this.normalLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.normalLamp.InnerColor2 = System.Drawing.Color.White;
-            this.normalLamp.Location = new System.Drawing.Point(148, 0);
+            this.normalLamp.Location = new System.Drawing.Point(1648, 0);
             this.normalLamp.Name = "normalLamp";
             this.normalLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.normalLamp.OuterColor2 = System.Drawing.Color.White;
@@ -549,7 +551,7 @@
             this.samplingLamp.ForeColor = System.Drawing.Color.White;
             this.samplingLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.samplingLamp.InnerColor2 = System.Drawing.Color.White;
-            this.samplingLamp.Location = new System.Drawing.Point(148, 26);
+            this.samplingLamp.Location = new System.Drawing.Point(1648, 26);
             this.samplingLamp.Name = "samplingLamp";
             this.samplingLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.samplingLamp.OuterColor2 = System.Drawing.Color.White;
@@ -574,7 +576,7 @@
             this.autoLamp.Name = "autoLamp";
             this.autoLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.autoLamp.OuterColor2 = System.Drawing.Color.White;
-            this.autoLamp.Size = new System.Drawing.Size(70, 50);
+            this.autoLamp.Size = new System.Drawing.Size(80, 24);
             this.autoLamp.Spacing = 0;
             this.autoLamp.TabIndex = 34;
             this.autoLamp.Text = "AUTO";
@@ -591,17 +593,33 @@
             this.manualLamp.ForeColor = System.Drawing.Color.White;
             this.manualLamp.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.manualLamp.InnerColor2 = System.Drawing.Color.White;
-            this.manualLamp.Location = new System.Drawing.Point(74, 0);
+            this.manualLamp.Location = new System.Drawing.Point(0, 26);
             this.manualLamp.Name = "manualLamp";
             this.manualLamp.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.manualLamp.OuterColor2 = System.Drawing.Color.White;
-            this.manualLamp.Size = new System.Drawing.Size(70, 50);
+            this.manualLamp.Size = new System.Drawing.Size(80, 24);
             this.manualLamp.Spacing = 0;
             this.manualLamp.TabIndex = 35;
             this.manualLamp.Text = "MANUAL";
             this.manualLamp.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.manualLamp.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             this.manualLamp.Click += new System.EventHandler(this.manualLamp_Click);
+            // 
+            // ulPanel7
+            // 
+            this.ulPanel7.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.ulPanel7.BevelOuter = Ulee.Controls.EUlBevelStyle.Single;
+            this.ulPanel7.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel7.InnerColor2 = System.Drawing.Color.White;
+            this.ulPanel7.Location = new System.Drawing.Point(828, 0);
+            this.ulPanel7.Name = "ulPanel7";
+            this.ulPanel7.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel7.OuterColor2 = System.Drawing.Color.White;
+            this.ulPanel7.Size = new System.Drawing.Size(498, 50);
+            this.ulPanel7.Spacing = 0;
+            this.ulPanel7.TabIndex = 36;
+            this.ulPanel7.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.ulPanel7.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
             // CtrlAutoRight
             // 
@@ -645,5 +663,6 @@
         private Ulee.Controls.UlPanel normalLamp;
         private Ulee.Controls.UlPanel manualLamp;
         private Ulee.Controls.UlPanel autoLamp;
+        private Ulee.Controls.UlPanel ulPanel7;
     }
 }

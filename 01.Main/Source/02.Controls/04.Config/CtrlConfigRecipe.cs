@@ -411,8 +411,8 @@ namespace IsSoft.Sec.LedChecker
                 InsertMasterPattern(trans, masterSet, masterNo, recipeNo);
                 InsertMasterPatternLed(trans, masterLedSet, masterNo);
 
-                InsertSmu(trans, smuSet, recipeNo);
-                InsertBin(trans, binSet, recipeNo);
+                InsertSmu(trans, smuSet);
+                InsertBin(trans, binSet);
 
                 AppRes.DB.CommitTrans();
             }
@@ -568,7 +568,7 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        private void InsertSmu(FbTransaction trans, SmuDataSet set, Int64 recipeNo)
+        private void InsertSmu(FbTransaction trans, SmuDataSet set)
         {
             foreach (StringRow row in stringRows)
             {
@@ -591,7 +591,7 @@ namespace IsSoft.Sec.LedChecker
             }
         }
 
-        private void InsertBin(FbTransaction trans, BinDataSet set, Int64 recipeNo)
+        private void InsertBin(FbTransaction trans, BinDataSet set)
         {
             foreach (RecipeBinRow row in binRows)
             {

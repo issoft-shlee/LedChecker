@@ -40,26 +40,26 @@
             this.homeButton = new DevExpress.XtraEditors.SimpleButton();
             this.testButton = new DevExpress.XtraEditors.SimpleButton();
             this.resetButton = new DevExpress.XtraEditors.SimpleButton();
-            this.viewButton = new DevExpress.XtraEditors.SimpleButton();
             this.configButton = new DevExpress.XtraEditors.SimpleButton();
             this.hideButton = new DevExpress.XtraEditors.SimpleButton();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
-            this.manualButton = new DevExpress.XtraEditors.SimpleButton();
+            this.deviceButton = new DevExpress.XtraEditors.SimpleButton();
             this.viewPanel = new Ulee.Controls.UlPanel();
             this.mainNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.mainTrayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.authorLogoPanel = new Ulee.Controls.UlPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clientLogoPanel = new Ulee.Controls.UlPanel();
             this.clientPicBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.viewButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.mainTrayMenu.SuspendLayout();
             this.authorLogoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.clientLogoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientPicBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -190,14 +190,14 @@
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.menuPanel.Controls.Add(this.viewButton);
             this.menuPanel.Controls.Add(this.homeButton);
             this.menuPanel.Controls.Add(this.testButton);
             this.menuPanel.Controls.Add(this.resetButton);
-            this.menuPanel.Controls.Add(this.viewButton);
             this.menuPanel.Controls.Add(this.configButton);
             this.menuPanel.Controls.Add(this.hideButton);
             this.menuPanel.Controls.Add(this.exitButton);
-            this.menuPanel.Controls.Add(this.manualButton);
+            this.menuPanel.Controls.Add(this.deviceButton);
             this.menuPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.menuPanel.InnerColor2 = System.Drawing.Color.White;
             this.menuPanel.Location = new System.Drawing.Point(8, 52);
@@ -256,7 +256,7 @@
             this.testButton.Size = new System.Drawing.Size(80, 58);
             this.testButton.TabIndex = 3;
             this.testButton.TabStop = false;
-            this.testButton.Text = "AUTO";
+            this.testButton.Text = "TEST";
             // 
             // resetButton
             // 
@@ -281,30 +281,6 @@
             this.resetButton.TabIndex = 32;
             this.resetButton.TabStop = false;
             this.resetButton.Text = "RESET";
-            // 
-            // viewButton
-            // 
-            this.viewButton.AllowFocus = false;
-            this.viewButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.Appearance.Options.UseFont = true;
-            this.viewButton.Appearance.Options.UseTextOptions = true;
-            this.viewButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.viewButton.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.AppearanceDisabled.Options.UseFont = true;
-            this.viewButton.AppearanceHovered.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.AppearanceHovered.Options.UseFont = true;
-            this.viewButton.AppearancePressed.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.AppearancePressed.Options.UseFont = true;
-            this.viewButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("viewButton.ImageOptions.Image")));
-            this.viewButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.viewButton.Location = new System.Drawing.Point(2, 122);
-            this.viewButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.viewButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(80, 58);
-            this.viewButton.TabIndex = 8;
-            this.viewButton.TabStop = false;
-            this.viewButton.Text = "VIEW";
             // 
             // configButton
             // 
@@ -380,29 +356,29 @@
             this.exitButton.Text = "EXIT";
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // manualButton
+            // deviceButton
             // 
-            this.manualButton.AllowFocus = false;
-            this.manualButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.Appearance.Options.UseFont = true;
-            this.manualButton.Appearance.Options.UseTextOptions = true;
-            this.manualButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.manualButton.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.AppearanceDisabled.Options.UseFont = true;
-            this.manualButton.AppearanceHovered.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.AppearanceHovered.Options.UseFont = true;
-            this.manualButton.AppearancePressed.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manualButton.AppearancePressed.Options.UseFont = true;
-            this.manualButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("manualButton.ImageOptions.Image")));
-            this.manualButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.manualButton.Location = new System.Drawing.Point(2, 62);
-            this.manualButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.manualButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.manualButton.Name = "manualButton";
-            this.manualButton.Size = new System.Drawing.Size(80, 58);
-            this.manualButton.TabIndex = 4;
-            this.manualButton.TabStop = false;
-            this.manualButton.Text = "MANUAL";
+            this.deviceButton.AllowFocus = false;
+            this.deviceButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceButton.Appearance.Options.UseFont = true;
+            this.deviceButton.Appearance.Options.UseTextOptions = true;
+            this.deviceButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.deviceButton.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceButton.AppearanceDisabled.Options.UseFont = true;
+            this.deviceButton.AppearanceHovered.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceButton.AppearanceHovered.Options.UseFont = true;
+            this.deviceButton.AppearancePressed.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceButton.AppearancePressed.Options.UseFont = true;
+            this.deviceButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("manualButton.ImageOptions.Image")));
+            this.deviceButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.deviceButton.Location = new System.Drawing.Point(2, 62);
+            this.deviceButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.deviceButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.deviceButton.Name = "deviceButton";
+            this.deviceButton.Size = new System.Drawing.Size(80, 58);
+            this.deviceButton.TabIndex = 4;
+            this.deviceButton.TabStop = false;
+            this.deviceButton.Text = "DEVICE";
             // 
             // viewPanel
             // 
@@ -463,6 +439,17 @@
             this.authorLogoPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.authorLogoPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // clientLogoPanel
             // 
             this.clientLogoPanel.BackColor = System.Drawing.Color.Black;
@@ -493,16 +480,24 @@
             this.clientPicBox.TabIndex = 0;
             this.clientPicBox.TabStop = false;
             // 
-            // pictureBox1
+            // viewButton
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.viewButton.AllowFocus = false;
+            this.viewButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewButton.Appearance.Options.UseFont = true;
+            this.viewButton.Appearance.Options.UseTextOptions = true;
+            this.viewButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.viewButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("logButton.ImageOptions.Image")));
+            this.viewButton.ImageOptions.ImageToTextIndent = 0;
+            this.viewButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.viewButton.Location = new System.Drawing.Point(2, 122);
+            this.viewButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.viewButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.viewButton.Name = "viewButton";
+            this.viewButton.Size = new System.Drawing.Size(80, 58);
+            this.viewButton.TabIndex = 33;
+            this.viewButton.TabStop = false;
+            this.viewButton.Text = "VIEW";
             // 
             // FormLedCheckerMain
             // 
@@ -521,9 +516,9 @@
             this.menuPanel.ResumeLayout(false);
             this.mainTrayMenu.ResumeLayout(false);
             this.authorLogoPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.clientLogoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientPicBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,11 +535,10 @@
         private Ulee.Controls.UlPanel menuPanel;
         private Ulee.Controls.UlPanel viewPanel;
         private DevExpress.XtraEditors.SimpleButton exitButton;
-        private DevExpress.XtraEditors.SimpleButton manualButton;
+        private DevExpress.XtraEditors.SimpleButton deviceButton;
         private DevExpress.XtraEditors.SimpleButton testButton;
         private DevExpress.XtraEditors.SimpleButton hideButton;
         private DevExpress.XtraEditors.SimpleButton configButton;
-        private DevExpress.XtraEditors.SimpleButton viewButton;
         private DevExpress.XtraEditors.SimpleButton resetButton;
         private DevExpress.XtraEditors.SimpleButton homeButton;
         private System.Windows.Forms.NotifyIcon mainNotifyIcon;
@@ -554,5 +548,6 @@
         private Ulee.Controls.UlPanel authorLogoPanel;
         private System.Windows.Forms.PictureBox clientPicBox;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private DevExpress.XtraEditors.SimpleButton viewButton;
     }
 }

@@ -90,8 +90,8 @@ namespace IsSoft.Sec.LedChecker
 
             DefMenu = new UlMenu(viewPanel);
             DefMenu.Add(new CtrlAutoRight(), testButton);
+            DefMenu.Add(new CtrlManualRight(), deviceButton);
             DefMenu.Add(new CtrlViewRight(), viewButton);
-            DefMenu.Add(new CtrlManualRight(), manualButton);
             DefMenu.Add(new CtrlConfigRight(), configButton);
         }
 

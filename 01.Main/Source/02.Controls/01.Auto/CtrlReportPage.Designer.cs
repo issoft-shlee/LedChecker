@@ -52,6 +52,7 @@
             this.workBook.Name = "workBook";
             this.workBook.Options.Behavior.Selection.AllowExtendSelection = false;
             this.workBook.Options.Behavior.Selection.AllowMultiSelection = false;
+            this.workBook.Options.HorizontalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Visible;
             this.workBook.Options.TabSelector.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetElementVisibility.Hidden;
             this.workBook.Options.VerticalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Hidden;
             this.workBook.Options.View.ShowColumnHeaders = false;

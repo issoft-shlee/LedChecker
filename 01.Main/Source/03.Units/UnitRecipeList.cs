@@ -19,6 +19,11 @@ namespace IsSoft.Sec.LedChecker
         public RecipeObject this[string name]
         { get { return names[name]; } }
 
+        public List<RecipeObject> ToList()
+        {
+            return keys.Values.ToList();
+        }
+
         public RecipeList()
         {
             keys = new Dictionary<Int64, RecipeObject>();
@@ -96,22 +101,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 throw new Exception("There is no recipe error in RecipeObject.Load");
             }
-
-            recipeSet.Fetch();
-            RecNo = recipeSet.RecNo;
-            Code = recipeSet.Name;
-            Memo = recipeSet.Memo;
-            ST1_X = recipeSet.ST1_X;
-            ST1_Y = recipeSet.ST1_Y;
-            ST1_QR = recipeSet.ST1_QR;
-            ST2_X = recipeSet.ST2_X;
-            ST2_Y = recipeSet.ST2_Y;
-            ST2_QR = recipeSet.ST2_QR;
-
-            Work = new WorkObject(RecNo);
-            Pattern = new PatternList(RecNo);
-            Rank = new RankList(RecNo);
-            Bin = new BinList(RecNo);
+            Fetch();
 
             return true;
         }
@@ -140,6 +130,13 @@ namespace IsSoft.Sec.LedChecker
 
                 return false;
             }
+            Fetch();
+
+            return true;
+        }
+
+        private void Fetch()
+        {
 
             recipeSet.Fetch();
             RecNo = recipeSet.RecNo;
@@ -157,7 +154,22 @@ namespace IsSoft.Sec.LedChecker
             Rank = new RankList(RecNo);
             Bin = new BinList(RecNo);
 
-            return true;
+            List<BinObject> bins = Bin.ToList();
+
+            foreach (BinObject bin in bins)
+            {
+                foreach (BinFormulaObject formula in bin.Formulas)
+                {
+                    if (string.IsNullOrWhiteSpace(formula.Token.ItemName) == false)
+                    {
+                        if (string.IsNullOrWhiteSpace(Work.Reports[formula.Token.ItemName].ItemRef) == false)
+                        {
+                            int refNo = (int)AppHelper.ExtractRecNo(Work.Reports[formula.Token.ItemName].ItemRef);
+                            formula.Type = Work.Tests[refNo].ItemType;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -178,6 +190,11 @@ namespace IsSoft.Sec.LedChecker
 
         public PatternObject this[string name]
         { get { return names[name]; } }
+
+        public List<PatternObject> ToList()
+        {
+            return keys.Values.ToList();
+        }
 
         public PatternList(Int64 recipeNo)
         {
@@ -477,6 +494,11 @@ namespace IsSoft.Sec.LedChecker
 
         public TestWorkObject this[string name]
         { get { return names[name]; } }
+
+        public List<TestWorkObject> ToList()
+        {
+            return indexes.Values.ToList();
+        }
         
         public TestWorkList(Int64 recipeNo)
         {
@@ -612,6 +634,11 @@ namespace IsSoft.Sec.LedChecker
 
         public int Count { get; set; }
 
+        public List<ReportWorkObject> ToList()
+        {
+            return indexes.Values.ToList();
+        }
+
         public ReportWorkList(Int64 recipeNo)
         {
             reportSet = new ReportWorkDataSet(AppRes.DB.Connect, null, null);
@@ -691,6 +718,11 @@ namespace IsSoft.Sec.LedChecker
         public BinObject this[string name]
         { get { return names[name]; } }
 
+        public List<BinObject> ToList()
+        {
+            return indexes.Values.ToList();
+        }
+
         public BinList(Int64 recipeNo)
         {
             binSet = new BinDataSet(AppRes.DB.Connect, null, null);
@@ -734,7 +766,7 @@ namespace IsSoft.Sec.LedChecker
 
         public Color Mark { get; set; }
 
-        public Dictionary<EWorkType, List<BinFormulaObject>> Formulas { get; set; }
+        public List<BinFormulaObject> Formulas { get; set; }
 
         private BinFormulaDataSet formulaSet;
 
@@ -746,7 +778,7 @@ namespace IsSoft.Sec.LedChecker
             Index = set.Index;
             Name = set.Name;
             Mark = set.Mark;
-            Formulas = new Dictionary<EWorkType, List<BinFormulaObject>>();
+            Formulas = new List<BinFormulaObject>();
 
             formulaSet = new BinFormulaDataSet(AppRes.DB.Connect, null, null);
             Load(RecNo);
@@ -754,9 +786,9 @@ namespace IsSoft.Sec.LedChecker
 
         private void Load(Int64 recNo)
         {
-            List<BinFormulaObject> formulaList = new List<BinFormulaObject>();
+            Formulas.Clear();
 
-            formulaSet.Select(recNo, EWorkType.Normal);
+            formulaSet.Select(recNo);
             for (int i = 0; i < formulaSet.RowCount; i++)
             {
                 formulaSet.Fetch(i);
@@ -765,22 +797,9 @@ namespace IsSoft.Sec.LedChecker
                 item.RecNo = formulaSet.RecNo;
                 item.BinNo = formulaSet.BinNo;
                 item.Logic = formulaSet.Logic;
-                formulaList.Add(item);
+                item.Type = ETestItemType.Both;
+                Formulas.Add(item);
             }
-            Formulas.Add(EWorkType.Normal, formulaList);
-
-            formulaSet.Select(recNo, EWorkType.Sampling);
-            for (int i = 0; i < formulaSet.RowCount; i++)
-            {
-                formulaSet.Fetch(i);
-
-                BinFormulaObject item = new BinFormulaObject(formulaSet.Formula);
-                item.RecNo = formulaSet.RecNo;
-                item.BinNo = formulaSet.BinNo;
-                item.Logic = formulaSet.Logic;
-                formulaList.Add(item);
-            }
-            Formulas.Add(EWorkType.Sampling, formulaList);
         }
     }
 
@@ -791,6 +810,8 @@ namespace IsSoft.Sec.LedChecker
         public Int64 BinNo { get; set; }
 
         public EBinLogic Logic { get; set; }
+
+        public ETestItemType Type { get; set; }
 
         public BinTokenObject Token { get; set; }
 
