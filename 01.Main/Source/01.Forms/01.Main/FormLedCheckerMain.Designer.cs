@@ -37,6 +37,7 @@
             this.timePanel = new Ulee.Controls.UlPanel();
             this.messagePanel = new Ulee.Controls.UlPanel();
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.viewButton = new DevExpress.XtraEditors.SimpleButton();
             this.homeButton = new DevExpress.XtraEditors.SimpleButton();
             this.testButton = new DevExpress.XtraEditors.SimpleButton();
             this.resetButton = new DevExpress.XtraEditors.SimpleButton();
@@ -52,7 +53,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clientLogoPanel = new Ulee.Controls.UlPanel();
             this.clientPicBox = new System.Windows.Forms.PictureBox();
-            this.viewButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.mainTrayMenu.SuspendLayout();
@@ -209,6 +209,25 @@
             this.menuPanel.TabIndex = 6;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // viewButton
+            // 
+            this.viewButton.AllowFocus = false;
+            this.viewButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewButton.Appearance.Options.UseFont = true;
+            this.viewButton.Appearance.Options.UseTextOptions = true;
+            this.viewButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.viewButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("viewButton.ImageOptions.Image")));
+            this.viewButton.ImageOptions.ImageToTextIndent = 0;
+            this.viewButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.viewButton.Location = new System.Drawing.Point(2, 122);
+            this.viewButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.viewButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.viewButton.Name = "viewButton";
+            this.viewButton.Size = new System.Drawing.Size(80, 58);
+            this.viewButton.TabIndex = 33;
+            this.viewButton.TabStop = false;
+            this.viewButton.Text = "VIEW";
             // 
             // homeButton
             // 
@@ -369,7 +388,7 @@
             this.deviceButton.AppearanceHovered.Options.UseFont = true;
             this.deviceButton.AppearancePressed.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deviceButton.AppearancePressed.Options.UseFont = true;
-            this.deviceButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("manualButton.ImageOptions.Image")));
+            this.deviceButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("deviceButton.ImageOptions.Image")));
             this.deviceButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.deviceButton.Location = new System.Drawing.Point(2, 62);
             this.deviceButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -479,25 +498,6 @@
             this.clientPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.clientPicBox.TabIndex = 0;
             this.clientPicBox.TabStop = false;
-            // 
-            // viewButton
-            // 
-            this.viewButton.AllowFocus = false;
-            this.viewButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.Appearance.Options.UseFont = true;
-            this.viewButton.Appearance.Options.UseTextOptions = true;
-            this.viewButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.viewButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("logButton.ImageOptions.Image")));
-            this.viewButton.ImageOptions.ImageToTextIndent = 0;
-            this.viewButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.viewButton.Location = new System.Drawing.Point(2, 122);
-            this.viewButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.viewButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(80, 58);
-            this.viewButton.TabIndex = 33;
-            this.viewButton.TabStop = false;
-            this.viewButton.Text = "VIEW";
             // 
             // FormLedCheckerMain
             // 

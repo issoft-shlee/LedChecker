@@ -85,7 +85,6 @@
             this.bgPanel.Controls.Add(this.okMeter);
             this.bgPanel.Controls.Add(this.ulPanel6);
             this.bgPanel.Size = new System.Drawing.Size(1816, 946);
-            this.bgPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.bgPanel_Paint);
             // 
             // menuPanel
             // 

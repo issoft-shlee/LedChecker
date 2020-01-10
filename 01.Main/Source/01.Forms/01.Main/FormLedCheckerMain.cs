@@ -131,10 +131,10 @@ namespace IsSoft.Sec.LedChecker
         {
             if (menu == null) return;
 
-            UlUserControlEng userControl = menu.Controls(menu.Index) as UlUserControlEng;
+            UlUserControlEng ctrl = menu.ActiveControl as UlUserControlEng;
 
-            userControl.InvalidControl(this, null);
-            InvalidUserControls(userControl.DefMenu);
+            ctrl.InvalidControl(this, null);
+            InvalidUserControls(ctrl.DefMenu);
         }
 
         private void DispVersion()

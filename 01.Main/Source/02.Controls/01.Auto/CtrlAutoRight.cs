@@ -172,7 +172,7 @@ namespace IsSoft.Sec.LedChecker
         {
             DefMenu.Index = 0;
             SetButtonState(ETestButtonState.Started);
-            (DefMenu.Controls(2) as CtrlAutoLog).Clear();
+            (DefMenu[2] as CtrlAutoLog).Clear();
             SetTypeLamp(ETestTypeLamp.Normal);
             context.StartThread();
         }
@@ -274,13 +274,13 @@ namespace IsSoft.Sec.LedChecker
             {
                 EventHandler func = new EventHandler(DoInvalidCounter);
                 this.BeginInvoke(func, new object[] { sender, e });
+                return;
             }
-            else
-            {
-                CounterArgs args = e as CounterArgs;
-                DispTestCounter(args.Counter);
-                (DefMenu.Controls(1) as CtrlAutoBin).DispBinCounter(args.Counter.Bins);
-            }
+
+            CounterArgs args = e as CounterArgs;
+
+            DispTestCounter(args.Counter);
+            (DefMenu[1] as CtrlAutoBin).DispBinCounter(args.Counter.Bins);
         }
 
         public void DoInvalidRecipe(object sender, EventArgs e)
@@ -289,14 +289,13 @@ namespace IsSoft.Sec.LedChecker
             {
                 EventHandler func = new EventHandler(DoInvalidRecipe);
                 this.BeginInvoke(func, new object[] { sender, e });
+                return;
             }
-            else
-            {
-                recipePanel.Text = context.Recipe.Code;
 
-                (DefMenu.Controls(0) as CtrlAutoMain).SetWorkObjects();
-                (DefMenu.Controls(1) as CtrlAutoBin).SetBinItems();
-            }
+            recipePanel.Text = context.Recipe.Code;
+
+            (DefMenu[0] as CtrlAutoMain).SetWorkObjects();
+            (DefMenu[1] as CtrlAutoBin).SetBinItems();
         }
 
         public void DoInvalidValue(object sender, EventArgs e)
@@ -305,9 +304,7 @@ namespace IsSoft.Sec.LedChecker
             {
                 EventHandler func = new EventHandler(DoInvalidValue);
                 this.BeginInvoke(func, new object[] { sender, e });
-            }
-            else
-            {
+                return;
             }
         }
 
@@ -317,17 +314,12 @@ namespace IsSoft.Sec.LedChecker
             {
                 EventHandler func = new EventHandler(DoInvalidTestIndex);
                 this.BeginInvoke(func, new object[] { sender, e });
+                return;
             }
-            else
-            {
-                TestIndexArgs args = e as TestIndexArgs;
-                (DefMenu.Controls(0) as CtrlAutoMain).SetTestIndex(args.Index);
-            }
-        }
 
-        private void bgPanel_Paint(object sender, PaintEventArgs e)
-        {
+            TestIndexArgs args = e as TestIndexArgs;
 
+            (DefMenu[0] as CtrlAutoMain).SetTestIndex(args.Index);
         }
     }
 }

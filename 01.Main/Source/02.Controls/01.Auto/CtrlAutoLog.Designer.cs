@@ -50,13 +50,13 @@
             this.totalLogEdit.BackColor = System.Drawing.Color.FloralWhite;
             this.totalLogEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.totalLogEdit.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLogEdit.Location = new System.Drawing.Point(4, 4);
+            this.totalLogEdit.Location = new System.Drawing.Point(2, 2);
             this.totalLogEdit.MaxLength = 131071;
             this.totalLogEdit.Multiline = true;
             this.totalLogEdit.Name = "totalLogEdit";
             this.totalLogEdit.ReadOnly = true;
             this.totalLogEdit.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.totalLogEdit.Size = new System.Drawing.Size(1712, 854);
+            this.totalLogEdit.Size = new System.Drawing.Size(1716, 858);
             this.totalLogEdit.TabIndex = 5;
             this.totalLogEdit.TabStop = false;
             // 
@@ -76,9 +76,9 @@
             // 
             this.totalLogPage.Controls.Add(this.totalLogEdit);
             this.totalLogPage.Location = new System.Drawing.Point(4, 26);
-            this.totalLogPage.Margin = new System.Windows.Forms.Padding(4);
+            this.totalLogPage.Margin = new System.Windows.Forms.Padding(2);
             this.totalLogPage.Name = "totalLogPage";
-            this.totalLogPage.Padding = new System.Windows.Forms.Padding(4);
+            this.totalLogPage.Padding = new System.Windows.Forms.Padding(2);
             this.totalLogPage.Size = new System.Drawing.Size(1720, 862);
             this.totalLogPage.TabIndex = 0;
             this.totalLogPage.Text = "  TOTAL  ";
@@ -88,9 +88,9 @@
             // 
             this.tabPage2.Controls.Add(this.testLogEdit);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1720, 862);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "  TEST  ";
@@ -101,13 +101,13 @@
             this.testLogEdit.BackColor = System.Drawing.Color.FloralWhite;
             this.testLogEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.testLogEdit.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.testLogEdit.Location = new System.Drawing.Point(4, 4);
+            this.testLogEdit.Location = new System.Drawing.Point(2, 2);
             this.testLogEdit.MaxLength = 131071;
             this.testLogEdit.Multiline = true;
             this.testLogEdit.Name = "testLogEdit";
             this.testLogEdit.ReadOnly = true;
             this.testLogEdit.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.testLogEdit.Size = new System.Drawing.Size(1712, 854);
+            this.testLogEdit.Size = new System.Drawing.Size(1716, 858);
             this.testLogEdit.TabIndex = 6;
             this.testLogEdit.TabStop = false;
             // 
